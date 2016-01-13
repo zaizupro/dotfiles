@@ -1,0 +1,39 @@
+#add in ~/.bashrc
+#if [ -f ~/.bash_zaz ]; then
+#    . ~/.bash_zaz
+#fi
+
+
+__currentTTY()
+{
+#echo `tty | sed -e "s:/dev/::"`
+temp=$(tty) ; echo ${temp:5}
+}
+
+
+
+
+#==colors for scripst====
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+BLUE=$(tput setaf 6)
+YELLOW=$(tput setaf 3)
+NC=$(tput sgr0)
+REV=$(tput rev)
+
+
+alias userls='cut -f1 -d: /etc/passwd'
+alias vm='startVM.sh'
+alias s='cd ..'
+alias cds='cd ~/_WORK'
+alias tt='tabbed -c xterm -into'
+alias cdn='cd `getNexusPath.sh`'
+
+
+PATH=$PATH:~/_bin
+
+
+export HISTCONTROL="ignoredups"
+
+
+

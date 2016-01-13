@@ -1,0 +1,8 @@
+#!/bin/sh
+make clean
+#toilet -f future -t "STOP  `date +%T`"
+TERMCOLS=$(tput cols)
+v=$(printf "%-${TERMCOLS}s" "*")
+echo "${v// /*}"
+date
+echo "${v// /*}"

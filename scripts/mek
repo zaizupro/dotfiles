@@ -1,0 +1,17 @@
+#!/bin/sh
+#toilet -f future -t "START `date +%T`"
+#cat ~/_bin/makeseparator
+
+TERMCOLS=$(tput cols)
+v=$(printf "%-${TERMCOLS}s" "*")
+echo "${v// /*}"
+date
+echo "${v// /*}"
+
+makek.sh
+#toilet -f future -t "STOP  `date +%T`"
+#cat ~/_bin/makeseparator
+
+echo "${v// /*}"
+date
+echo "${v// /*}"
