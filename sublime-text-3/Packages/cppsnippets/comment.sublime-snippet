@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+${1:/*[==========================================================================]*/}
+
+]]></content>
+	<tabTrigger>comm80</tabTrigger>
+	<description>Comment - Single-line 80 symbols</description>
+</snippet>
