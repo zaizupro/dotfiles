@@ -24,7 +24,7 @@ URxvt*scrollTtyOutput:                true
 ! URxvt*tintColor:                      color
 ! URxvt*shading:                        number
 ! URxvt*blurRadius:                     HxV
-URxvt*fading:                         20             ! процент "гашения" цвета текста в неактивном окне
+URxvt*fading:                         10             ! процент "гашения" цвета текста в неактивном окне
 ! URxvt*fadeColor:                      color
 ! URxvt*utmpInhibit:                    boolean
 ! URxvt*urgentOnBell:                   boolean
@@ -38,7 +38,8 @@ URxvt*fading:                         20             ! процент "гаше�
 URxvt*cursorBlink:                    true
 ! URxvt*pointerBlank:                   boolean
 URxvt*background:                     #000000
-URxvt*foreground:                     #FCE597
+!URxvt*foreground:                     #FCE597
+URxvt*foreground:                      #FFFEB3
 ! URxvt*color0:                         color
 ! URxvt*color1:                         color
 ! URxvt*color2:                         color
