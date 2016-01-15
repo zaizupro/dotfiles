@@ -1,0 +1,9 @@
+#!/bin/sh
+kek
+rm ./core.*
+echo "rm ./core.*"
+TERMCOLS=$(tput cols)
+v=$(printf "%-${TERMCOLS}s" "*")
+echo "${v// /*}"
+date
+echo "${v// /*}"
