@@ -2,10 +2,10 @@
 #toilet -f future -t "START `date +%T`"
 
 TERMCOLS=$(tput cols)
-v=$(printf "%-${TERMCOLS}s" "*")
-echo "${v// /*}"
+FULLLINE=$(printf "%-${TERMCOLS}s" "*")
+echo "${FULLLINE// /*}"
 date
-echo "${v// /*}"
+echo "${FULLLINE// /*}"
 
 MKSTARTDATE=$(date +%s)
 makek.sh
@@ -16,13 +16,14 @@ MKENDDATE=$(date +%s)
 BTMSG="BUILDED IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!"
 BTMSGLNGTH=`expr "${BTMSG}" : '.*'`
 
-vv=$(printf "%-$((${TERMCOLS}/2 - ${BTMSGLNGTH}/2))s" "*")
+STARTLINE=$(printf "%-$((${TERMCOLS}/2 - ${BTMSGLNGTH}/2))s" "*")
+ENDLINE=$(printf "%-$((${TERMCOLS} - (${TERMCOLS}/2 + ${BTMSGLNGTH}/2)))s" "*")
 
-echo "${v// /*}"
-echo "${vv// /*}"`tput setaf 2`${BTMSG}`tput sgr0`"${vv// /*}"
+echo "${FULLLINE// /*}"
+echo "${STARTLINE// /*}"`tput setaf 2`${BTMSG}`tput sgr0`"${ENDLINE// /*}"
 
 
 
-echo "${v// /*}"
+echo "${FULLLINE// /*}"
 echo `date`
-echo "${v// /*}"
+echo "${FULLLINE// /*}"
