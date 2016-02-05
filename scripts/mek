@@ -2,16 +2,21 @@
 #toilet -f future -t "START `date +%T`"
 #cat ~/_bin/makeseparator
 
+
 TERMCOLS=$(tput cols)
 v=$(printf "%-${TERMCOLS}s" "*")
 echo "${v// /*}"
 date
 echo "${v// /*}"
 
+MKSTARTDATE='date +%s'
+echo $(NKSTARTDATE)
 makek.sh
 #toilet -f future -t "STOP  `date +%T`"
 #cat ~/_bin/makeseparator
 
+MKSTARTDATE='date +%s'
+echo $(NKSTARTDATE)
 echo "${v// /*}"
 date
 echo "${v// /*}"
