@@ -1,15 +1,7 @@
-#add in ~/.bashrc
+#add in ~/.bashrc next lines:
 #if [ -f ~/.bash_zaz ]; then
 #    . ~/.bash_zaz
 #fi
-
-
-__currentTTY()
-{
-#echo `tty | sed -e "s:/dev/::"`
-temp=$(tty) ; echo ${temp:5}
-}
-
 
 
 
@@ -20,6 +12,37 @@ BLUE=$(tput setaf 6)
 YELLOW=$(tput setaf 3)
 NC=$(tput sgr0)
 REV=$(tput rev)
+#========================
+
+
+__currentTTY()
+{
+#echo `tty | sed -e "s:/dev/::"`
+temp=$(tty) ; echo ${temp:5}
+}
+
+__printor()
+{
+    TERMCOLS=$(tput cols)
+
+    MSG=${1}
+    MSGLNGTH=${#MSG}
+    STARTLINE=$(printf "%-$((${TERMCOLS}/2 - ${MSGLNGTH}/2))s" "*")
+    STLNLNGTH=${#STARTLINE}
+    ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "*")
+
+    echo $YELLOW"${STARTLINE// /*}"$GREEN${MSG}$YELLOW"${ENDLINE// /*}"$NC
+}
+
+__printfulline()
+{
+    TERMCOLS=$(tput cols)
+    FULLLINE=$(printf "%-${TERMCOLS}s" "*")
+    echo `tput setaf 3`"${FULLLINE// /*}"`tput sgr0`
+}
+
+
+
 
 
 alias userls='cut -f1 -d: /etc/passwd'

@@ -1,29 +1,15 @@
 #!/bin/bash
 #toilet -f future -t "START `date +%T`"
 
-__printor()
-{
-    TERMCOLS=$(tput cols)
+if [ -f ~/.bash_zaz ]; then
+   source ~/.bash_zaz
+fi
 
-    MSG=${1}
-    MSGLNGTH=${#MSG}
-    STARTLINE=$(printf "%-$((${TERMCOLS}/2 - ${MSGLNGTH}/2))s" "*")
-    STLNLNGTH=${#STARTLINE}
-    ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "*")
-
-    echo `tput setaf 3`"${STARTLINE// /*}"`tput setaf 2`${MSG}`tput setaf 3`"${ENDLINE// /*}"`tput sgr0`
-}
-
-__printfulline()
-{
-    TERMCOLS=$(tput cols)
-    FULLLINE=$(printf "%-${TERMCOLS}s" "*")
-    echo `tput setaf 3`"${FULLLINE// /*}"`tput sgr0`
-}
 
 
 __printfulline
-__printor "`date -R`"
+__printor "[`__currentTTY`]"
+__printor "[`date -R`]"
 __printfulline
 
 MKSTARTDATE=$(date +%s)
@@ -34,7 +20,6 @@ BTMSG="BUILDED IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!"
 
 
 __printfulline
-__printor "${BTMSG}"
-__printfulline
-__printor "`date -R`"
+__printor "[${BTMSG}]"
+__printor "[`date -R`]"
 __printfulline
