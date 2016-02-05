@@ -1,29 +1,40 @@
 #!/bin/bash
 #toilet -f future -t "START `date +%T`"
 
-TERMCOLS=$(tput cols)
-FULLLINE=$(printf "%-${TERMCOLS}s" "*")
-echo "${FULLLINE// /*}"
-date
-echo "${FULLLINE// /*}"
+__printor()
+{
+    TERMCOLS=$(tput cols)
+
+    MSG=${1}
+    MSGLNGTH=${#MSG}
+    STARTLINE=$(printf "%-$((${TERMCOLS}/2 - ${MSGLNGTH}/2))s" "*")
+    STLNLNGTH=${#STARTLINE}
+    ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "*")
+
+    echo `tput setaf 3`"${STARTLINE// /*}"`tput setaf 2`${MSG}`tput setaf 3`"${ENDLINE// /*}"`tput sgr0`
+}
+
+__printfulline()
+{
+    TERMCOLS=$(tput cols)
+    FULLLINE=$(printf "%-${TERMCOLS}s" "*")
+    echo `tput setaf 3`"${FULLLINE// /*}"`tput sgr0`
+}
+
+
+__printfulline
+__printor "`date -R`"
+__printfulline
 
 MKSTARTDATE=$(date +%s)
 makek.sh
 #toilet -f future -t "STOP  `date +%T`"
-
 MKENDDATE=$(date +%s)
-
 BTMSG="BUILDED IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!"
-BTMSGLNGTH=`expr "${BTMSG}" : '.*'`
-
-STARTLINE=$(printf "%-$((${TERMCOLS}/2 - ${BTMSGLNGTH}/2))s" "*")
-ENDLINE=$(printf "%-$((${TERMCOLS} - (${TERMCOLS}/2 + ${BTMSGLNGTH}/2)))s" "*")
-
-echo "${FULLLINE// /*}"
-echo "${STARTLINE// /*}"`tput setaf 2`${BTMSG}`tput sgr0`"${ENDLINE// /*}"
 
 
-
-echo "${FULLLINE// /*}"
-echo `date`
-echo "${FULLLINE// /*}"
+__printfulline
+__printor "${BTMSG}"
+__printfulline
+__printor "`date -R`"
+__printfulline
