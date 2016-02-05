@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #toilet -f future -t "START `date +%T`"
 
 TERMCOLS=$(tput cols)
