@@ -5,16 +5,36 @@
 
 
 
-#==colors for scripst====
-RED=$(tput setaf 1)
-GREEN=$(tput setaf 2)
-BLUE=$(tput setaf 6)
-YELLOW=$(tput setaf 3)
-NC=$(tput sgr0)
-REV=$(tput rev)
-#========================
 
 
+# ====colors for scripst============
+COLORSNUM=$(tput colors)
+if [ "$COLORSNUM" -eq 256 ]; then
+    #==========256 colors =======
+    RED=$(tput setaf 160)
+    GREEN=$(tput setaf 112)
+    BLUE=$(tput setaf 38)
+    YELLOW=$(tput setaf 220)
+    ORANGE=$(tput setaf 208)
+    NC=$(tput sgr0)
+    REV=$(tput rev)
+else
+    #==8 colors ================
+    RED=$(tput setaf 1)
+    GREEN=$(tput setaf 2)
+    BLUE=$(tput setaf 6)
+    YELLOW=$(tput setaf 3)
+    ORANGE=$(tput setaf 3)
+    NC=$(tput sgr0)
+    REV=$(tput rev)
+fi
+
+#check colors
+#for i in $(seq 0 $(tput colors) ) ; do tput setaf $i ; echo -n " [█${i}] " ; done ; tput setaf 15 ; echo
+#===========================
+
+
+#================CUSTOM_FUNCTIONS===================
 __currentTTY()
 {
 #echo `tty | sed -e "s:/dev/::"`
@@ -31,20 +51,19 @@ __printor()
     STLNLNGTH=${#STARTLINE}
     ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "*")
 
-    echo $YELLOW"${STARTLINE// /*}"$GREEN${MSG}$YELLOW"${ENDLINE// /*}"$NC
+    echo $ORANGE"${STARTLINE// /*}"$GREEN${MSG}$ORANGE"${ENDLINE// /*}"$NC
 }
 
 __printfulline()
 {
-    TERMCOLS=$(tput cols)
-    FULLLINE=$(printf "%-${TERMCOLS}s" "*")
-    echo `tput setaf 3`"${FULLLINE// /*}"`tput sgr0`
+    #TERMCOLS=$(tput cols)
+    #FULLLINE=$(printf "%-${TERMCOLS}s" "*")
+    #echo $ORANGE"${FULLLINE// /*}"$NC
+    __printor
 }
 
 
-
-
-
+#====================ALIASES======================
 alias userls='cut -f1 -d: /etc/passwd'
 alias vm='startVM.sh'
 alias s='cd ..'
