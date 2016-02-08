@@ -8,18 +8,41 @@ fi
 
 
 __printfulline
-__printor "[`__currentTTY`]"
-__printor "[`date -R`]"
+__printor "[BUILDING STARTED] at [`__currentTTY`]" $GREEN
+__printor "[`date -R`]" $GREEN
 __printfulline
 
 MKSTARTDATE=$(date +%s)
 makek.sh
+RESULT=$?
 #toilet -f future -t "STOP  `date +%T`"
 MKENDDATE=$(date +%s)
-BTMSG="BUILDED IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!"
+if [ $RESULT -eq 0 ]; then
+    MKRESULT="BUILDING COMPLETED"
+    #COLOR:=${GREEN}
+
+    BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
+    __printfulline
+    __printor "[${BTMSG}]" ${GREEN}
+    __printor "[`date -R`]" ${GREEN}
+    __printfulline
+else
+    MKRESULT="BUILDING FAILED"
+    #COLOR={$RED}
+
+    BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
+    __printfulline
+    __printor "[${BTMSG}]" ${RED}
+    __printor "[`date -R`]" ${RED}
+    __printfulline
+
+fi
 
 
-__printfulline
-__printor "[${BTMSG}]"
-__printor "[`date -R`]"
-__printfulline
+    # BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
+    # __printfulline
+    # __printor "[${BTMSG}]" ${COLOR}
+    # __printor "[`date -R`]" ${COLOR}
+    # __printfulline
+
+

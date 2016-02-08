@@ -46,12 +46,13 @@ __printor()
     TERMCOLS=$(tput cols)
 
     MSG=${1}
+    COLOR=${2}
     MSGLNGTH=${#MSG}
     STARTLINE=$(printf "%-$((${TERMCOLS}/2 - ${MSGLNGTH}/2))s" "*")
     STLNLNGTH=${#STARTLINE}
     ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "*")
 
-    echo $ORANGE"${STARTLINE// /*}"$GREEN${MSG}$ORANGE"${ENDLINE// /*}"$NC
+    echo $ORANGE"${STARTLINE// /*}"$COLOR${MSG}$ORANGE"${ENDLINE// /*}"$NC
 }
 
 __printfulline()
