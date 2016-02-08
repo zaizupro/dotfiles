@@ -24,7 +24,7 @@ URxvt*scrollTtyOutput:                true
 ! URxvt*tintColor:                      color
 ! URxvt*shading:                        number
 ! URxvt*blurRadius:                     HxV
-URxvt*fading:                         10             ! процент "гашения" цвета текста в неактивном окне
+!URxvt*fading:                         10             ! процент "гашения" цвета текста в неактивном окне
 ! URxvt*fadeColor:                      color
 ! URxvt*utmpInhibit:                    boolean
 ! URxvt*urgentOnBell:                   boolean
@@ -132,7 +132,7 @@ URxvt*iso14755:                       false
 ! URxvt*selection.pattern-0:            string
 URxvt*tab-bg:                         208
 URxvt*tab-fg:                         0
-URxvt*tabbar-bg:                      0
+URxvt*tabbar-bg:                      236
 URxvt*tabbar-fg:                      208
 ! URxvt*url-launcher:                   string
 
