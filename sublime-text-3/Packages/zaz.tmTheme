@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>author</key>
-	<string>Michael Sheets</string>
+	<string>ZaiZu</string>
 	<key>name</key>
-	<string>Twilight</string>
+	<string>awezaz</string>
 	<key>settings</key>
 	<array>
 
@@ -16,14 +16,14 @@
 			<dict>
 				<key>background</key>
 				<string>#0f0E0E</string>
+				<key>foreground</key>
+				<string>#CFCF86</string>
 				<!--string>#141414</string-->
 				<key>caret</key>
 				<string>#ffff14</string>
 				<!--string>#A7A7A7</string-->
 				<key>fontStyle</key>
 				<string>bold</string>
-				<key>foreground</key>
-				<string>#CFCF86</string>
 				<key>invisibles</key>
 				<string>#FFFFFF</string>
 				<key>lineHighlight</key>
@@ -35,7 +35,7 @@
 				<string>#DCA42C</string>
 			</dict>
 		</dict>
-
+<!-- bg default EAEAA6 -->
 <!--
 <dict>
   <key>scope</key>
@@ -580,7 +580,19 @@
 
 <!-- =========================protobuf ================= -->
 
-
+		<dict>
+			<key>name</key>
+			<string>message</string>
+			<key>scope</key>
+			<string>entity.name.function.proto</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>foreground</key>
+				<string>#FF6800</string>
+			</dict>
+		</dict>
 		<dict>
 			<key>name</key>
 			<string>optional</string>
@@ -645,7 +657,21 @@
 			</dict>
 		</dict>
 
-
+		<dict>
+			<key>name</key>
+			<string>Constant</string>
+			<key>scope</key>
+			<string>constant.numeric.proto</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>foreground</key>
+				<string>#BB432C</string>
+				<key>background</key>
+				<string>#240A01</string>
+			</dict>
+		</dict>
 
 <!-- =========================protobuf end ================= -->
 		<dict>
