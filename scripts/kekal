@@ -1,9 +1,12 @@
 #!/bin/sh
+
+if [ -f ~/.bash_zaz ]; then                                                                                                                  
+   source ~/.bash_zaz                                                                                                                        
+fi 
+
 kek
+
 rm ./core.*
-echo "rm ./core.*"
-TERMCOLS=$(tput cols)
-v=$(printf "%-${TERMCOLS}s" "*")
-echo "${v// /*}"
-date
-echo "${v// /*}"
+echo  $?
+__printor "[rm ./core.*]" $RED
+__printor "[`date +%T`]" $RED

@@ -1,8 +1,21 @@
 #!/bin/sh
+
+ if [ -f ~/.bash_zaz ]; then
+    source ~/.bash_zaz
+ fi
+
+
+
+ __printfulline
+ __printor "[CLEANING STARTED] at [`__currentTTY`]" $YELLOW
+ __printor "[`date -R`]" $YELLOW
+ __printfulline
+
+
 make clean
-#toilet -f future -t "STOP  `date +%T`"
-TERMCOLS=$(tput cols)
-v=$(printf "%-${TERMCOLS}s" "*")
-echo "${v// /*}"
-date
-echo "${v// /*}"
+
+
+__printfulline
+__printor "[CLEANING DONE] at [`__currentTTY`]" $YELLOW
+__printor "[`date -R`]" $YELLOW
+__printfulline

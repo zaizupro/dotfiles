@@ -8,12 +8,13 @@ fi
 
 
 __printfulline
-__printor "[BUILDING STARTED] at [`__currentTTY`]" $GREEN
-__printor "[`date -R`]" $GREEN
+__printor "[BUILDING STARTED] at [`__currentTTY`]" $YELLOW
+__printor "[`date -R`]" $YELLOW
 __printfulline
 
 MKSTARTDATE=$(date +%s)
-makek.sh
+makek.sh 
+#|  sed "s/^/[$YELLOW`date +%T`$NC]/"
 RESULT=$?
 #toilet -f future -t "STOP  `date +%T`"
 MKENDDATE=$(date +%s)
