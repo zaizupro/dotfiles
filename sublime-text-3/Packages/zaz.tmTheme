@@ -112,7 +112,8 @@
 				<string>bold</string>
 				<key>foreground</key>
 				<!--string>#FF6F43</string-->
-				<string>#FF673D</string>
+				<!-- <string>#FF673D</string> -->
+				<string>#BB432C</string>
 				<key>background</key>
 				<string>#240A01</string>
 			</dict>
@@ -141,6 +142,9 @@
 				<string></string>
 				<key>foreground</key>
 				<string>#CC7833</string>
+				<key>background</key>
+				<string>#291200</string>
+
 			</dict>
 		</dict>
 		<dict>
@@ -190,7 +194,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#ffaa00</string>
+				<string>#FF8B00</string>
 			</dict>
 		</dict>
 		<!--dict>
@@ -358,6 +362,8 @@
 				<string>#CF6A4C</string>
 			</dict>
 		</dict>
+
+<!-- ====================== CPP C++================= -->
 		<dict>
 			<key>name</key>
 			<string>c C/C++ Preprocessor Line</string>
@@ -383,6 +389,265 @@
 				<string>#FF4411</string>
 			</dict>
 		</dict>
+
+
+		<dict>
+			<key>name</key>
+			<string>\b(class|wchar_t|nullptr_t)\b</string>
+			<key>scope</key>
+			<string>storage.type.c++</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#300000</string>
+				<key>foreground</key>
+				<string>#C80500</string>
+			</dict>
+		</dict>
+
+
+		<dict>
+			<key>name</key>
+			<string>\b(private:|protected:|public:)</string>
+			<key>scope</key>
+			<string>storage.modifier.emt.c++</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#172C00</string>
+				<key>foreground</key>
+				<string>#72D700</string>
+			</dict>
+		</dict>
+
+		<dict>
+			<key>name</key>
+			<string>\b(template )</string>
+			<key>scope</key>
+			<string>storage.type.template.c++</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#002F02</string>
+				<key>foreground</key>
+				<string>#00FF09</string>
+			</dict>
+		</dict>
+
+		<dict>
+			<key>name</key>
+			<string>std.all.c++</string>
+			<key>scope</key>
+			<string>std.all.c++</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#413F00</string>
+				<key>foreground</key>
+				<string>#FFF600</string>
+			</dict>
+		</dict>
+
+
+		<dict>
+			<key>name</key>
+			<string>qt.all.c++</string>
+			<key>scope</key>
+			<string>qt.all.c++</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#410000</string>
+				<key>foreground</key>
+				<string>#FF2200</string>
+			</dict>
+		</dict>
+
+		<!-- class member -->
+		<dict>
+			<key>name</key>
+			<string>classmember.c++</string>
+			<key>scope</key>
+			<string>meta.angle-brackets.c++</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#401A00</string>
+				<key>foreground</key>
+				<string>#FF6800</string>
+			</dict>
+		</dict>
+
+<!-- F59C63 bledno orange -->
+
+<!--
+		<dict>
+			<key>name</key>
+			<string>\b(class|struct)\s+([_A-Za-z][_A-Za-z0-9]*\b);</string>
+			<key>scope</key>
+			<string>meta.class-struct-block.base-classes.c++</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#303030</string>
+				<key>foreground</key>
+				<string>#C80500</string>
+			</dict>
+		</dict>
+ -->
+
+<!-- ====================== CPP C++ qt================= -->
+
+
+<!-- ====================== CPP C++ end================= -->
+
+
+<!-- =========================git gutter ================= -->
+
+<dict>
+  <key>name</key>
+  <string>GitGutter deleted</string>
+  <key>scope</key>
+  <string>markup.deleted.git_gutter</string>
+  <key>settings</key>
+  <dict>
+    <key>foreground</key>
+    <string>#F92672</string>
+  </dict>
+</dict>
+<dict>
+  <key>name</key>
+  <string>GitGutter inserted</string>
+  <key>scope</key>
+  <string>markup.inserted.git_gutter</string>
+  <key>settings</key>
+  <dict>
+    <key>foreground</key>
+    <string>#A6E22E</string>
+  </dict>
+</dict>
+<dict>
+  <key>name</key>
+  <string>GitGutter changed</string>
+  <key>scope</key>
+  <string>markup.changed.git_gutter</string>
+  <key>settings</key>
+  <dict>
+    <key>foreground</key>
+    <string>#967EFB</string>
+  </dict>
+</dict>
+<dict>
+  <key>name</key>
+  <string>GitGutter ignored</string>
+  <key>scope</key>
+  <string>markup.ignored.git_gutter</string>
+  <key>settings</key>
+  <dict>
+    <key>foreground</key>
+    <string>#565656</string>
+  </dict>
+</dict>
+<dict>
+  <key>name</key>
+  <string>GitGutter untracked</string>
+  <key>scope</key>
+  <string>markup.untracked.git_gutter</string>
+  <key>settings</key>
+  <dict>
+    <key>foreground</key>
+    <string>#565656</string>
+  </dict>
+</dict>
+
+<!-- =========================git gutter end ================= -->
+
+
+
+<!-- =========================protobuf ================= -->
+
+
+		<dict>
+			<key>name</key>
+			<string>optional</string>
+			<key>scope</key>
+			<string>storage.modifier.optional.source.proto</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#002F02</string>
+				<key>foreground</key>
+				<string>#00FF09</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>repeated</string>
+			<key>scope</key>
+			<string>storage.modifier.repeated.source.proto</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#413F00</string>
+				<key>foreground</key>
+				<string>#FFF600</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>required</string>
+			<key>scope</key>
+			<string>storage.modifier.required.source.proto</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#401A00</string>
+				<key>foreground</key>
+				<string>#FF6800</string>
+			</dict>
+		</dict>
+
+
+
+		<dict>
+			<key>name</key>
+			<string>storage.type.source.proto</string>
+			<key>scope</key>
+			<string>storage.type.source.proto</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>bold</string>
+				<key>background</key>
+				<string>#410000</string>
+				<key>foreground</key>
+				<string>#FF2200</string>
+			</dict>
+		</dict>
+
+
+
+<!-- =========================protobuf end ================= -->
 		<dict>
 			<key>name</key>
 			<string>✘ Doctype/XML Processing</string>
@@ -440,9 +705,10 @@
 				<key>fontStyle</key>
 				<string>bold</string>
 				<key>background</key>
-				<string>#160D00</string>
+				<string>#271B00</string>
 				<key>foreground</key>
-				<string>#FFC161</string>
+				<!-- <string>#FFC161</string> -->
+				<string>#F4C152</string>
 			</dict>
 		</dict>
 		<dict>

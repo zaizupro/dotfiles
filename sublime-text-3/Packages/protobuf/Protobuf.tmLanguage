@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>fileTypes</key>
+    <array>
+        <string>proto</string>
+    </array>
+    <key>foldingStartMarker</key>
+    <string>{</string>
+    <key>foldingStopMarker</key>
+    <string>}</string>
+    <key>name</key>
+    <string>ProtoBuf</string>
+    <key>patterns</key>
+    <array>
+        <dict>
+            <key>comment</key>
+            <string>Field numbers</string>
+            <key>match</key>
+            <string>\s+[0-9]*</string>
+            <key>name</key>
+            <string>constant.numeric.proto</string>
+        </dict>
+        <dict>
+            <key>comment</key>
+            <string>Scalar Value types.</string>
+            <key>match</key>
+            <string>double|float|int32|int64|uint32|uint64|sint32|sint64|long|fixed32|fixed64|sfixed|sfixed64|bool|string|bytes</string>
+            <key>name</key>
+            <string>storage.type.source.proto</string>
+        </dict>
+        <dict>
+            <key>comment</key>
+            <string>Field Rules</string>
+            <key>match</key>
+            <string>optional</string>
+            <key>name</key>
+            <string>storage.modifier.optional.source.proto</string>
+        </dict>
+        <dict>
+            <key>comment</key>
+            <string>Field Rules</string>
+            <key>match</key>
+            <string>required</string>
+            <key>name</key>
+            <string>storage.modifier.required.source.proto</string>
+        </dict>
+        <dict>
+            <key>comment</key>
+            <string>Field Rules</string>
+            <key>match</key>
+            <string>repeated</string>
+            <key>name</key>
+            <string>storage.modifier.repeated.source.proto</string>
+        </dict>
+        <dict>
+            <key>comment</key>
+            <string>Message section</string>
+            <key>match</key>
+            <string>^message|^package|^option|^import|^extend|^service</string>
+            <key>name</key>
+            <string>entity.name.function.proto</string>
+        </dict>
+        <dict>
+            <key>comment</key>
+            <string>Comments</string>
+            <key>match</key>
+            <string>//.*</string>
+            <key>name</key>
+            <string>comment.line.double-slash.proto</string>
+        </dict>
+    </array>
+    <key>scopeName</key>
+    <string>source.proto</string>
+    <key>uuid</key>
+    <string>7c5e8e41-b1b7-40e2-a140-9c0c667e1ad7</string>
+</dict>
+</plist>
