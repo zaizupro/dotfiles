@@ -3,10 +3,6 @@
 #    . ~/.bash_zaz
 #fi
 
-
-
-
-
 # ====colors for scripst============
 COLORSNUM=$(tput colors)
 if [ "$COLORSNUM" -eq 256 ]; then
@@ -29,12 +25,45 @@ else
     REV=$(tput rev)
 fi
 
+
 #check colors
 #for i in $(seq 0 $(tput colors) ) ; do tput setaf $i ; echo -n " [█${i}] " ; done ; tput setaf 15 ; echo
-#===========================
 
+
+
+
+#===============VARIABLES============
+
+#set colorful custom prompt                                                                                                                  
+#2line prompt                                                                                                                                
+PS1='${YELLOW}\A ${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H:\n${RED}\W${NC}\$'                                       
+
+EDITOR=nano     
+
+PATH=$PATH:~/_bin
+
+ENV=$HOME/.bashrc  
+
+HISTCONTROL="ignoredups"
+
+
+
+
+export PATH ENV HISTCONTROL EDITOR
 
 #================CUSTOM_FUNCTIONS===================
+
+__ddiff()                                                                                                                                      
+{                                                                                                                                            
+    svn diff |sed 's/^-/\x1b[30m\x1b[41m-/;s/^+/\x1b[30m\x1b[42m+/;s/^@/\x1b[30m\x1b[43m@/;s/$/\x1b[0m/'                                         
+}                                                                                                                                            
+                                                                                                                                             
+__svn_st()                                                                                                                                   
+{                                                                                                                                            
+    OUT_MSG=""; [ "$(svn st 2> /dev/null | awk '{print $1}' |grep M |wc -l)" -ne "0" ] && OUT_MSG="[*]"                                          
+    echo $OUT_MSG                                                                                                                                
+}
+
 __currentTTY()
 {
 #echo `tty | sed -e "s:/dev/::"`
@@ -72,11 +101,21 @@ alias cds='cd ~/_WORK'
 alias tt='tabbed -c xterm -into'
 alias cdn='cd `getNexusPath.sh`'
 
+alias ll='ls -lah --color=no'
+alias lsh='ls -a | grep "^\."' 
 
-PATH=$PATH:~/_bin
+alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\n'"
+
+# Tell to df to don't see the supermount filesystems.
+#alias df='df -x supermount'
 
 
-export HISTCONTROL="ignoredups"
+
+#====NET aliases=========================================                                                                                    
+#global                                                                                                                                      
+#ifconfig eth0:0 inet 192.168.0.240 netmask 0xffff0000 
+
+
 
 
 
