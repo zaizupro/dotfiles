@@ -36,9 +36,9 @@ fi
 
 #set colorful custom prompt                                                                                                                  
 #2line prompt                                                                                                                                
-PS1='${YELLOW}\A ${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H:\n${RED}\W${NC}\$'                                       
+#PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
 
-EDITOR=nano     
+#EDITOR=nano     
 
 PATH=$PATH:~/_bin
 
