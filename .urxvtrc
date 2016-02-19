@@ -2,6 +2,21 @@
 !insert next line in ~/.Xresources :
 !# include ".urxvtrc"
 
+!fake transparentsy
+!URxvt*inheritPixmap: true
+!URxvt*geometry:      100x30
+!URxvt*highlightSelection: true
+!URxvt*transparent: true
+!URxvt*shading: 10
+!URxvt*tintColor: #000000
+!URxvt*blurRadius: 15
+
+!real transparentsy
+URxvt.depth: 32
+URxvt.background: [75]#000000
+! rgba:1111/1111/1111/aaaa
+
+
 ! URxvt*termName:                       string
 ! URxvt*geometry:                       geometry
 ! URxvt*chdir:                          string
@@ -73,6 +88,7 @@ URxvt*foreground:                      #FFFEB3
 ! URxvt*path:                           search path
 ! URxvt*backgroundPixmap:               file[;geom]
 !URxvt*iconFile:                       /usr/share/pixmaps/gnome-terminal.xpm    ! иконка для иксов
+URxvt.iconFile:    /usr/share/icons/oxygen/64x64/apps/utilities-terminal.png
 URxvt*font:                           xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
@@ -137,6 +153,12 @@ URxvt*tabbar-fg:                      208
 ! URxvt*url-launcher:                   string
 
 
+
+!hide tabbar if one tab present
+URxvt.tabbed.autohide: true
+
+!undind default keys
+URxvt.tabbed.no-tabbedex-keys: true
 
 URxvt.tabbed.new-button:  no
 URxvt.tabbed.title: no
