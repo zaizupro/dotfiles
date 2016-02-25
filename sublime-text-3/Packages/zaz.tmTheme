@@ -27,10 +27,14 @@
 				<key>invisibles</key>
 				<string>#FFFFFF</string>
 				<key>lineHighlight</key>
-				<string>#aa660050</string>
+				<string>#7D4A0080</string>
+				<!-- <key>lineHighlight</key>
+				<string>#37271C</string> -->
 				<key>selection</key>
-				<string>#FFAE2240</string>
-				<!--string>#DDF0FF33</string-->
+				<string>#5E3800</string>
+				<!-- <string>#5D4F00</string> -->
+				<!-- <string>#FFAE2240</string> -->
+				<!-- <string>#DDF0FF33</string> -->
 				<key>gutterForeground</key>
 				<string>#DCA42C</string>
 			</dict>
@@ -183,7 +187,8 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>#9B859D</string>
+				<string>#C30013</string>
+				<!-- <string>#9B859D</string> -->
 			</dict>
 		</dict>
 		<dict>
