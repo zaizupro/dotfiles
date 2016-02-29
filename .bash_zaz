@@ -37,7 +37,7 @@ fi
 #set colorful custom prompt                                                                                                                  
 #2line prompt                                                                                                                                
 #PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
-
+#PS1=${ORANGE}${PS1}${NC}
 #EDITOR=nano     
 
 PATH=$PATH:~/_bin
@@ -109,7 +109,8 @@ alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\
 # Tell to df to don't see the supermount filesystems.
 #alias df='df -x supermount'
 
-
+#====dev==========
+alias remek='kek && mek'
 
 #====NET aliases=========================================                                                                                    
 #global                                                                                                                                      
