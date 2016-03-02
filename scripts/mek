@@ -7,10 +7,10 @@ fi
 
 
 
-__printfulline
+__printor "┌────────────────────────────────────┐" $YELLOW
 __printor "[BUILDING STARTED] at [`__currentTTY`]" $YELLOW
 __printor "[`date -R`]" $YELLOW
-__printfulline
+__printor "└────────────────────────────────────┘" $YELLOW
 
 MKSTARTDATE=$(date +%s)
 makek.sh 
@@ -23,19 +23,23 @@ if [ $RESULT -eq 0 ]; then
     #COLOR:=${GREEN}
 
     BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-    __printfulline
+#    __printfulline
+    __printor "┌────────────────────────────────────┐" ${GREEN}
     __printor "[${BTMSG}]" ${GREEN}
     __printor "[`date -R`]" ${GREEN}
-    __printfulline
+    __printor "└────────────────────────────────────┘" ${GREEN}
+#    __printfulline
 else
     MKRESULT="BUILDING FAILED"
     #COLOR={$RED}
 
     BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-    __printfulline
+#    __printfulline
+    __printor "┌────────────────────────────────────┐" ${RED}
     __printor "[${BTMSG}]" ${RED}
     __printor "[`date -R`]" ${RED}
-    __printfulline
+    __printor "└────────────────────────────────────┘" ${RED}
+    #__printfulline
 
 fi
 

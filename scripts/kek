@@ -6,16 +6,16 @@
 
 
 
- __printfulline
+ __printor "┌────────────────────────────────────┐" $YELLOW
  __printor "[CLEANING STARTED] at [`__currentTTY`]" $YELLOW
  __printor "[`date -R`]" $YELLOW
- __printfulline
+ __printor "└────────────────────────────────────┘" $YELLOW
 
 
 make clean
 
 
-__printfulline
-__printor "[CLEANING DONE] at [`__currentTTY`]" $YELLOW
-__printor "[`date -R`]" $YELLOW
-__printfulline
+__printor "┌────────────────────────────────────┐" $GREEN
+__printor "[CLEANING DONE] at [`__currentTTY`]" $GREEN
+__printor "[`date -R`]" $GREEN
+__printor "└────────────────────────────────────┘" $GREEN
