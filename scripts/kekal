@@ -1,12 +1,21 @@
 #!/bin/sh
 
-if [ -f ~/.bash_zaz ]; then                                                                                                                  
-   source ~/.bash_zaz                                                                                                                        
-fi 
+if [ -f ~/.bash_zaz ]; then
+   source ~/.bash_zaz
+fi
 
-kek
+#__printor "[`ls|grep core.`]"
+ls|grep core.|sed "s/^/`__printor`]/"
 
-rm ./core.*
-echo  $?
+read -p "remove dat files?[y/n]:" result
+case $result in
+    y) rm -i -v  ./core.*;echo $?;;
+    n) ;;
+    *) echo -e "${RED}Error...${NC}" && sleep 2
+esac
+
+
 __printor "[rm ./core.*]" $RED
 __printor "[`date +%T`]" $RED
+
+kek
