@@ -44,7 +44,8 @@ PATH=$PATH:~/_bin
 
 ENV=$HOME/.bashrc  
 
-HISTCONTROL="ignoredups"
+#HISTCONTROL=ignoredups
+HISTCONTROL=ignoreboth
 
 
 
