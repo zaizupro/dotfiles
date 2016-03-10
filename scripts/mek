@@ -6,48 +6,26 @@ if [ -f ~/.bash_zaz ]; then
 fi
 
 
-
-__printor "┌────────────────────────────────────┐" $YELLOW
-__printor "[BUILDING STARTED] at [`__currentTTY`]" $YELLOW
-__printor "[`date -R`]" $YELLOW
-__printor "└────────────────────────────────────┘" $YELLOW
+__blockprintor "BUILDING STARTED AT `__currentTTY`" $YELLOW
 
 MKSTARTDATE=$(date +%s)
 makek.sh 
 #|  sed "s/^/[$YELLOW`date +%T`$NC]/"
 RESULT=$?
-#toilet -f future -t "STOP  `date +%T`"
 MKENDDATE=$(date +%s)
+
 if [ $RESULT -eq 0 ]; then
     MKRESULT="BUILDING COMPLETED"
     #COLOR:=${GREEN}
 
     BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-#    __printfulline
-    __printor "┌────────────────────────────────────┐" ${GREEN}
-    __printor "[${BTMSG}]" ${GREEN}
-    __printor "[`date -R`]" ${GREEN}
-    __printor "└────────────────────────────────────┘" ${GREEN}
-#    __printfulline
+    __blockprintor "${BTMSG}" ${GREEN}
 else
     MKRESULT="BUILDING FAILED"
     #COLOR={$RED}
 
     BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-#    __printfulline
-    __printor "┌────────────────────────────────────┐" ${RED}
-    __printor "[${BTMSG}]" ${RED}
-    __printor "[`date -R`]" ${RED}
-    __printor "└────────────────────────────────────┘" ${RED}
-    #__printfulline
+    __blockprintor "${BTMSG}" ${RED}
 
 fi
-
-
-    # BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-    # __printfulline
-    # __printor "[${BTMSG}]" ${COLOR}
-    # __printor "[`date -R`]" ${COLOR}
-    # __printfulline
-
 

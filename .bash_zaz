@@ -85,6 +85,28 @@ __printor()
     echo $ORANGE"${STARTLINE// / }"$COLOR${MSG}$ORANGE"${ENDLINE// / }"$NC
 }
 
+__blockprintor()
+{
+    BPMSG=${1}
+    BPCOLOR=${2}
+    BPDATE=`date -R`
+
+    BPMSGLNGTH=${#BPMSG}
+    BPDATELNGTH=${#BPDATE}
+
+    if [ $BPMSGLNGTH -ge $BPDATELNGTH ]; then
+        BPHEADERLNGTH=${BPMSGLNGTH}
+    else
+        BPHEADERLNGTH=${BPDATELNGTH}
+    fi
+    BPHEADERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /'─'}"`
+
+    __printor "┌─${BPHEADERLINE}─┐" ${BPCOLOR}
+    __printor "[${BPMSG}]" ${BPCOLOR}
+    __printor "[${BPDATE}]" ${BPCOLOR}
+    __printor "└─${BPHEADERLINE}─┘" ${BPCOLOR}
+}
+
 __printfulline()
 {
     #TERMCOLS=$(tput cols)

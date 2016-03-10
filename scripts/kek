@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
  if [ -f ~/.bash_zaz ]; then
     source ~/.bash_zaz
@@ -6,16 +6,8 @@
 
 
 
- __printor "┌────────────────────────────────────┐" $YELLOW
- __printor "[CLEANING STARTED] at [`__currentTTY`]" $YELLOW
- __printor "[`date -R`]" $YELLOW
- __printor "└────────────────────────────────────┘" $YELLOW
-
+ __blockprintor "CLEANING STARTED AT `__currentTTY`" $YELLOW
 
 make clean
 
-
-__printor "┌────────────────────────────────────┐" $GREEN
-__printor "[CLEANING DONE] at [`__currentTTY`]" $GREEN
-__printor "[`date -R`]" $GREEN
-__printor "└────────────────────────────────────┘" $GREEN
+__blockprintor "CLEANING DONE AT `__currentTTY`" $GREEN
