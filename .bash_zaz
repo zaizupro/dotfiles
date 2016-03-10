@@ -99,7 +99,7 @@ __blockprintor()
     else
         BPHEADERLNGTH=${BPDATELNGTH}
     fi
-    BPHEADERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /'─'}"`
+    BPHEADERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /─}"`
 
     __printor "┌─${BPHEADERLINE}─┐" ${BPCOLOR}
     __printor "[${BPMSG}]" ${BPCOLOR}
