@@ -165,7 +165,7 @@ URxvt.tabbed.title: no
 
 ! TABS (C-: Ctrl + ...)
 !      (1-: LAlt + ...)
-URxvt.keysym.C-t: perl:tabbedex:new_tab
+URxvt.keysym.Control-Shift-T: perl:tabbedex:new_tab
 URxvt.keysym.1-2: perl:tabbedex:next_tab
 URxvt.keysym.1-1: perl:tabbedex:prev_tab
 
