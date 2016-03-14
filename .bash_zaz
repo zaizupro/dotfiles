@@ -7,11 +7,23 @@
 COLORSNUM=$(tput colors)
 if [ "$COLORSNUM" -eq 256 ]; then
     #==========256 colors =======
-    RED=$(tput setaf 160)
+    REDFG=$(tput setaf 160)
+    REDBG=$(tput setab 160)
+
+    DREDFG=$(tput setaf 52)
+    DREDBG=$(tput setab 52)
+
+    REDFGBG=$(tput setab 52;tput setaf 196)
+
     GREEN=$(tput setaf 112)
+    GREENFGBG=$(tput setab 22;tput setaf 154)
+
     BLUE=$(tput setaf 38)
+
     YELLOW=$(tput setaf 220)
+
     ORANGE=$(tput setaf 208)
+
     NC=$(tput sgr0)
     REV=$(tput rev)
 else
@@ -34,15 +46,15 @@ fi
 
 #===============VARIABLES============
 
-#set colorful custom prompt                                                                                                                  
-#2line prompt                                                                                                                                
+#set colorful custom prompt
+#2line prompt
 #PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
 #PS1=${ORANGE}${PS1}${NC}
-#EDITOR=nano     
+#EDITOR=nano
 
 PATH=$PATH:~/_bin
 
-ENV=$HOME/.bashrc  
+ENV=$HOME/.bashrc
 
 #HISTCONTROL=ignoredups
 HISTCONTROL=ignoreboth
@@ -54,15 +66,15 @@ export PATH ENV HISTCONTROL EDITOR
 
 #================CUSTOM_FUNCTIONS===================
 
-__ddiff()                                                                                                                                      
-{                                                                                                                                            
-    svn diff |sed 's/^-/\x1b[30m\x1b[41m-/;s/^+/\x1b[30m\x1b[42m+/;s/^@/\x1b[30m\x1b[43m@/;s/$/\x1b[0m/'                                         
-}                                                                                                                                            
-                                                                                                                                             
-__svn_st()                                                                                                                                   
-{                                                                                                                                            
-    OUT_MSG=""; [ "$(svn st 2> /dev/null | awk '{print $1}' |grep M |wc -l)" -ne "0" ] && OUT_MSG="[*]"                                          
-    echo $OUT_MSG                                                                                                                                
+__ddiff()
+{
+    svn diff |sed 's/^-/\x1b[30m\x1b[41m-/;s/^+/\x1b[30m\x1b[42m+/;s/^@/\x1b[30m\x1b[43m@/;s/$/\x1b[0m/'
+}
+
+__svn_st()
+{
+    OUT_MSG=""; [ "$(svn st 2> /dev/null | awk '{print $1}' |grep M |wc -l)" -ne "0" ] && OUT_MSG="[*]"
+    echo $OUT_MSG
 }
 
 __currentTTY()
@@ -82,7 +94,7 @@ __printor()
     STLNLNGTH=${#STARTLINE}
     ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "")
 
-    echo $ORANGE"${STARTLINE// / }"$COLOR${MSG}$ORANGE"${ENDLINE// / }"$NC
+    echo $ORANGE"${STARTLINE// / }$COLOR${MSG}$NC$ORANGE${ENDLINE// / }"$NC
 }
 
 __blockprintor()
@@ -99,20 +111,27 @@ __blockprintor()
     else
         BPHEADERLNGTH=${BPDATELNGTH}
     fi
+
     BPHEADERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /─}"`
+    BPDATESPACER=$(printf "%-$(( (${BPHEADERLNGTH}-${BPDATELNGTH})/2 ))s" "")
+    BPMSGSPACER=$(printf "%-$(( (${BPHEADERLNGTH}-${BPMSGLNGTH})/2 ))s" "")
+
+    BPMSGSPACEREXT=""
+    if [  $(expr ${BPMSGLNGTH} % 2) -eq 0 ]; then
+        BPMSGSPACEREXT=" "
+    fi
 
     __printor "┌─${BPHEADERLINE}─┐" ${BPCOLOR}
-    __printor "[${BPMSG}]" ${BPCOLOR}
-    __printor "[${BPDATE}]" ${BPCOLOR}
+    __printor "│ ${BPMSGSPACER// /' '}${BPMSG}${BPMSGSPACER// /' '}${BPMSGSPACEREXT} │" ${BPCOLOR}
+    __printor "│ ${BPDATESPACER// /' '}${BPDATE}${BPDATESPACER// /' '} │" ${BPCOLOR}
     __printor "└─${BPHEADERLINE}─┘" ${BPCOLOR}
 }
 
 __printfulline()
 {
-    #TERMCOLS=$(tput cols)
-    #FULLLINE=$(printf "%-${TERMCOLS}s" "*")
-    #echo $ORANGE"${FULLLINE// /*}"$NC
-    __printor
+    TERMCOLS=$(tput cols)
+    FULLLINE=$(printf "%-${TERMCOLS}s" "*")
+    __printor "${FULLLINE// /*}"
 }
 
 
@@ -125,7 +144,7 @@ alias tt='tabbed -c xterm -into'
 alias cdn='cd `getNexusPath.sh`'
 
 alias ll='ls -lah --color=no'
-alias lsh='ls -a | grep "^\."' 
+alias lsh='ls -a | grep "^\."'
 
 alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\n'"
 
