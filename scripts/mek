@@ -6,7 +6,7 @@ if [ -f ~/.bash_zaz ]; then
 fi
 
 
-__blockprintor "BUILDING STARTED AT `__currentTTY`" $YELLOW
+__blockprintor "BUILDING STARTED AT `__currentTTY`" $YELLOWFGBG
 
 MKSTARTDATE=$(date +%s)
 makek.sh 
@@ -19,13 +19,13 @@ if [ $RESULT -eq 0 ]; then
     #COLOR:=${GREEN}
 
     BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-    __blockprintor "${BTMSG}" ${GREEN}
+    __blockprintor "${BTMSG}" ${GREENFGBG}
 else
     MKRESULT="BUILDING FAILED"
     #COLOR={$RED}
 
     BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-    __blockprintor "${BTMSG}" ${RED}
+    __blockprintor "${BTMSG}" ${REDFGBG}
 
 fi
 

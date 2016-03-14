@@ -21,6 +21,7 @@ if [ "$COLORSNUM" -eq 256 ]; then
     BLUE=$(tput setaf 38)
 
     YELLOW=$(tput setaf 220)
+    YELLOWFGBG=$(tput setab 94;tput setaf 220)
 
     ORANGE=$(tput setaf 208)
 
@@ -106,24 +107,28 @@ __blockprintor()
     BPMSGLNGTH=${#BPMSG}
     BPDATELNGTH=${#BPDATE}
 
+    BPMSGSPACEREXT=""
+    BPDATESPACEREXT=""
+
     if [ $BPMSGLNGTH -ge $BPDATELNGTH ]; then
         BPHEADERLNGTH=${BPMSGLNGTH}
+        if [  $(expr ${BPDATELNGTH} % 2) -eq 0 ]; then
+            BPDATESPACEREXT=" "
+        fi
     else
         BPHEADERLNGTH=${BPDATELNGTH}
+        if [  $(expr ${BPMSGLNGTH} % 2) -eq 0 ]; then
+            BPMSGSPACEREXT=" "
+        fi
     fi
 
     BPHEADERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /─}"`
     BPDATESPACER=$(printf "%-$(( (${BPHEADERLNGTH}-${BPDATELNGTH})/2 ))s" "")
     BPMSGSPACER=$(printf "%-$(( (${BPHEADERLNGTH}-${BPMSGLNGTH})/2 ))s" "")
 
-    BPMSGSPACEREXT=""
-    if [  $(expr ${BPMSGLNGTH} % 2) -eq 0 ]; then
-        BPMSGSPACEREXT=" "
-    fi
-
     __printor "┌─${BPHEADERLINE}─┐" ${BPCOLOR}
-    __printor "│ ${BPMSGSPACER// /' '}${BPMSG}${BPMSGSPACER// /' '}${BPMSGSPACEREXT} │" ${BPCOLOR}
-    __printor "│ ${BPDATESPACER// /' '}${BPDATE}${BPDATESPACER// /' '} │" ${BPCOLOR}
+    __printor "│ ${BPMSGSPACER// / }${BPMSG}${BPMSGSPACER// / }${BPMSGSPACEREXT} │" ${BPCOLOR}
+    __printor "│ ${BPDATESPACER// / }${BPDATE}${BPDATESPACER// / }${BPDATESPACEREXT} │" ${BPCOLOR}
     __printor "└─${BPHEADERLINE}─┘" ${BPCOLOR}
 }
 
