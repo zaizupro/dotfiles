@@ -135,9 +135,9 @@ alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\
 #====dev==========
 alias remek='kek && mek'
 
-#====NET aliases=========================================                                                                                    
-#global                                                                                                                                      
-#ifconfig eth0:0 inet 192.168.0.240 netmask 0xffff0000 
+#====NET aliases=========================================
+#global
+#ifconfig eth0:0 inet 192.168.0.240 netmask 0xffff0000
 
 
 
