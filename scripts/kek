@@ -6,8 +6,8 @@
 
 
 
- __blockprintor "CLEANING STARTED AT `__currentTTY`" $YELLOW
+ __blockprintor "CLEANING STARTED AT `__currentTTY`" $YELLOWFGBG
 
 make clean
 
-__blockprintor "CLEANING DONE AT `__currentTTY`" $GREEN
+__blockprintor "CLEANING DONE AT `__currentTTY`" $GREENFGBG

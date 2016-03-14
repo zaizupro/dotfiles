@@ -112,15 +112,18 @@ __blockprintor()
 
     if [ $BPMSGLNGTH -ge $BPDATELNGTH ]; then
         BPHEADERLNGTH=${BPMSGLNGTH}
-        if [  $(expr ${BPDATELNGTH} % 2) -eq 0 ]; then
-            BPDATESPACEREXT=" "
-        fi
+
     else
         BPHEADERLNGTH=${BPDATELNGTH}
         if [  $(expr ${BPMSGLNGTH} % 2) -eq 0 ]; then
             BPMSGSPACEREXT=" "
         fi
     fi
+
+
+        if [  $(expr ${BPHEADERLNGTH} % 2) -eq 0 ]; then
+            BPDATESPACEREXT=" "
+        fi
 
     BPHEADERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /─}"`
     BPDATESPACER=$(printf "%-$(( (${BPHEADERLNGTH}-${BPDATELNGTH})/2 ))s" "")
