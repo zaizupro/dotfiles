@@ -1,0 +1,36 @@
+![==============================Xresources==================================]
+![==========================================================================]
+xterm*termName: xterm-256color
+! xterm ----------------------------------------------------------------------
+
+XTerm*utf8Title: true
+xterm*VT100.geometry:     100x50
+!XTerm*faceName:           terminus:style=Regular:pixelsize=16
+!xterm*faceName:  xft:terminus:pixelsize=14:antialias=false
+!XTerm*VT100.utf8Fonts.font: -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+XTerm*VT100.utf8Fonts.font: terminus-18
+xterm*dynamicColors:      true
+!xterm*utf8:               2
+xterm*saveLines:          1024
+xterm*scrollKey:          true
+xterm*scrollTtyOutput:    false
+xterm*scrollBar:          false
+!xterm*rightScrollBar:     true
+!xterm*jumpScroll:         true
+!xterm*multiScroll:        true
+xterm*toolBar:            false
+
+XTerm*foreground: #ffee99
+XTerm*background: #101010
+
+XTerm*locale: true
+!xterm*boldFont: fixed
+xterm*boldMode: false
+
+!fix alt+s alt+... keys
+xterm*eightBitInput: false
+!fix copy by selection
+!XTerm*VT100.selectToClipboard: true
+XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+
+![==========================================================================]
