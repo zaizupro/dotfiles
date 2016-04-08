@@ -7,8 +7,10 @@
     { "keys": ["f7"], "command": "undo" },
 	{ "keys": ["f8"], "command": "redo_or_repeat" },
 
+    { "keys": ["ctrl+f10"], "command": "rebuild_ctags" },
+    { "keys": ["f10"], "command": "navigate_to_definition" },
 	{ "keys": ["f11"], "command": "jump_forward" },
-	{ "keys": ["f10"], "command": "jump_back" },
+    { "keys": ["f9"], "command": "jump_back" },
 
 	{ "keys": ["alt+l"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
 	{ "keys": ["alt+1"], "command": "prev_view" },
