@@ -51,7 +51,7 @@ fi
 #2line prompt
 #PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
 #PS1=${ORANGE}${PS1}${NC}
-#EDITOR=nano
+EDITOR=nano
 
 PATH=$PATH:~/_bin
 
@@ -161,6 +161,7 @@ alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\
 
 #====dev==========
 alias remek='kek && mek'
+alias tigs='tig status'
 
 #====NET aliases=========================================
 #global
