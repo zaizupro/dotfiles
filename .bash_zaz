@@ -1,7 +1,7 @@
-#add in ~/.bashrc next lines:
-#if [ -f ~/.bash_zaz ]; then
-#    . ~/.bash_zaz
-#fi
+##add in ~/.bashrc next lines:
+##if [ -f ~/.bash_zaz ]; then
+##    . ~/.bash_zaz
+##fi
 
 # ====colors for scripst============
 COLORSNUM=$(tput colors)
@@ -78,6 +78,7 @@ __svn_st()
     echo $OUT_MSG
 }
 
+#⚡
 __currentTTY()
 {
 #echo `tty | sed -e "s:/dev/::"`

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-path=`pwd`
-echo "![=============================================]" >> ./../.Xresources
-echo "#include \"${path}/${1}\"" >> ./../.Xresources
-echo "![=============================================]" >> ./../.Xresources
+HomePath=$HOME
+XresourcesPath="${HomePath}/.Xresources"
+echo "![=============================================]" >> ${XresourcesPath}
+echo "#include \"${1}\"" >> ${XresourcesPath}
+echo "![=============================================]" >> ${XresourcesPath}
