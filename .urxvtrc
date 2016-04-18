@@ -2,23 +2,22 @@
 !insert next line in ~/.Xresources :
 !# include ".urxvtrc"
 
-!fake transparentsy
+!--[transparentsy:fake]--!
 !URxvt*inheritPixmap: true
-!URxvt*geometry:      100x30
+URxvt*geometry:      100x30
 !URxvt*highlightSelection: true
 !URxvt*transparent: true
 !URxvt*shading: 10
 !URxvt*tintColor: #000000
 !URxvt*blurRadius: 15
 
-!real transparentsy
+!--[transparentsy:real]--!
 URxvt.depth: 32
 URxvt.background: [75]#000000
 ! rgba:1111/1111/1111/aaaa
 
-
+!--[tresh]--!
 ! URxvt*termName:                       string
-! URxvt*geometry:                       geometry
 ! URxvt*chdir:                          string
 ! URxvt*reverseVideo:                   boolean
 ! URxvt*loginShell:                     boolean
@@ -37,13 +36,12 @@ URxvt*scrollTtyOutput:                true
 ! URxvt*inheritPixmap:                  boolean
 ! URxvt*transparent:                    boolean
 ! URxvt*tintColor:                      color
-! URxvt*shading:                        number
 ! URxvt*blurRadius:                     HxV
 !URxvt*fading:                         10             ! процент "гашения" цвета текста в неактивном окне
 ! URxvt*fadeColor:                      color
 ! URxvt*utmpInhibit:                    boolean
-! URxvt*urgentOnBell:                   boolean
-! URxvt*visualBell:                     boolean
+URxvt*urgentOnBell:                   true
+!URxvt*visualBell:                     true
 ! URxvt*mapAlert:                       boolean
 ! URxvt*meta8:                          boolean
 ! URxvt*mouseWheelScrollPage:           boolean
@@ -55,26 +53,14 @@ URxvt*cursorBlink:                    true
 URxvt*background:                     #000000
 !URxvt*foreground:                     #FCE597
 URxvt*foreground:                      #FFFEB3
-! URxvt*color0:                         color
-! URxvt*color1:                         color
-! URxvt*color2:                         color
-! URxvt*color3:                         color
-! URxvt*color4:                         color
-! URxvt*color5:                         color
-! URxvt*color6:                         color
-! URxvt*color7:                         color
-! URxvt*color8:                         color
-! URxvt*color9:                         color
-! URxvt*color10:                        color
-! URxvt*color11:                        color
-! URxvt*color12:                        color
-! URxvt*color13:                        color
-! URxvt*color14:                        color
-! URxvt*color15:                        color
-! URxvt*colorBD:                        color
-! URxvt*colorIT:                        color
-! URxvt*colorUL:                        color
-! URxvt*colorRV:                        color
+
+URxvt.colorBD:           #ffffff
+URxvt.colorIT:           #bbbbbb
+URxvt.colorUL:           #999999
+URxvt.underlineColor:    #999999
+
+
+
 ! URxvt*underlineColor:                 color
 ! URxvt*scrollColor:                    color
 ! URxvt*troughColor:                    color
@@ -89,10 +75,14 @@ URxvt*foreground:                      #FFFEB3
 ! URxvt*backgroundPixmap:               file[;geom]
 !URxvt*iconFile:                       /usr/share/pixmaps/gnome-terminal.xpm    ! иконка для иксов
 URxvt.iconFile:    /usr/share/icons/oxygen/64x64/apps/utilities-terminal.png
+
+!--[font]--!
 URxvt*font:                           xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
+
+
 ! URxvt*intensityStyles:                boolean
 ! URxvt*inputMethod:                    name
 ! URxvt*preeditType:                    style
@@ -108,8 +98,8 @@ URxvt*saveLines:                      50
 ! URxvt*override-redirect:              boolean
 ! URxvt*hold:                           boolean
 ! URxvt*externalBorder:                 number
-! URxvt*internalBorder:                 number
-! URxvt*borderLess:                     boolean
+URxvt*internalBorder:                 0
+!URxvt*borderLess:                     true !need wm support
 URxvt*lineSpace:                      -1
 URxvt*letterSpace:                    0
 ! URxvt*skipBuiltinGlyphs:              boolean
