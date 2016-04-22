@@ -36,9 +36,11 @@ URxvt*scrollTtyOutput:                true
 ! URxvt*inheritPixmap:                  boolean
 ! URxvt*transparent:                    boolean
 ! URxvt*tintColor:                      color
-! URxvt*blurRadius:                     HxV
+ URxvt*blurRadius:                     50x22
+
 !URxvt*fading:                         10             ! процент "гашения" цвета текста в неактивном окне
-! URxvt*fadeColor:                      color
+URxvt*fadeColor:                      #ff0000
+
 ! URxvt*utmpInhibit:                    boolean
 URxvt*urgentOnBell:                   true
 !URxvt*visualBell:                     true
@@ -50,27 +52,26 @@ URxvt*urgentOnBell:                   true
 ! URxvt*cursorUnderline:                boolean
 URxvt*cursorBlink:                    true
 ! URxvt*pointerBlank:                   boolean
-URxvt*background:                     #000000
+
+!URxvt*background:                     #422700
 !URxvt*foreground:                     #FCE597
 URxvt*foreground:                      #FFFEB3
 
-URxvt.colorBD:           #ffffff
+URxvt.colorBD:           #FF8700
 URxvt.colorIT:           #bbbbbb
-URxvt.colorUL:           #999999
-URxvt.underlineColor:    #999999
+URxvt.colorUL:           #FFD7D7
+URxvt.underlineColor:    #FF8700
 
 
 
-! URxvt*underlineColor:                 color
 ! URxvt*scrollColor:                    color
 ! URxvt*troughColor:                    color
 ! URxvt*highlightColor:                 color
 ! URxvt*highlightTextColor:             color
-! URxvt*cursorColor:                    color
-! URxvt*cursorColor2:                   color
+! URxvt*cursorColor:                    #FF0000
+! URxvt*cursorColor2:                   #00FF00
 ! URxvt*pointerColor:                   color
 ! URxvt*pointerColor2:                  color
-! URxvt*borderColor:                    color
 ! URxvt*path:                           search path
 ! URxvt*backgroundPixmap:               file[;geom]
 !URxvt*iconFile:                       /usr/share/pixmaps/gnome-terminal.xpm    ! иконка для иксов
@@ -97,7 +98,8 @@ URxvt*saveLines:                      50
 ! URxvt*transient-for:                  windowid
 ! URxvt*override-redirect:              boolean
 ! URxvt*hold:                           boolean
-! URxvt*externalBorder:                 number
+URxvt*borderColor:                    #FF8700
+URxvt*externalBorder:                 0
 URxvt*internalBorder:                 0
 !URxvt*borderLess:                     true !need wm support
 URxvt*lineSpace:                      -1
@@ -120,7 +122,7 @@ URxvt*iso14755:                       false
 ! URxvt*iso14755_52:                    boolean
 ! URxvt*xrm:                            string
 ! URxvt*keysym.sym:                     keysym
-! URxvt*background.border:              boolean
+!URxvt*background.border:              true
 ! URxvt*background.expr:                string
 ! URxvt*background.interval:            seconds
 ! URxvt*bell-command:                   string
@@ -136,13 +138,15 @@ URxvt*iso14755:                       false
 ! URxvt*selection-pastebin.cmd:         string
 ! URxvt*selection-pastebin.url:         string
 ! URxvt*selection.pattern-0:            string
+! URxvt*url-launcher:                   string
+
+
+
+!--[TABS]--!
 URxvt*tab-bg:                         208
 URxvt*tab-fg:                         0
 URxvt*tabbar-bg:                      236
 URxvt*tabbar-fg:                      208
-! URxvt*url-launcher:                   string
-
-
 
 !hide tabbar if one tab present
 URxvt.tabbed.autohide: true
@@ -166,3 +170,5 @@ URxvt.keysym.C-Shift-R: perl:tabbedex:rename_tab
 
 URxvt.keysym.Shift-C-C: perl:clipboard:copy
 URxvt.keysym.Shift-C-V: perl:clipboard:paste
+
+!--[end]--!
