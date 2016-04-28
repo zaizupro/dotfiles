@@ -371,7 +371,7 @@
 <!-- ====================== CPP C++================= -->
 		<dict>
 			<key>name</key>
-			<string>c C/C++ Preprocessor Line</string>
+			<string>C/C++ Preprocessor Line</string>
 			<key>scope</key>
 			<string>meta.preprocessor.c</string>
 			<key>settings</key>
@@ -385,7 +385,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>c C/C++ Preprocessor Directive</string>
+			<string>C/C++ Preprocessor Directive</string>
 			<key>scope</key>
 			<string>meta.preprocessor.c keyword</string>
 			<key>settings</key>
@@ -398,7 +398,7 @@
 
 		<dict>
 			<key>name</key>
-			<string>\b(class|wchar_t|nullptr_t)\b</string>
+			<string>C/C++ (class|wchar_t|nullptr_t)\b</string>
 			<key>scope</key>
 			<string>storage.type.c++</string>
 			<key>settings</key>
@@ -415,7 +415,7 @@
 
 		<dict>
 			<key>name</key>
-			<string>\b(private:|protected:|public:)</string>
+			<string>C/C++ (private:|protected:|public:)</string>
 			<key>scope</key>
 			<string>storage.modifier.emt.c++</string>
 			<key>settings</key>
@@ -431,7 +431,7 @@
 
 		<dict>
 			<key>name</key>
-			<string>\b(template )</string>
+			<string>C/C++ (template )</string>
 			<key>scope</key>
 			<string>storage.type.template.c++</string>
 			<key>settings</key>
@@ -447,7 +447,7 @@
 
 		<dict>
 			<key>name</key>
-			<string>std.all.c++</string>
+			<string>C/C++ std::</string>
 			<key>scope</key>
 			<string>std.all.c++</string>
 			<key>settings</key>
@@ -464,7 +464,7 @@
 
 		<dict>
 			<key>name</key>
-			<string>qt.all.c++</string>
+			<string>C/C++ qt.all</string>
 			<key>scope</key>
 			<string>qt.all.c++</string>
 			<key>settings</key>
@@ -481,7 +481,7 @@
 		<!-- class member -->
 		<dict>
 			<key>name</key>
-			<string>classmember.c++</string>
+			<string>C/C++  classmember</string>
 			<key>scope</key>
 			<string>meta.angle-brackets.c++</string>
 			<key>settings</key>
@@ -531,7 +531,7 @@
   <key>settings</key>
   <dict>
     <key>foreground</key>
-    <string>#F92672</string>
+    <string>#CF0000</string>
   </dict>
 </dict>
 <dict>
@@ -587,7 +587,7 @@
 
 		<dict>
 			<key>name</key>
-			<string>message</string>
+			<string>protobuf message</string>
 			<key>scope</key>
 			<string>entity.name.function.proto</string>
 			<key>settings</key>
@@ -600,7 +600,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>optional</string>
+			<string>protobuf optional</string>
 			<key>scope</key>
 			<string>storage.modifier.optional.source.proto</string>
 			<key>settings</key>
@@ -615,7 +615,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>repeated</string>
+			<string>protobuf repeated</string>
 			<key>scope</key>
 			<string>storage.modifier.repeated.source.proto</string>
 			<key>settings</key>
@@ -630,7 +630,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>required</string>
+			<string>protobuf required</string>
 			<key>scope</key>
 			<string>storage.modifier.required.source.proto</string>
 			<key>settings</key>
@@ -648,7 +648,7 @@
 
 		<dict>
 			<key>name</key>
-			<string>storage.type.source.proto</string>
+			<string>protobuf storage.type.source.proto</string>
 			<key>scope</key>
 			<string>storage.type.source.proto</string>
 			<key>settings</key>
@@ -664,7 +664,7 @@
 
 		<dict>
 			<key>name</key>
-			<string>Constant</string>
+			<string>protobuf Constant</string>
 			<key>scope</key>
 			<string>constant.numeric.proto</string>
 			<key>settings</key>
