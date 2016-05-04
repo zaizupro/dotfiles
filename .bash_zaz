@@ -4,6 +4,11 @@
 ##fi
 
 # ====colors for scripst============
+# add some color
+if [ -f $HOME/.bash_colors ]
+then
+  source $HOME/.bash_colors
+fi
 COLORSNUM=$(tput colors)
 if [ "$COLORSNUM" -eq 256 ]; then
     #==========256 colors =======
@@ -53,19 +58,34 @@ fi
 #PS1=${ORANGE}${PS1}${NC}
 EDITOR=nano
 
-PATH=$PATH:~/_bin
+# set PATH so it includes user's private bin if it exists
+if [ -d ~/bin ] ; then
+    PATH="~/_bin:${PATH}"
+fi
 
 ENV=$HOME/.bashrc
 
-#HISTCONTROL=ignoredups
+export PATH ENV EDITOR
+
+
+# configure how history works
 HISTCONTROL=ignoreboth
+#HISTCONTROL=ignoredups                            # ignore the line if it matches previous line
+HISTFILESIZE=20000                                # size of the history file cf. also shopt -s histappend
+HISTSIZE=1000                                     # size of the run-time history list
+HISTIGNORE=ls:ll:la:l:cd:pwd:exit:mc:su:df:clear  # do not put these in history file
+#HISTFILE=~/.bash_history-`hostname`               # track history by host
+# export settings
+export HISTCONTROL HISTSIZE HISTFILESIZE HISTIGNORE #HISTFILE
 
 
-
-
-export PATH ENV HISTCONTROL EDITOR
 
 #================CUSTOM_FUNCTIONS===================
+# Source our bash.local, if present
+if [ -f ~/.bashrc.local ]; then
+  source ~/.bashrc.local
+fi
+
 
 __ddiff()
 {
@@ -145,24 +165,52 @@ __printfulline()
 
 
 #====================ALIASES======================
-alias userls='cut -f1 -d: /etc/passwd'
-alias vm='startVM.sh'
+#====moving==========#
 alias s='cd ..'
 alias cds='cd ~/_WORK'
-alias tt='tabbed -c xterm -into'
 alias cdn='cd `getNexusPath.sh`'
 
+#====print info==========#
+alias userls='cut -f1 -d: /etc/passwd'
+alias homesize='du -hs ~'
+alias topc='top -o%CPU'
+alias topm='top -o%MEM'
+alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\n'"
+
+
+
+#====print files==========#
 alias ll='ls -lah --color=no'
 alias lsh='ls -a | grep "^\."'
+alias gitl='git log --format=oneline'
 
-alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\n'"
 
 # Tell to df to don't see the supermount filesystems.
 #alias df='df -x supermount'
 
-#====dev==========
+#====dev==========#
 alias remek='kek && mek'
 alias tigs='tig status'
+
+alias gitusers="git shortlog | grep -E '^[^ ]'"
+
+alias ta='tmux attach -t'
+alias tn='tmux new -s'
+alias tls='tmux ls'
+alias tk='tmux kill-session -t'
+
+
+alias makepass='openssl rand -base64 12'
+alias vm='startVM.sh'
+
+# Stolen from github.com/zanshin
+# Just for fun
+#alias please='sudo !!'
+alias please='sudo '
+alias fail='tail -f'
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
 
 #====NET aliases=========================================
 #global
