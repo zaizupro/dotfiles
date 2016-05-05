@@ -906,6 +906,39 @@
 				<string>#CF6A4C</string>
 			</dict>
 		</dict>
+		<dict>
+		    <key>name</key>
+		    <string>SublimeLinter Error</string>
+		    <key>scope</key>
+		    <string>sublimelinter.mark.error</string>
+		    <key>settings</key>
+		    <dict>
+		        <key>foreground</key>
+		        <string>#D02000</string>
+		    </dict>
+		</dict>
+		<dict>
+		    <key>name</key>
+		    <string>SublimeLinter Gutter Mark</string>
+		    <key>scope</key>
+		    <string>sublimelinter.gutter-mark</string>
+		    <key>settings</key>
+		    <dict>
+		        <key>foreground</key>
+		        <string>#FFFFFF</string>
+		    </dict>
+		</dict>
+		<dict>
+		    <key>name</key>
+		    <string>SublimeLinter Warning</string>
+		    <key>scope</key>
+		    <string>sublimelinter.mark.warning</string>
+		    <key>settings</key>
+		    <dict>
+		        <key>foreground</key>
+		        <string>#DDB700</string>
+		    </dict>
+		</dict>
 	</array>
 	<key>uuid</key>
 	<string>766026CB-703D-4610-B070-8DE07D967C5F</string>
