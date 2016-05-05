@@ -1,4 +1,5 @@
 
+##include dat  in .bashrc
 
 COLORSNUM=$(tput colors)
 if [ "$COLORSNUM" -eq 256 ]; then
