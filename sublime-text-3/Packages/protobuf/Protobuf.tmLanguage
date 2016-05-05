@@ -26,7 +26,7 @@
             <key>comment</key>
             <string>Scalar Value types.</string>
             <key>match</key>
-            <string>double|float|int32|int64|uint32|uint64|sint32|sint64|long|fixed32|fixed64|sfixed|sfixed64|bool|string|bytes</string>
+            <string>double|float|int32|int64|uint32|uint64|sint32|sint64|long |fixed32|fixed64|sfixed|sfixed64|bool|string|bytes</string>
             <key>name</key>
             <string>storage.type.source.proto</string>
         </dict>
