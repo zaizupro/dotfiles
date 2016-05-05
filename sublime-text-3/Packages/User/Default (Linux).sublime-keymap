@@ -1,23 +1,25 @@
 [
 
 
-	{ "keys": ["ctrl+y"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    { "keys": ["ctrl+y"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
     //{ "keys": ["ctrl+x"], "command": "" },
 
     { "keys": ["f7"], "command": "undo" },
-	{ "keys": ["f8"], "command": "redo_or_repeat" },
+    { "keys": ["f8"], "command": "redo_or_repeat" },
+
+    //{ "keys": ["ctrl+f2"], "command": "undo" },
 
     { "keys": ["ctrl+f10"], "command": "rebuild_ctags" },
     { "keys": ["f10"], "command": "navigate_to_definition" },
-	{ "keys": ["f11"], "command": "jump_forward" },
+    { "keys": ["f11"], "command": "jump_forward" },
     { "keys": ["f9"], "command": "jump_back" },
 
-	{ "keys": ["alt+l"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
-	{ "keys": ["alt+1"], "command": "prev_view" },
+    { "keys": ["alt+l"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
+    { "keys": ["alt+1"], "command": "prev_view" },
 
-	{ "keys": ["alt+2"], "command": "next_view" },
-	{ "keys": ["f4"], "command": "find_prev" },
-	{ "keys": ["f2"], "command": "save" },
+    { "keys": ["alt+2"], "command": "next_view" },
+    { "keys": ["f4"], "command": "find_prev" },
+    { "keys": ["f2"], "command": "save" },
 
 
     { "keys": ["alt+r"], "command": "replace_next" },
