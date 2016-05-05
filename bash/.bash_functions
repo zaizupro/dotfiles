@@ -12,6 +12,24 @@ __svn_st()
     echo $OUT_MSG
 }
 
+__git_remote_revision()
+{
+echo $(git ls-remote $(git rev-parse --abbrev-ref @{u} | sed 's/\// /g') | cut -f1)
+
+}
+
+__git_st()
+{
+    #echo $(git rev-parse HEAD)
+    #echo $(__git_remote_revision)
+    [ $(git rev-parse HEAD) = $(__git_remote_revision) ] && echo 0 || echo 1
+}
+
+__git_st_wrp()
+{
+    [ $(__git_st 2>/dev/null) == 1 ] && echo [⚡] || echo ""
+}
+
 #⚡
 __currentTTY()
 {
