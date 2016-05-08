@@ -1,0 +1,64 @@
+#!/bin/bash
+
+
+if [ -z ${HINTS_DIR} ]; then
+    HINTS_DIR="${HOME}/_hints"
+fi
+
+
+#[==========================================================================]#
+hints=($(ls -A ${HINTS_DIR}))
+#[==========================================================================]#
+
+#show content and exit, may be while "show" or "s" arg key
+if [ $# -gt 0 ]; then
+    echo ${hints[*]}
+    exit 0
+fi
+
+
+## recursive content viewer
+#[==========================================================================]#
+while true; do
+printf "\nhints:\n"
+for index in ${!hints[*]};do
+        printf "%4d: %s\n" $index ${hints[$index]}
+done
+printf "\n"
+
+read -p "enter hint's number:" HINT_NUMBER
+#echo ${HINT_NUMBER}     ##debug
+#echo ${#hints[*]}       ##debug
+# if [ ${HINT_NUMBER} -gt '${#hints[*]} - 1' ]; then
+if (( ${HINT_NUMBER} > (${#hints[*]} - 1) )); then
+# if [ ${#hints[*]} -lt ${HINT_NUMBER} ]; then
+    break
+fi
+
+
+
+#HINT_NAME=$1
+HINT_FULL_NAME=${HINTS_DIR}/${hints[${HINT_NUMBER}]}
+
+#echo HINT_FULL_NAME= ${HINT_FULL_NAME}  ##debug
+
+
+
+
+
+#[==========================================================================]#
+if [ -d ${HINT_FULL_NAME} ]; then
+    echo "its dir"   ##debug
+    # echo ls -A ${HINT_FULL_NAME}
+    hints=($(ls -A ${HINT_FULL_NAME}))  # get subdir content
+    HINTS_DIR=${HINT_FULL_NAME}
+fi
+
+
+if [ -f ${HINT_FULL_NAME} ]; then
+    #echo "its file"   ##debug
+    less ${HINT_FULL_NAME}
+fi
+
+done
+
