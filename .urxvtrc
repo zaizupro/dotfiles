@@ -126,9 +126,11 @@ URxvt*letterSpace:                    0
 !urxvt.clipboard.copycmd:  xsel -ib
 !urxvt.clipboard.pastecmd: xsel -ob
 
-URxvt*perl-ext-common:                tabbedex,clipboard
+URxvt*perl-ext-common:                tabbedex,clipboard,selection-to-clipboard
 URxvt*perl-ext:
 URxvt*iso14755:                       false
+!URxvt.clipboard.autocopy: true
+
 ! URxvt*iso14755_52:                    boolean
 ! URxvt*xrm:                            string
 ! URxvt*keysym.sym:                     keysym
