@@ -1,0 +1,3 @@
+[submodule "urxvt/perl_ext/tabbedex"]
+	path = urxvt/perl_ext/tabbedex
+	url = https://github.com/shaggytwodope/tabbedex-urxvt.git
