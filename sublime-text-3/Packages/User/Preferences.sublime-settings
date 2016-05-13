@@ -1,7 +1,9 @@
 {
-	"bold_folder_labels": true,
-	"color_inactive_tabs": true,
-	"color_scheme": "Packages/zaz.tmTheme",
+	"caret_extra_width": 10,
+
+
+	"caret_style": "phase",
+	"color_scheme": "Packages/industrial-coding-theme/industrial_coding.tmTheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
 	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
@@ -19,15 +21,13 @@
 		100
 	],
 	"show_encoding": true,
-	"sidebar_size_14": true,
-	"status_bar_brighter": true,
+	"sidebar_font_terminus": true,
+	"statusbar_bold_terminus": true,
 	"tab_size": 4,
-	"tabs_label_not_italic": true,
-	"tabs_padding_small": true,
-	"tabs_small": true,
-	"theme": "awezaz.sublime-theme",
+	"theme": "industrial_coding.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"use_entire_file_if_no_selection": true,
+	"wide_caret": true,
 	"word_wrap": "false"
 }
