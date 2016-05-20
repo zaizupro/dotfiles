@@ -6,17 +6,43 @@ if [ -z ${HINTS_DIR} ]; then
 fi
 
 
+#ContentListRV=
 #[==========================================================================]#
-hints=($(ls -A ${HINTS_DIR}))
+function getContentList
+{
+    local __HINTS_DIR=$1
+    local ContentListRV=($(ls -A ${__HINTS_DIR}))
+    #return 0
+    echo ${ContentListRV[*]}
+}
 #[==========================================================================]#
+
+
+
+#ttt=($(blabla))
+ttt=($(getContentList ${HINTS_DIR}))
+
+function showContentList
+{
+    local ContentList=($1)
+    printf "| %3s | %-20s |\n" "num" "file name"
+    printf "|============================|\n"
+    for index in ${!ContentList[*]};do
+            printf "| %-3d | %-20s |\n" $index ${ContentList[$index]}
+            # echo "   | $index |  ${ContentList[$index]}"
+    done
+}
+
+showContentList $(getContentList ${HINTS_DIR})
 
 #show content and exit, may be while "show" or "s" arg key
-if [ $# -gt 0 ]; then
-    echo ${hints[*]}
-    exit 0
-fi
+# if [ $# -gt 0 ]; then
+#     echo ${hints[*]}
+#     exit 0
+# fi
 
-
+function HIDEDATCODE
+{
 ## recursive content viewer
 #[==========================================================================]#
 while true; do
@@ -61,4 +87,6 @@ if [ -f ${HINT_FULL_NAME} ]; then
 fi
 
 done
+}
+
 
