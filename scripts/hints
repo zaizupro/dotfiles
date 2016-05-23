@@ -17,14 +17,12 @@ function getContentList
 }
 #[==========================================================================]#
 
-
-
-#ttt=($(blabla))
-ttt=($(getContentList ${HINTS_DIR}))
-
+#[==========================================================================]#
 function showContentList
 {
-    local ContentList=($1)
+    local ContentList=(${@})
+    # declare -a ContentList=("${1}")
+
     printf "| %3s | %-20s |\n" "num" "file name"
     printf "|============================|\n"
     for index in ${!ContentList[*]};do
@@ -32,8 +30,17 @@ function showContentList
             # echo "   | $index |  ${ContentList[$index]}"
     done
 }
+#[==========================================================================]#
 
-showContentList $(getContentList ${HINTS_DIR})
+
+
+currentHintsList=($(getContentList ${HINTS_DIR}))
+showContentList "${currentHintsList[@]}"
+
+#showContentList $(getContentList ${HINTS_DIR})
+
+
+
 
 #show content and exit, may be while "show" or "s" arg key
 # if [ $# -gt 0 ]; then
