@@ -6,94 +6,64 @@ if [ -z ${HINTS_DIR} ]; then
 fi
 
 
-#ContentListRV=
 #[==========================================================================]#
 function getContentList
 {
     local __HINTS_DIR=$1
     local ContentListRV=($(ls -A ${__HINTS_DIR}))
-    #return 0
     echo ${ContentListRV[*]}
 }
-#[==========================================================================]#
 
 #[==========================================================================]#
 function showContentList
 {
     local ContentList=(${@})
-    # declare -a ContentList=("${1}")
 
-    printf "| %3s | %-20s |\n" "num" "file name"
-    printf "|============================|\n"
+    ## TODO fix magic number 20 for_very_long_file_names.
+    printf "┃ %3s ┃ %-20s ┃\n" "num" "file name"
+    printf "┣━━━━━╋━━━━━━━━━━━━━━━━━━━━━━┫\n"
     for index in ${!ContentList[*]};do
-            printf "| %-3d | %-20s |\n" $index ${ContentList[$index]}
+            # printf "┣━━━━━╋━━━━━━━━━━━━━━━━━━━━━━┫\n"
+            printf "┃ %-3d ┃ %-20s ┃\n" $index ${ContentList[$index]}
             # echo "   | $index |  ${ContentList[$index]}"
     done
+    printf "┗━━━━━┻━━━━━━━━━━━━━━━━━━━━━━┛\n"
 }
+
 #[==========================================================================]#
-
-
-
-currentHintsList=($(getContentList ${HINTS_DIR}))
-showContentList "${currentHintsList[@]}"
-
-#showContentList $(getContentList ${HINTS_DIR})
-
-
-
-
-#show content and exit, may be while "show" or "s" arg key
-# if [ $# -gt 0 ]; then
-#     echo ${hints[*]}
-#     exit 0
-# fi
-
-function HIDEDATCODE
+function iteration
 {
-## recursive content viewer
-#[==========================================================================]#
-while true; do
-printf "\nhints:\n"
-for index in ${!hints[*]};do
-        printf "%4d: %s\n" $index ${hints[$index]}
-done
-printf "\n"
+    tput smcup
+    local __HINTS_DIR=$1
+    currentHintsList=($(getContentList ${__HINTS_DIR}))
 
-read -p "enter hint's number:" HINT_NUMBER
-#echo ${HINT_NUMBER}     ##debug
-#echo ${#hints[*]}       ##debug
-# if [ ${HINT_NUMBER} -gt '${#hints[*]} - 1' ]; then
-if (( ${HINT_NUMBER} > (${#hints[*]} - 1) )); then
-# if [ ${#hints[*]} -lt ${HINT_NUMBER} ]; then
-    break
-fi
+    showContentList "${currentHintsList[@]}"
+    #showContentList $(getContentList ${HINTS_DIR})
 
+    read -p "enter hint's number:" HINT_NUMBER
+    tput rmcup
+    if (( ${HINT_NUMBER} > (${#currentHintsList[*]} - 1) )); then
+        ##read again
+    fi
 
+    local HINT_NAME=${__HINTS_DIR}/${currentHintsList[${HINT_NUMBER}]}
 
-#HINT_NAME=$1
-HINT_FULL_NAME=${HINTS_DIR}/${hints[${HINT_NUMBER}]}
+    ## go in subdir
+    if [ -d ${HINT_NAME} ]; then
+        #echo "its dir"   ##debug
+        iteration ${HINT_NAME}
+    fi
 
-#echo HINT_FULL_NAME= ${HINT_FULL_NAME}  ##debug
-
-
-
-
-
-#[==========================================================================]#
-if [ -d ${HINT_FULL_NAME} ]; then
-    echo "its dir"   ##debug
-    # echo ls -A ${HINT_FULL_NAME}
-    hints=($(ls -A ${HINT_FULL_NAME}))  # get subdir content
-    HINTS_DIR=${HINT_FULL_NAME}
-fi
-
-
-if [ -f ${HINT_FULL_NAME} ]; then
-    #echo "its file"   ##debug
-    less ${HINT_FULL_NAME}
-fi
-
-done
+    ## show file content
+    if [ -f ${HINT_NAME} ]; then
+        #echo "its file"   ##debug
+        less ${HINT_NAME}
+        # exit 0
+    fi
 }
 
+
+## main loop
+clear
+iteration ${HINTS_DIR}
 
