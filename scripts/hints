@@ -1,10 +1,19 @@
 #!/bin/bash
 
+    NC=$(tput sgr0)
+    REV=$(tput rev)
 
 if [ -z ${HINTS_DIR} ]; then
     HINTS_DIR="${HOME}/_hints"
 fi
 
+
+#[==========================================================================]#
+function showHelp
+{
+    printf "s - show content.\n"
+
+}
 
 #[==========================================================================]#
 function getContentList
@@ -31,39 +40,79 @@ function showContentList
 }
 
 #[==========================================================================]#
+function ioHandler
+{
+    local input=
+    local size=$1
+    local output=${size}
+    while [ true ] ; do
+        clear
+        read -p "Enter hint's number (h - help):" input
+        case "${input}" in
+            "q"| "exit"   ) tput rmcup;exit;;
+            "s"   ) tput rmcup;exit;;
+            "h"| "help"   ) showHelp;read -n1 -r -p "${REV}Press any key to continue...${NC}" key;;
+
+
+        # case numbers
+        #     if (( ${input} > (${size} - 1) )); then
+        #         ##read again
+        #         ioHandler
+        #     fi
+        #     #output=${input};break;;
+
+        esac
+    done
+
+    echo ${output}
+}
+
+#[==========================================================================]#
 function iteration
 {
-    tput smcup
+    ##tput smcup
     local __HINTS_DIR=$1
     currentHintsList=($(getContentList ${__HINTS_DIR}))
 
     showContentList "${currentHintsList[@]}"
     #showContentList $(getContentList ${HINTS_DIR})
 
+    #todo: replace with ioHandler
     read -p "enter hint's number:" HINT_NUMBER
-    tput rmcup
-    if (( ${HINT_NUMBER} > (${#currentHintsList[*]} - 1) )); then
-        ##read again
-    fi
+    ##tput rmcup
+    clear
 
-    local HINT_NAME=${__HINTS_DIR}/${currentHintsList[${HINT_NUMBER}]}
+    local HINT_NAME=
+    if [ ${HINT_NUMBER} = "-" ]; then
+        # iteration ${HINT_NAME}
+        HINT_NAME=${__HINTS_DIR}"/.."
+    else
+        HINT_NAME=${__HINTS_DIR}/${currentHintsList[${HINT_NUMBER}]}
+    fi
 
     ## go in subdir
     if [ -d ${HINT_NAME} ]; then
-        #echo "its dir"   ##debug
         iteration ${HINT_NAME}
     fi
 
     ## show file content
     if [ -f ${HINT_NAME} ]; then
-        #echo "its file"   ##debug
         less ${HINT_NAME}
+        #todo: go to next io iteration
         # exit 0
     fi
 }
 
 
 ## main loop
+#[==========================================================================]#
+## save current state of screen
+trap "tput rmcup;exit" SIGINT SIGKILL SIGTERM SIGHUP
+tput smcup
 clear
-iteration ${HINTS_DIR}
 
+#iteration ${HINTS_DIR}
+
+
+
+#ioHandler ${HINTS_DIR}
