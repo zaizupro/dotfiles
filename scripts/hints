@@ -10,6 +10,18 @@
 NC=$(tput sgr0)
 REV=$(tput rev)
 
+#[==========================================================================]#
+function __hideCursor
+{
+tput civis
+}
+function __showCursor
+{
+tput cnorm
+}
+
+
+#[==========================================================================]#
 if [ -z ${HINTS_DIR} ]; then
     HINTS_DIR="${HOME}/_hints"
 fi
@@ -58,7 +70,7 @@ function ioHandler
         case "${input}" in
             "q"| "exit"   ) tput rmcup;exit;;
             "s"   ) tput rmcup;exit;;
-            "h"| "help"   ) showHelp;read -n1 -r -p "${REV}Press any key to continue...${NC}" key;;
+            "h"| "help"   ) showHelp;__hideCursor;read -n1 -r -p "${REV}Press any key to continue...${NC}" key;__showCursor;;
 
 
         # case numbers
@@ -118,8 +130,8 @@ trap "tput rmcup;exit" SIGINT SIGKILL SIGTERM SIGHUP
 tput smcup
 clear
 
-#iteration ${HINTS_DIR}
+iteration ${HINTS_DIR}
 
 
+tput rmcup
 
-#ioHandler ${HINTS_DIR}
