@@ -7,25 +7,48 @@
 #[==========================================================================]#
 
 
+
 NC=$(tput sgr0)
 REV=$(tput rev)
+
+#================CUSTOM_COORS======================
+# add some color
+if [ -f $HOME/.bash_colors ]; then
+    source $HOME/.bash_colors
+fi
+
+#================CUSTOM_FUNCTIONS===================
+# Source bash functions, if present
+if [ -f ~/.bash_functions ]; then
+    source ~/.bash_functions
+fi
+
 
 #[==========================================================================]#
 function __hideCursor
 {
-tput civis
+    tput civis
 }
 function __showCursor
 {
-tput cnorm
+    tput cnorm
 }
 
 
 #[==========================================================================]#
-if [ -z ${HINTS_DIR} ]; then
-    HINTS_DIR="${HOME}/_hints"
-fi
-
+function __init
+{
+    if [ -z ${HINTS_DIR} ]; then
+        HINTS_DIR="${HOME}/_hints"
+        echo
+        echo "plz setup HINTS_DIR variable."
+        echo "HINTS_DIR points to ${HINTS_DIR}"
+        __blockprintor "HINTS_DIR points to ${HINTS_DIR}" $YELLOWFGBG
+        __hideCursor
+        read -n1 -r -p "${REV}Press any key to continue...${NC}" key
+        __showCursor
+    fi
+}
 
 #[==========================================================================]#
 function showHelp
@@ -63,14 +86,20 @@ function ioHandler
 {
     local input=
     local size=$1
-    local output=${size}
+    local output=
     while [ true ] ; do
         clear
         read -p "Enter hint's number (h - help):" input
         case "${input}" in
-            "q"| "exit"   ) tput rmcup;exit;;
-            "s"   ) tput rmcup;exit;;
-            "h"| "help"   ) showHelp;__hideCursor;read -n1 -r -p "${REV}Press any key to continue...${NC}" key;__showCursor;;
+            [qQ]| [eE][xX][iI][tT]   ) tput rmcup;exit;;
+            [sS]   ) break;;
+            [hH] | [hH][eE][lL][pP]  )
+                showHelp
+                __hideCursor
+                read -n1 -r -p "${REV}Press any key to continue...${NC}" key
+                __showCursor;;
+
+            [0-9] ) output=${input};break;;
 
 
         # case numbers
@@ -130,8 +159,13 @@ trap "tput rmcup;exit" SIGINT SIGKILL SIGTERM SIGHUP
 tput smcup
 clear
 
-iteration ${HINTS_DIR}
+__init
 
+
+currentHintsList=($(getContentList ${HINTS_DIR}))
+# iteration ${HINTS_DIR}
+
+ttt=$(ioHandler ${#currentHintsList[@]})
 
 tput rmcup
 
