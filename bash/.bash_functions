@@ -53,11 +53,16 @@ __printor()
 
 __blockprintor()
 {
-    BPMSG=${1}
+    local BPMSG=(${1})
+    local OUTARRAY=()
     BPCOLOR=${2}
     BPDATE=`date -R`
 
-    BPMSGLNGTH=${#BPMSG}
+    for index in ${!BPMSG[*]};do
+      # printf "┃ %-3d ┃ %-20s ┃\n" $index ${BPMSG[$index]}
+
+
+    BPMSGLNGTH=${#BPMSG[$index]}
     BPDATELNGTH=${#BPDATE}
 
     BPMSGSPACEREXT=""
@@ -78,14 +83,31 @@ __blockprintor()
             BPDATESPACEREXT=" "
         fi
 
-    BPHEADERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /─}"`
-    BPDATESPACER=$(printf "%-$(( (${BPHEADERLNGTH}-${BPDATELNGTH})/2 ))s" "")
-    BPMSGSPACER=$(printf "%-$(( (${BPHEADERLNGTH}-${BPMSGLNGTH})/2 ))s" "")
 
-    __printor "┌─${BPHEADERLINE}─┐" ${BPCOLOR}
-    __printor "│ ${BPMSGSPACER// / }${BPMSG}${BPMSGSPACER// / }${BPMSGSPACEREXT} │" ${BPCOLOR}
-    __printor "│ ${BPDATESPACER// / }${BPDATE}${BPDATESPACER// / }${BPDATESPACEREXT} │" ${BPCOLOR}
-    __printor "└─${BPHEADERLINE}─┘" ${BPCOLOR}
+    # __printor "│ ${BPMSGSPACER// / }${BPMSG[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │" ${BPCOLOR}
+    # OUTARRAY+=("│ ${BPMSGSPACER// / }${BPMSG[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │")
+    OUTARRAY+=("${BPMSG[$index]}")
+    # __printor "│ ${BPDATESPACER// / }${BPDATE}${BPDATESPACER// / }${BPDATESPACEREXT} │" ${BPCOLOR}
+
+    done
+
+
+    BPSPACERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /─}"`
+    BPHEADERLINE="┫header┣━━━━━━━━━━━━━━━━━━━━━"
+    __printor "┌━${BPHEADERLINE}━┐" ${BPCOLOR}
+
+
+    for index in ${!OUTARRAY[*]};do
+        BPMSGSPACER=$(printf "%-$(( (${BPHEADERLNGTH}-${BPMSGLNGTH})/2 ))s" "")
+
+        # echo -en "${OUTARRAY[$index]}"
+        # printf "%s\n" ${OUTARRAY[$index]}
+        __printor "│ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │" ${BPCOLOR}
+    done
+
+
+    __printor "└━${BPSPACERLINE}━┘" ${BPCOLOR}
+
 }
 
 __printfulline()
