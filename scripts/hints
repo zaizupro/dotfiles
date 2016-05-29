@@ -51,38 +51,37 @@ function __init
 }
 
 #[==========================================================================]#
-function showHelp
+function __showHelp
 {
     printf "s - show content.\n"
-
 }
 
 #[==========================================================================]#
-function getContentList
+function __getContentList
 {
     local __HINTS_DIR=$1
-    local ContentListRV=($(ls -A ${__HINTS_DIR}))
-    echo ${ContentListRV[*]}
+    local CONTENTLIST=($(ls -A ${__HINTS_DIR}))
+    echo ${CONTENTLIST[*]}
 }
 
 #[==========================================================================]#
-function showContentList
+function __showContentList
 {
-    local ContentList=(${@})
+    local CONTENTLIST=(${@})
 
     ## TODO fix magic number 20 for_very_long_file_names.
     printf "┃ %3s ┃ %-20s ┃\n" "num" "file name"
     printf "┣━━━━━╋━━━━━━━━━━━━━━━━━━━━━━┫\n"
-    for index in ${!ContentList[*]};do
+    for index in ${!CONTENTLIST[*]};do
             # printf "┣━━━━━╋━━━━━━━━━━━━━━━━━━━━━━┫\n"
-            printf "┃ %-3d ┃ %-20s ┃\n" $index ${ContentList[$index]}
-            # echo "   | $index |  ${ContentList[$index]}"
+            printf "┃ %-3d ┃ %-20s ┃\n" $index ${CONTENTLIST[$index]}
+            # echo "   | $index |  ${CONTENTLIST[$index]}"
     done
     printf "┗━━━━━┻━━━━━━━━━━━━━━━━━━━━━━┛\n"
 }
 
 #[==========================================================================]#
-function ioHandler
+function __ioHandler
 {
     local input=
     local size=$1
@@ -92,9 +91,9 @@ function ioHandler
         read -p "Enter hint's number (h - help):" input
         case "${input}" in
             [qQ]| [eE][xX][iI][tT]   ) tput rmcup;exit;;
-            [sS]   ) break;;
+            [sS]   ) output='s';break;;
             [hH] | [hH][eE][lL][pP]  )
-                showHelp
+                __showHelp
                 __hideCursor
                 read -n1 -r -p "${REV}Press any key to continue...${NC}" key
                 __showCursor;;
@@ -105,7 +104,7 @@ function ioHandler
         # case numbers
         #     if (( ${input} > (${size} - 1) )); then
         #         ##read again
-        #         ioHandler
+        #         __ioHandler
         #     fi
         #     #output=${input};break;;
 
@@ -116,37 +115,37 @@ function ioHandler
 }
 
 #[==========================================================================]#
-function iteration
+function __iteration
 {
     ##tput smcup
     local __HINTS_DIR=$1
-    currentHintsList=($(getContentList ${__HINTS_DIR}))
+    local CURRENTHINTSLIST=($(__getContentList ${__HINTS_DIR}))
 
-    showContentList "${currentHintsList[@]}"
-    #showContentList $(getContentList ${HINTS_DIR})
+    __showContentList "${CURRENTHINTSLIST[@]}"
+    #__showContentList $(__getContentList ${HINTS_DIR})
 
-    #todo: replace with ioHandler
+    #todo: replace with __ioHandler
     read -p "enter hint's number:" HINT_NUMBER
     ##tput rmcup
     clear
 
     local HINT_NAME=
     if [ ${HINT_NUMBER} = "-" ]; then
-        # iteration ${HINT_NAME}
+        # __iteration ${HINT_NAME}
         HINT_NAME=${__HINTS_DIR}"/.."
     else
-        HINT_NAME=${__HINTS_DIR}/${currentHintsList[${HINT_NUMBER}]}
+        HINT_NAME=${__HINTS_DIR}/${CURRENTHINTSLIST[${HINT_NUMBER}]}
     fi
 
     ## go in subdir
     if [ -d ${HINT_NAME} ]; then
-        iteration ${HINT_NAME}
+        __iteration ${HINT_NAME}
     fi
 
     ## show file content
     if [ -f ${HINT_NAME} ]; then
         less ${HINT_NAME}
-        #todo: go to next io iteration
+        #todo: go to next io __iteration
         # exit 0
     fi
 }
@@ -162,10 +161,10 @@ clear
 __init
 
 
-currentHintsList=($(getContentList ${HINTS_DIR}))
-# iteration ${HINTS_DIR}
+CURRENTHINTSLIST=($(__getContentList ${HINTS_DIR}))
+# __iteration ${HINTS_DIR}
 
-ttt=$(ioHandler ${#currentHintsList[@]})
+ttt=$(__ioHandler ${#CURRENTHINTSLIST[@]})
 
 tput rmcup
 
