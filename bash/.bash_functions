@@ -1,6 +1,7 @@
 
 ##include dat  in .bashrc
 
+## svn
 __ddiff()
 {
     svn diff |sed 's/^-/\x1b[30m\x1b[41m-/;s/^+/\x1b[30m\x1b[42m+/;s/^@/\x1b[30m\x1b[43m@/;s/$/\x1b[0m/'
@@ -30,43 +31,45 @@ __git_st_wrp()
     [ $(__git_st 2>/dev/null) == 1 ] && echo [⚡] || echo ""
 }
 
-#⚡
+## prints TTY name of current term.
 __currentTTY()
 {
 #echo `tty | sed -e "s:/dev/::"`
 temp=$(tty) ; echo ${temp:5}
 }
 
+## prints MSG(1) of COLOR(2) in middle of term line.
 __printor()
 {
-    TERMCOLS=$(tput cols)
+    local TERMCOLS=$(tput cols)
 
-    MSG=${1}
-    COLOR=${2}
-    MSGLNGTH=${#MSG}
-    STARTLINE=$(printf "%-$((${TERMCOLS}/2 - ${MSGLNGTH}/2))s" "")
-    STLNLNGTH=${#STARTLINE}
-    ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "")
+    local MSG=${1}
+    local COLOR=${2}
+    local MSGLNGTH=${#MSG}
+    local STARTLINE=$(printf "%-$((${TERMCOLS}/2 - ${MSGLNGTH}/2))s" "")
+    local STLNLNGTH=${#STARTLINE}
+    local ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "")
 
-    echo $ORANGE"${STARTLINE// / }$COLOR${MSG}$NC$ORANGE${ENDLINE// / }"$NC
+    echo $ORANGE"${STARTLINE// / }${COLOR}${MSG}${NC}${ORANGE}${ENDLINE// / }"$NC
 }
 
+## prints array of strings.
 __blockprintor()
 {
     local BPMSG=(${1})
     local OUTARRAY=()
-    BPCOLOR=${2}
-    BPDATE=`date -R`
+    local BPCOLOR=${2}
+
 
     for index in ${!BPMSG[*]};do
       # printf "┃ %-3d ┃ %-20s ┃\n" $index ${BPMSG[$index]}
 
 
-    BPMSGLNGTH=${#BPMSG[$index]}
-    BPDATELNGTH=${#BPDATE}
+    local BPMSGLNGTH=${#BPMSG[$index]}
+    local BPDATELNGTH=${#BPDATE}
 
-    BPMSGSPACEREXT=""
-    BPDATESPACEREXT=""
+    local BPMSGSPACEREXT=""
+    local BPDATESPACEREXT=""
 
     if [ $BPMSGLNGTH -ge $BPDATELNGTH ]; then
         BPHEADERLNGTH=${BPMSGLNGTH}
@@ -92,8 +95,8 @@ __blockprintor()
     done
 
 
-    BPSPACERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /─}"`
-    BPHEADERLINE="┫header┣━━━━━━━━━━━━━━━━━━━━━"
+    local BPSPACERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /─}"`
+    local BPHEADERLINE="┫header┣━━━━━━━━━━━━━━━━━━━━━"
     __printor "┌━${BPHEADERLINE}━┐" ${BPCOLOR}
 
 
