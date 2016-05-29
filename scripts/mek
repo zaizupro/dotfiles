@@ -1,15 +1,14 @@
 #!/bin/bash
-#toilet -f future -t "START `date +%T`"
 
 if [ -f ~/.bash_zaz ]; then
    source ~/.bash_zaz
 fi
 
 
-__blockprintor "BUILDING STARTED AT `__currentTTY`" $YELLOWFGBG
+__blockprintor "('BUILDING STARTED AT `__currentTTY`','`date -R`')" $YELLOWFGBG
 
 MKSTARTDATE=$(date +%s)
-makek.sh 
+makek.sh
 #|  sed "s/^/[$YELLOW`date +%T`$NC]/"
 RESULT=$?
 MKENDDATE=$(date +%s)
@@ -19,13 +18,13 @@ if [ $RESULT -eq 0 ]; then
     #COLOR:=${GREEN}
 
     BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-    __blockprintor "${BTMSG}" ${GREENFGBG}
+    __blockprintor "(${BTMSG},'`date -R`')" ${GREENFGBG}
 else
     MKRESULT="BUILDING FAILED"
     #COLOR={$RED}
 
     BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-    __blockprintor "${BTMSG}" ${REDFGBG}
+    __blockprintor "(${BTMSG},'`date -R`')" ${REDFGBG}
 
 fi
 
