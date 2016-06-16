@@ -60,52 +60,33 @@ __blockprintor()
     local OUTARRAY=()
     local BPCOLOR=${2}
 
+    local BPMAXMSGSPACER=
 
     for index in ${!BPMSG[*]};do
-      # printf "┃ %-3d ┃ %-20s ┃\n" $index ${BPMSG[$index]}
-
-
-    local BPMSGLNGTH=${#BPMSG[$index]}
-    local BPDATELNGTH=${#BPDATE}
-
-    local BPMSGSPACEREXT=""
-    local BPDATESPACEREXT=""
-
-    if [ $BPMSGLNGTH -ge $BPDATELNGTH ]; then
-        BPHEADERLNGTH=${BPMSGLNGTH}
-
-    else
-        BPHEADERLNGTH=${BPDATELNGTH}
-        if [  $(expr ${BPMSGLNGTH} % 2) -eq 0 ]; then
-            BPMSGSPACEREXT=" "
+        local BPCURRENTMSGLNGTH=${#BPMSG[$index]}
+        if [[ ${BPCURRENTMSGLNGTH} -gt ${BPMAXMSGSPACER} ]]; then
+            BPMAXMSGSPACER=${BPCURRENTMSGLNGTH}
         fi
-    fi
-
-
-        if [  $(expr ${BPHEADERLNGTH} % 2) -eq 0 ]; then
-            BPDATESPACEREXT=" "
-        fi
-
-
-    # __printor "│ ${BPMSGSPACER// / }${BPMSG[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │" ${BPCOLOR}
-    # OUTARRAY+=("│ ${BPMSGSPACER// / }${BPMSG[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │")
-    OUTARRAY+=("${BPMSG[$index]}")
-    # __printor "│ ${BPDATESPACER// / }${BPDATE}${BPDATESPACER// / }${BPDATESPACEREXT} │" ${BPCOLOR}
-
+        OUTARRAY+=("${BPMSG[$index]}")
     done
 
 
-    local BPSPACERLINE=`printf -v BPHEADERLINETMP "%-$((${BPHEADERLNGTH}))s" ' '; echo "${BPHEADERLINETMP// /─}"`
+    local BPSPACERLINE=`printf -v BPSPACERLINETMP "%-$((${BPMAXMSGSPACER}))s" ' '; echo "${BPSPACERLINETMP// /─}"`
     local BPHEADERLINE="┫header┣━━━━━━━━━━━━━━━━━━━━━"
     __printor "┌━${BPHEADERLINE}━┐" ${BPCOLOR}
 
 
     for index in ${!OUTARRAY[*]};do
-        BPMSGSPACER=$(printf "%-$(( (${BPHEADERLNGTH}-${BPMSGLNGTH})/2 ))s" "")
+        local BPMSGSPACEREXT=""
+        local BPCURRENTMSGLNGTH=${#OUTARRAY[$index]}
+        local BPMSGSPACER=$(printf "%-$(( (${BPMAXMSGSPACER}-${BPCURRENTMSGLNGTH})/2 ))s" "")
+        if [  $(expr ${BPCURRENTMSGLNGTH} % 2) -eq 0 ]; then
+            BPMSGSPACEREXT=" "
+        fi
 
-        # echo -en "${OUTARRAY[$index]}"
-        # printf "%s\n" ${OUTARRAY[$index]}
-        __printor "│ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │" ${BPCOLOR}
+
+        #echo "│ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │"
+         __printor "│ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │" ${BPCOLOR}
     done
 
 
