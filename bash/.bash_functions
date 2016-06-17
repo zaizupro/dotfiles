@@ -71,9 +71,9 @@ __blockprintor()
     done
 
 
-    local BPSPACERLINE=`printf -v BPSPACERLINETMP "%-$((${BPMAXMSGSPACER}))s" ' '; echo "${BPSPACERLINETMP// /─}"`
+    local BPSPACERLINE=`printf -v BPSPACERLINETMP "%-$((${BPMAXMSGSPACER}))s" ' '; echo "${BPSPACERLINETMP// /━}"`
     local BPHEADERLINE="┫header┣━━━━━━━━━━━━━━━━━━━━━"
-    __printor "┌━${BPHEADERLINE}━┐" ${BPCOLOR}
+    __printor "┏━${BPHEADERLINE}━┓" ${BPCOLOR}
 
 
     for index in ${!OUTARRAY[*]};do
@@ -86,11 +86,11 @@ __blockprintor()
 
 
         #echo "│ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │"
-         __printor "│ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │" ${BPCOLOR}
+         __printor "┃ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} ┃" ${BPCOLOR}
     done
 
 
-    __printor "└━${BPSPACERLINE}━┘" ${BPCOLOR}
+    __printor "┗━${BPSPACERLINE}━┛" ${BPCOLOR}
 
 }
 
