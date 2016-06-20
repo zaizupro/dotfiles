@@ -86,6 +86,8 @@ alias tk='tmux kill-session -t'
 
 alias makepass='openssl rand -base64 12'
 alias vm='startVM.sh'
+alias fm='thunar $@ &'
+
 
 # Stolen from github.com/zanshin
 # Just for fun
