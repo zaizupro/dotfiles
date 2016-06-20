@@ -56,8 +56,11 @@ __printor()
 ## prints array of strings.
 __blockprintor()
 {
-    local BPMSG=(${1})
-    local OUTARRAY=()
+
+    declare -a BPMSG=("${!1}")
+         # for a in ${!BPMSG[*]}; do ( echo ${BPMSG[$a]}) done;
+
+    declare -a OUTARRAY=()
     local BPCOLOR=${2}
 
     local BPMAXMSGSPACER=
@@ -85,7 +88,7 @@ __blockprintor()
         fi
 
 
-        #echo "│ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │"
+        # echo "│ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │"
          __printor "┃ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} ┃" ${BPCOLOR}
     done
 

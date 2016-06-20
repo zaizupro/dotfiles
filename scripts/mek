@@ -5,26 +5,25 @@ if [ -f ~/.bash_zaz ]; then
 fi
 
 
-__blockprintor "('BUILDING STARTED AT `__currentTTY`','`date -R`')" $YELLOWFGBG
+declare -a TMPMSG
+TMPMSG=("BUILDING STARTED AT $(__currentTTY)" "$(date -R)")
+__blockprintor TMPMSG[@] ${YELLOWFGBG}
+
 
 MKSTARTDATE=$(date +%s)
 makek.sh
-#|  sed "s/^/[$YELLOW`date +%T`$NC]/"
+#|  sed "s/^/[$YELLOW$(date +%T)$NC]/"
 RESULT=$?
 MKENDDATE=$(date +%s)
 
 if [ $RESULT -eq 0 ]; then
     MKRESULT="BUILDING COMPLETED"
-    #COLOR:=${GREEN}
-
-    BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-    __blockprintor "(${BTMSG},'`date -R`')" ${GREENFGBG}
+    COLOR=("${GREENFGBG}")
 else
     MKRESULT="BUILDING FAILED"
-    #COLOR={$RED}
-
-    BTMSG="${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!"
-    __blockprintor "(${BTMSG},'`date -R`')" ${REDFGBG}
-
+    COLOR=("${REDFGBG}")
 fi
 
+
+TMPMSG=("${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!" "$(date -R)")
+__blockprintor TMPMSG[@] $(echo ${COLOR})

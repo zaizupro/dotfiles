@@ -5,9 +5,32 @@
  fi
 
 
+declare -a TMPMSG
+TMPMSG=("CLEANING STARTED AT $(__currentTTY)" "$(date -R)")
+__blockprintor TMPMSG[@] ${YELLOWFGBG}
 
- __blockprintor "CLEANING STARTED AT `__currentTTY`" $YELLOWFGBG
 
+MKSTARTDATE=$(date +%s)
 make clean
+RESULT=$?
+# declare -a  err=$(wh2o 1>/dev/null 2>&1)
+# declare -a  output=$({ err=$(make clean 2>&1 1>&3-) ;} 3>&1)
+# RESULT=${#err}
+# echo $RESULT
+# echo ${#output}
 
-__blockprintor "CLEANING DONE AT `__currentTTY`" $GREENFGBG
+MKENDDATE=$(date +%s)
+
+# __blockprintor err[@]
+
+if [ $RESULT -eq 0 ]; then
+    MKRESULT="CLEANING COMPLETED"
+    COLOR=("${GREENFGBG}")
+else
+    MKRESULT="CLEANING FAILED"
+    COLOR=("${REDFGBG}")
+fi
+
+
+TMPMSG=("${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!" "$(date -R)")
+__blockprintor TMPMSG[@] $(echo ${COLOR})
