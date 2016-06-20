@@ -17,7 +17,7 @@ URxvt.background: [75]#000000
 ! rgba:1111/1111/1111/aaaa
 
 !--[tresh]--!
-! URxvt*termName:                       string
+URxvt*termName:                         xterm-256color
 ! URxvt*chdir:                          string
 ! URxvt*reverseVideo:                   boolean
 ! URxvt*loginShell:                     boolean
