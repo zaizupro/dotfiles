@@ -53,8 +53,21 @@ __printor()
     echo $ORANGE"${STARTLINE// / }${COLOR}${MSG}${NC}${ORANGE}${ENDLINE// / }"$NC
 }
 
+## prints string.
+__msgprintor()
+{
+    declare -a MSG=("$1")
+    __arrayprintor "MSG" $2
+}
+
 ## prints array of strings.
 __blockprintor()
+{
+    __arrayprintor $1 $2
+}
+
+## prints array of strings.
+__arrayprintor()
 {
 
     declare -a BPMSG=("${!1}")
@@ -74,8 +87,19 @@ __blockprintor()
     done
 
 
+
+    # local BPHEADERMSG="┫header┣"
+    if [[ ${#BPHEADERMSG} -gt ${BPMAXMSGSPACER} ]]; then
+        BPMAXMSGSPACER=${#BPHEADERMSG}
+        local BPHEADERSPACERLINE=
+    else
+        local BPHEADERSPACERLINE=`printf -v BPSPACERLINETMP "%-$((${BPMAXMSGSPACER} - ${#BPHEADERMSG}))s" ' '; echo "${BPSPACERLINETMP// /━}"`
+    fi
+
     local BPSPACERLINE=`printf -v BPSPACERLINETMP "%-$((${BPMAXMSGSPACER}))s" ' '; echo "${BPSPACERLINETMP// /━}"`
-    local BPHEADERLINE="┫header┣━━━━━━━━━━━━━━━━━━━━━"
+    local BPHEADERLINE="${BPHEADERMSG}${BPHEADERSPACERLINE}"
+
+
     __printor "┏━${BPHEADERLINE}━┓" ${BPCOLOR}
 
 
