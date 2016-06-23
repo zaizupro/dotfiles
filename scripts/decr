@@ -1,0 +1,3 @@
+#!/bin/sh
+name=${1%%???}
+openssl aes-256-cbc -d -a -in $1 -out ${name}new
