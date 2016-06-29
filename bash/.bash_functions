@@ -45,7 +45,10 @@ __printor()
 
     local MSG=${1}
     local COLOR=${2}
-    local MSGLNGTH=${#MSG}
+    local MSGLNGTH=${3}
+    if [[ ${MSGLNGTH} == "" ]]; then
+        MSGLNGTH=${#MSG}
+    fi
     local STARTLINE=$(printf "%-$((${TERMCOLS}/2 - ${MSGLNGTH}/2))s" "")
     local STLNLNGTH=${#STARTLINE}
     local ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "")
@@ -57,13 +60,15 @@ __printor()
 __msgprintor()
 {
     declare -a MSG=("$1")
-    __arrayprintor "MSG" $2
+    declare -a HEADER=("$3")
+    __arrayprintor "MSG" $2 "HEADER"
 }
 
 ## prints array of strings.
 __blockprintor()
 {
-    __arrayprintor $1 $2
+    declare -a HEADER=("$3")
+    __arrayprintor $1 $2 "HEADER"
 }
 
 ## prints array of strings.
@@ -87,8 +92,7 @@ __arrayprintor()
     done
 
 
-
-    # local BPHEADERMSG="┫header┣"
+    declare -a BPHEADERMSG=("${!3}")
     if [[ ${#BPHEADERMSG} -gt ${BPMAXMSGSPACER} ]]; then
         BPMAXMSGSPACER=${#BPHEADERMSG}
         local BPHEADERSPACERLINE=
@@ -97,10 +101,10 @@ __arrayprintor()
     fi
 
     local BPSPACERLINE=`printf -v BPSPACERLINETMP "%-$((${BPMAXMSGSPACER}))s" ' '; echo "${BPSPACERLINETMP// /━}"`
-    local BPHEADERLINE="${BPHEADERMSG}${BPHEADERSPACERLINE}"
+    local BPHEADERLINE="${SOMON}${BPHEADERMSG}${SOMOF}${BPHEADERSPACERLINE}"
 
-
-    __printor "┏━${BPHEADERLINE}━┓" ${BPCOLOR}
+    __printor "┏━${BPHEADERLINE}━┓" ${BPCOLOR} $(expr ${#BPHEADERMSG} + ${#BPHEADERSPACERLINE} + 4)
+    # echo "┏━${BPHEADERMSG}${BPHEADERSPACERLINE}━┓"
 
 
     for index in ${!OUTARRAY[*]};do
@@ -112,12 +116,12 @@ __arrayprintor()
         fi
 
 
-        # echo "│ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} │"
-         __printor "┃ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} ┃" ${BPCOLOR}
+        # echo "┃ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} ┃"
+        __printor "┃ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} ┃" ${BPCOLOR}
     done
 
-
     __printor "┗━${BPSPACERLINE}━┛" ${BPCOLOR}
+    # echo "┗━${BPSPACERLINE}━┛"
 
 }
 
