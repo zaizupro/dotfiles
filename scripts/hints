@@ -10,8 +10,7 @@
 
 NC=$(tput sgr0)
 REV=$(tput rev)
-
-#================CUSTOM_COORS======================
+#================CUSTOM_COLORS======================
 # add some color
 if [ -f $HOME/.bash_colors ]; then
     source $HOME/.bash_colors
@@ -41,11 +40,13 @@ function __init
     if [ -z ${HINTS_DIR} ]; then
         HINTS_DIR="${HOME}/_hints"
         echo
-        echo "plz setup HINTS_DIR variable."
-        echo "HINTS_DIR points to ${HINTS_DIR}"
-        __blockprintor "HINTS_DIR points to ${HINTS_DIR}" $YELLOWFGBG
+        declare -a TMPMSG
+        TMPMSG=("plz setup HINTS_DIR variable." "HINTS_DIR points to ${HINTS_DIR}" "$(date -R)" "Press any key to continue...")
+        __blockprintor TMPMSG[@] ${YELLOWFGBG} " WARNING "
+
         __hideCursor
-        read -n1 -r -p "${REV}Press any key to continue...${NC}" key
+        read -n1 -r key
+        clear
         __showCursor
     fi
 }
@@ -53,7 +54,8 @@ function __init
 #[==========================================================================]#
 function __showHelp
 {
-    printf "s - show content.\n"
+    # printf "s - show content.\n"
+    echo "s - show content.\n"
 }
 
 #[==========================================================================]#
@@ -87,16 +89,22 @@ function __ioHandler
     local size=$1
     local output=
     while [ true ] ; do
-        clear
+        # tput clear
         read -p "Enter hint's number (h - help):" input
         case "${input}" in
-            [qQ]| [eE][xX][iI][tT]   ) tput rmcup;exit;;
+            [qQ] | [eE][xX][iI][tT]   ) output='exit';break;;  #tput rmcup;exit;;
             [sS]   ) output='s';break;;
             [hH] | [hH][eE][lL][pP]  )
-                __showHelp
-                __hideCursor
-                read -n1 -r -p "${REV}Press any key to continue...${NC}" key
-                __showCursor;;
+                # __showHelp
+                # __hideCursor
+                # echo "${REV}Press any key to continue...${NC}"
+                echo "Press any key to continue.."
+                # echo ${HCON}
+                # read -n1 -r -s -p "${HCON}${REV}Press any key to continue...${NC}$(echo $'\n ')" key
+                # echo ${HCOF}
+                #read  sdsd
+                ;;
+                # __showCursor
 
             [0-9] ) output=${input};break;;
 
@@ -109,6 +117,7 @@ function __ioHandler
         #     #output=${input};break;;
 
         esac
+        echo "Press any key to continue.."
     done
 
     echo ${output}
@@ -165,6 +174,8 @@ CURRENTHINTSLIST=($(__getContentList ${HINTS_DIR}))
 # __iteration ${HINTS_DIR}
 
 ttt=$(__ioHandler ${#CURRENTHINTSLIST[@]})
+echo ${ttt}
+read end
 
 tput rmcup
 
