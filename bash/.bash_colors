@@ -31,11 +31,17 @@ else
     ORANGE=$(tput setaf 3)
 fi
 
-
+#clearing tput settings
     NC=$(tput sgr0)
+
+#text color reverting
     REV=$(tput rev)
     SOMON=$(tput smso)
     SOMOF=$(tput rmso)
+
+#cursor hiding
+    HCON=$(tput civis)
+    HCOF=$(tput cnorm)
 
 #check colors
 __colors_checker()
