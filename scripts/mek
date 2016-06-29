@@ -6,8 +6,8 @@ fi
 
 
 declare -a TMPMSG
-TMPMSG=("BUILDING STARTED AT $(__currentTTY)" "$(date -R)")
-__blockprintor TMPMSG[@] ${YELLOWFGBG}
+TMPMSG=("AT $(__currentTTY)" "$(date '+%A %R:%S %d.%m.%Y')")
+__blockprintor TMPMSG[@] ${YELLOWFGBG} " BUILDING STARTED "
 
 
 MKSTARTDATE=$(date +%s)
@@ -25,5 +25,5 @@ else
 fi
 
 
-TMPMSG=("${MKRESULT} IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!" "$(date -R)")
-__blockprintor TMPMSG[@] $(echo ${COLOR})
+TMPMSG=("IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!" "$(date '+%A %R:%S %d.%m.%Y')")
+__blockprintor TMPMSG[@] $(echo ${COLOR}) " ${MKRESULT} "
