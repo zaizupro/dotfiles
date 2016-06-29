@@ -50,6 +50,7 @@ fi
 #====================ALIASES======================
 #====moving==========#
 alias s='cd ..'
+alias b='cd -'
 alias cds='cd ~/_WORK'
 alias cde='cd ~/_EXP'
 alias cdn='cd `getNexusPath.sh`'
