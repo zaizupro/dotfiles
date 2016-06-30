@@ -11,7 +11,7 @@ __blockprintor TMPMSG[@] ${YELLOWFGBG} " BUILDING STARTED "
 
 
 MKSTARTDATE=$(date +%s)
-makek.sh
+makek.sh "$@"
 #|  sed "s/^/[$YELLOW$(date +%T)$NC]/"
 RESULT=$?
 MKENDDATE=$(date +%s)
