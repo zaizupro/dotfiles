@@ -37,10 +37,11 @@ warning="s/(^warning|^.*[^a-z]warning:)/$(printf $yellow)\\1$(printf $normal)/i"
 make="s/^make(\[[0-9]+\])?:/$(printf $purple)make\\1:$(printf $normal)/"
 compiler_recipe="s/^(gcc(.exe)? .*)/$(printf $gray)\\1$(printf $normal)/"
 undefined_reference_to="s/(^undefined reference to|^.*[^a-z]undefined reference to)/$(printf $red)\\1$(printf $normal)/i"
+install="s/(^install|^.*[^a-z]install )/$(printf $green)\\1$(printf $normal)/i"
 
 if [[ $(uname -or) != 1.*Msys ]]; then
-    command make "$@" 2> >(sed -r -e "$warning" -e "$error" -e "$note" -e "$undefined_reference_to" -e "$make" -e "$compiler_recipe") \
-                       > >(sed -r -e "$warning" -e "$error" -e "$note" -e "$undefined_reference_to" -e "$make" -e "$compiler_recipe")
+    command make "$@" 2> >(sed -r -e "$warning" -e "$error" -e "$note" -e "$undefined_reference_to" -e "$make" -e "$compiler_recipe" -e"$install") \
+                       > >(sed -r -e "$warning" -e "$error" -e "$note" -e "$undefined_reference_to" -e "$make" -e "$compiler_recipe" -e"$install")
 else
     # MinGW MSYS does not support process substitution
     command make "$@" 2>&1 | sed -r -e "$warning" -e "$error" -e "$make" -e "$compiler_recipe"
