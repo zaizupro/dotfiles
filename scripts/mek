@@ -5,9 +5,14 @@ if [ -f ~/.bash_zaz ]; then
 fi
 
 
+HEADERMSG=${1^^}
+if [ -z ${HEADERMSG} ]; then
+    HEADERMSG="BUILDING"
+fi
+
 declare -a TMPMSG
 TMPMSG=("AT $(__currentTTY)" "$(date '+%A %R:%S %d.%m.%Y')")
-__blockprintor TMPMSG[@] ${YELLOWFGBG} " BUILDING STARTED "
+__blockprintor TMPMSG[@] ${YELLOWFGBG} " ${HEADERMSG} STARTED "
 
 
 MKSTARTDATE=$(date +%s)
@@ -17,13 +22,13 @@ RESULT=$?
 MKENDDATE=$(date +%s)
 
 if [ $RESULT -eq 0 ]; then
-    MKRESULT="BUILDING COMPLETED"
+    MKRESULT="COMPLETED"
     COLOR=("${GREENFGBG}")
 else
-    MKRESULT="BUILDING FAILED"
+    MKRESULT="FAILED"
     COLOR=("${REDFGBG}")
 fi
 
 
 TMPMSG=("IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!" "$(date '+%A %R:%S %d.%m.%Y')")
-__blockprintor TMPMSG[@] $(echo ${COLOR}) " ${MKRESULT} "
+__blockprintor TMPMSG[@] $(echo ${COLOR}) " ${HEADERMSG} ${MKRESULT} "
