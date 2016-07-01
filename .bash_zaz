@@ -53,7 +53,8 @@ alias s='cd ..'
 alias b='cd -'
 alias cds='cd ~/_WORK'
 alias cde='cd ~/_EXP'
-alias cdn='cd `getNexusPath.sh`'
+alias cdn='cd $(getNexusPath.sh)'
+alias cdusb='cd ~/_usb'
 
 #====print info==========#
 alias userls='cut -f1 -d: /etc/passwd'
