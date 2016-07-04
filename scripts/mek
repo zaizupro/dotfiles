@@ -32,3 +32,5 @@ fi
 
 TMPMSG=("IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!" "$(date '+%A %R:%S %d.%m.%Y')")
 __blockprintor TMPMSG[@] $(echo ${COLOR}) " ${HEADERMSG} ${MKRESULT} "
+
+return $RESULT
