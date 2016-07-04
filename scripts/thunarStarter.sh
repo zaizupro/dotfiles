@@ -1,0 +1,1 @@
+$(export LC_COLLATE=C; thunar) &
