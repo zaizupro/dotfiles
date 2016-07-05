@@ -61,14 +61,14 @@ __msgprintor()
 {
     declare -a MSG=("$1")
     declare -a HEADER=("$3")
-    __arrayprintor "MSG" $2 "HEADER"
+    __arrayprintor "MSG" "${2}" "HEADER"
 }
 
 ## prints array of strings.
 __blockprintor()
 {
     declare -a HEADER=("$3")
-    __arrayprintor $1 $2 "HEADER"
+    __arrayprintor "${1}" "${2}" "HEADER"
 }
 
 ## prints array of strings.
@@ -91,7 +91,6 @@ __arrayprintor()
         OUTARRAY+=("${BPMSG[$index]}")
     done
 
-
     declare -a BPHEADERMSG=("${!3}")
     if [[ ${#BPHEADERMSG} -gt ${BPMAXMSGSPACER} ]]; then
         BPMAXMSGSPACER=${#BPHEADERMSG}
@@ -103,7 +102,7 @@ __arrayprintor()
     local BPSPACERLINE=`printf -v BPSPACERLINETMP "%-$((${BPMAXMSGSPACER}))s" ' '; echo "${BPSPACERLINETMP// /━}"`
     local BPHEADERLINE="${SOMON}${BPHEADERMSG}${SOMOF}${BPHEADERSPACERLINE}"
 
-    __printor "┏━${BPHEADERLINE}━┓" ${BPCOLOR} $(expr ${#BPHEADERMSG} + ${#BPHEADERSPACERLINE} + 4)
+    __printor "┏━${BPHEADERLINE}━┓" "${BPCOLOR}" $(expr ${#BPHEADERMSG} + ${#BPHEADERSPACERLINE} + 4)
     # echo "┏━${BPHEADERMSG}${BPHEADERSPACERLINE}━┓"
 
 

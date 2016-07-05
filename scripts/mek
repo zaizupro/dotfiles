@@ -12,7 +12,7 @@ fi
 
 declare -a TMPMSG
 TMPMSG=("AT $(__currentTTY)" "$(date '+%A %R:%S %d.%m.%Y')")
-__blockprintor TMPMSG[@] ${YELLOWFGBG} " ${HEADERMSG} STARTED "
+__blockprintor TMPMSG[@] "${YELLOWFGBG}" " ${HEADERMSG} STARTED "
 
 
 MKSTARTDATE=$(date +%s)
@@ -31,6 +31,6 @@ fi
 
 
 TMPMSG=("IN $((${MKENDDATE} - ${MKSTARTDATE})) SECONDS!!!" "$(date '+%A %R:%S %d.%m.%Y')")
-__blockprintor TMPMSG[@] $(echo ${COLOR}) " ${HEADERMSG} ${MKRESULT} "
+__blockprintor TMPMSG[@] "$(echo ${COLOR})" " ${HEADERMSG} ${MKRESULT} "
 
 return $RESULT
