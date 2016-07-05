@@ -15,7 +15,7 @@ fi
 #set colorful custom prompt
 #2line prompt
 #PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
-#PS1=${ORANGE}${PS1}${NC}
+PS1="\[${ORANGE}\]${PS1}\[${NC}\]"
 EDITOR=nano
 
 # set PATH so it includes user's private bin if it exists
@@ -88,7 +88,7 @@ alias tk='tmux kill-session -t'
 
 alias makepass='openssl rand -base64 12'
 alias vm='startVM.sh'
-alias fm='thunar $@ &'
+alias fm='thunarStarter.sh'
 
 
 # Stolen from github.com/zanshin
