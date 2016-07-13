@@ -2,10 +2,11 @@
 
 
     { "keys": ["ctrl+y"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    { "keys": ["f8"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
     //{ "keys": ["ctrl+x"], "command": "" },
 
-    { "keys": ["f7"], "command": "undo" },
-    { "keys": ["f8"], "command": "redo_or_repeat" },
+    { "keys": ["alt+f1"], "command": "undo" },
+    { "keys": ["alt+f2"], "command": "redo_or_repeat" },
 
     //{ "keys": ["ctrl+f2"], "command": "undo" },
 
