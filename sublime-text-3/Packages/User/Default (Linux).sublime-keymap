@@ -2,6 +2,8 @@
 
 
     { "keys": ["ctrl+y"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    { "keys": ["f7"], "command": "toggle_comment", "args": { "block": false } },
+    { "keys": ["alt+f7"], "command": "toggle_comment", "args": { "block": true } },
     { "keys": ["f8"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
     //{ "keys": ["ctrl+x"], "command": "" },
 
