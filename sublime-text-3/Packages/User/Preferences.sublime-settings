@@ -1,10 +1,10 @@
 {
+	"auto_match_enabled": false,
 	"caret_extra_width": 10,
 	"caret_style": "phase",
 	"color_scheme": "Packages/industrial-coding-theme/industrial_coding.tmTheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
 	"draw_white_space": "all",
-	"auto_match_enabled" : false,
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "Terminus",

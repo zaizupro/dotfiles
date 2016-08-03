@@ -1,33 +1,43 @@
 [
 
-
-    { "keys": ["ctrl+y"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    // comment current line or selection
     { "keys": ["f7"], "command": "toggle_comment", "args": { "block": false } },
     { "keys": ["alt+f7"], "command": "toggle_comment", "args": { "block": true } },
-    { "keys": ["f8"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
-    //{ "keys": ["ctrl+x"], "command": "" },
 
-    { "keys": ["alt+f1"], "command": "undo" },
-    { "keys": ["alt+f2"], "command": "redo_or_repeat" },
+    { "keys": ["ctrl+shift+<"], "command": "toggle_comment", "args": { "block": true } },
+    { "keys": ["ctrl+<"], "command": "toggle_comment", "args": { "block": false } },
+
+
+    // like in Midnight Commander
+    { "keys": ["ctrl+y"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    { "keys": ["f8"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+    { "keys": ["f2"], "command": "save" },
+
+    //{ "keys": ["ctrl+x"], "command": "" },
 
     //{ "keys": ["ctrl+f2"], "command": "undo" },
 
+    // navigation throu cursor last positions
     { "keys": ["ctrl+f10"], "command": "rebuild_ctags" },
     { "keys": ["f10"], "command": "navigate_to_definition" },
     { "keys": ["f11"], "command": "jump_forward" },
     { "keys": ["f9"], "command": "jump_back" },
 
     { "keys": ["alt+l"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
+
+    // navigation throu tabs
     { "keys": ["alt+1"], "command": "prev_view" },
-
     { "keys": ["alt+2"], "command": "next_view" },
+
+    //
+    { "keys": ["alt+f1"], "command": "undo" },
+    { "keys": ["alt+f2"], "command": "redo_or_repeat" },
+
+    //
     { "keys": ["f4"], "command": "find_prev" },
-    { "keys": ["f2"], "command": "save" },
-
-
     { "keys": ["alt+r"], "command": "replace_next" },
 
-
+    //
     { "keys": ["ctrl+space"], "command": "auto_complete" },
     { "keys": ["ctrl+space"], "command": "replace_completion_with_auto_complete", "context":
         [
@@ -37,9 +47,8 @@
         ]
     },
 
-    { "keys": ["ctrl+<"], "command": "toggle_comment", "args": { "block": false } },
-    { "keys": ["ctrl+shift+<"], "command": "toggle_comment", "args": { "block": true } },
-
+    // stop retarded command dat breaks texts  >:0
+    { "keys": ["ctrl+t"], "command": "" },
 
 
 ]
