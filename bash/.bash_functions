@@ -1,24 +1,28 @@
 
-##include dat  in .bashrc
+##yo, include dat file in ur .bashrc
 
+##[==========================================================================]##
 ## svn
 __ddiff()
 {
     svn diff |sed 's/^-/\x1b[30m\x1b[41m-/;s/^+/\x1b[30m\x1b[42m+/;s/^@/\x1b[30m\x1b[43m@/;s/$/\x1b[0m/'
 }
 
+##[==========================================================================]##
 __svn_st()
 {
     OUT_MSG=""; [ "$(svn st 2> /dev/null | awk '{print $1}' |grep M |wc -l)" -ne "0" ] && OUT_MSG="[*]"
     echo $OUT_MSG
 }
 
+##[==========================================================================]##
 __git_remote_revision()
 {
 echo $(git ls-remote $(git rev-parse --abbrev-ref @{u} | sed 's/\// /g') | cut -f1)
 
 }
 
+##[==========================================================================]##
 __git_st()
 {
     #echo $(git rev-parse HEAD)
@@ -26,18 +30,21 @@ __git_st()
     [ $(git rev-parse HEAD) = $(__git_remote_revision) ] && echo 0 || echo 1
 }
 
+##[==========================================================================]##
 __git_st_wrp()
 {
     [ $(__git_st 2>/dev/null) == 1 ] && echo [⚡] || echo ""
 }
 
+##[==========================================================================]##
 ## prints TTY name of current term.
 __currentTTY()
 {
-#echo `tty | sed -e "s:/dev/::"`
-temp=$(tty) ; echo ${temp:5}
+    #echo `tty | sed -e "s:/dev/::"`
+    temp=$(tty) ; echo ${temp:5}
 }
 
+##[==========================================================================]##
 ## prints MSG(1) of COLOR(2) in middle of term line.
 __printor()
 {
@@ -56,6 +63,7 @@ __printor()
     echo $ORANGE"${STARTLINE// / }${COLOR}${MSG}${NC}${ORANGE}${ENDLINE// / }"$NC
 }
 
+##[==========================================================================]##
 ## prints string.
 __msgprintor()
 {
@@ -64,6 +72,7 @@ __msgprintor()
     __arrayprintor "MSG" "${2}" "HEADER"
 }
 
+##[==========================================================================]##
 ## prints array of strings.
 __blockprintor()
 {
@@ -71,6 +80,7 @@ __blockprintor()
     __arrayprintor "${1}" "${2}" "HEADER"
 }
 
+##[==========================================================================]##
 ## prints array of strings.
 __arrayprintor()
 {
@@ -124,6 +134,7 @@ __arrayprintor()
 
 }
 
+##[==========================================================================]##
 __printfulline()
 {
     TERMCOLS=$(tput cols)
@@ -131,54 +142,83 @@ __printfulline()
     __printor "${FULLLINE// /*}"
 }
 
-# compressed file expander from github.com/zanshin
-# (from https://github.com/myfreeweb/zshuery/blob/master/zshuery.sh)
-ex() {
-  if [[ -e $1 ]]; then
-    case $1 in
-      *.tar.bz2) tar xvjf $1;;
-      *.tar.gz) tar xvzf $1;;
-      *.tar.xz) tar xvJf $1;;
-      *.tar.lzma) tar --lzma xvf $1;;
-      *.bz2) bunzip $1;;
-      *.rar) unrar $1;;
-      *.gz) gunzip $1;;
-      *.tar) tar xvf $1;;
-      *.tbz2) tar xvjf $1;;
-      *.tgz) tar xvzf $1;;
-      *.zip) unzip $1;;
-      *.Z) uncompress $1;;
-      *.7z) 7z x $1;;
-      *.dmg) hdiutul mount $1;; # mount OS X disk images
-      *) echo "'$1' cannot be extracted via >ex<";;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
+##[==========================================================================]##
+## tar that
+tarthat()
+{
+    tardat
+}
+## tar dat
+tardat()
+{
+    if [[ -e $1 ]]; then
+        tar cvzf $1.tar.gz $1
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+## zip dat
+zipdat()
+{
+    if [[ -e $1 ]]; then
+        zip -r $1.zip $1
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
+##[==========================================================================]##
+# compressed file expander from github.com/zanshin
+# (from https://github.com/myfreeweb/zshuery/blob/master/zshuery.sh)
+ex()
+{
+    if [[ -e $1 ]]; then
+        case $1 in
+            *.tar.bz2) tar xvjf $1;;
+            *.tar.gz) tar xvzf $1;;
+            *.tar.xz) tar xvJf $1;;
+            *.tar.lzma) tar --lzma xvf $1;;
+            *.bz2) bunzip $1;;
+            *.rar) unrar $1;;
+            *.gz) gunzip $1;;
+            *.tar) tar xvf $1;;
+            *.tbz2) tar xvjf $1;;
+            *.tgz) tar xvzf $1;;
+            *.zip) unzip $1;;
+            *.Z) uncompress $1;;
+            *.7z) 7z x $1;;
+            *.dmg) hdiutul mount $1;; # mount OS X disk images
+            *) echo "'$1' cannot be extracted via >ex<";;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+##[==========================================================================]##
 # Show how much RAM application uses.  from github.com/zanshin
 # $ ram safari
 # # => safari uses 154.69 MBs of RAM.
 # from https://github.com/paulmillr/dotfiles
-function ram() {
-  local sum
-  local items
-  local app="$1"
-  if [[ -z "$app" ]]; then
-    echo "First argument - pattern to grep from processes"
-  else
-    sum=0
-    for i in `ps aux | grep -i "$app" | grep -v "grep" | awk '{print $6}'`; do
-      sum=$(($i + $sum))
-    done
-    sum=$(echo "scale=2; $sum / 1024.0" | bc)
-    if [[ $sum != "0" ]]; then
-      echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
+function ram()
+{
+    local sum
+    local items
+    local app="$1"
+    if [[ -z "$app" ]]; then
+        echo "First argument - pattern to grep from processes"
     else
-      echo "There are no processes with pattern '${fg[blue]}${app}${reset_color}' are running."
+        sum=0
+        for i in `ps aux | grep -i "$app" | grep -v "grep" | awk '{print $6}'`; do
+            sum=$(($i + $sum))
+        done
+        sum=$(echo "scale=2; $sum / 1024.0" | bc)
+        if [[ $sum != "0" ]]; then
+            echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
+        else
+            echo "There are no processes with pattern '${fg[blue]}${app}${reset_color}' are running."
+        fi
     fi
-  fi
 }
 
 
