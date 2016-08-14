@@ -25,6 +25,8 @@ fi
 
 ENV=$HOME/.bashrc
 
+PATH=$PATH:/sbin
+
 export PATH ENV EDITOR
 
 
