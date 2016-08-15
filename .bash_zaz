@@ -24,10 +24,10 @@ if [ -d ~/_bin ] ; then
 fi
 
 ENV=$HOME/.bashrc
-
 PATH=$PATH:/sbin
-
-export PATH ENV EDITOR
+DOTFILES=$HOME/_dotfiles
+WORKSPACE=$HOME/_WORK
+export PATH ENV EDITOR DOTFILES WORKSPACE
 
 
 # configure how history works
@@ -54,6 +54,8 @@ fi
 alias s='cd ..'
 alias b='cd -'
 alias cds='cd ~/_WORK'
+alias cdw='cd $WORKSPACE'
+alias cdd='cd $DOTFILES'
 alias cde='cd ~/_EXP'
 alias cdn='cd $(getNexusPath.sh)'
 alias cdusb='cd ~/_usb'
