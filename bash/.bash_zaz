@@ -1,0 +1,56 @@
+##add in $HOME/.bashrc next lines:
+##if [ -f $HOME/.bash_zaz ]; then
+##    source ~/.bash_zaz
+##fi
+
+#==============COLORS============
+# add some color
+if [ -f $HOME/.bash_colors ]; then
+    source $HOME/.bash_colors
+fi
+
+#===============VARIABLES============
+
+#set colorful custom prompt
+#2line prompt
+#PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
+PS1="\[${ORANGE}\]${PS1}\[${NC}\]"
+EDITOR=nano
+
+# set PATH so it includes user's private bin if it exists
+if [ -d $HOME/_bin ] ; then
+    PATH="$HOME/_bin:${PATH}"
+fi
+
+ENV=$HOME/.bashrc
+PATH=$PATH:/sbin
+DOTFILES=$HOME/_dotfiles
+WORKSPACE=$HOME/_WORK
+export EDITOR ENV PATH DOTFILES WORKSPACE
+
+
+# configure how history works
+HISTCONTROL=ignoreboth
+#HISTCONTROL=ignoredups                            # ignore the line if it matches previous line
+HISTFILESIZE=20000                                # size of the history file cf. also shopt -s histappend
+HISTSIZE=1000                                     # size of the run-time history list
+HISTIGNORE=ls:ll:la:l:cd:pwd:exit:mc:su:df:clear  # do not put these in history file
+#HISTFILE=$HOME/.bash_history-`hostname`               # track history by host
+# export settings
+export HISTCONTROL HISTSIZE HISTFILESIZE HISTIGNORE #HISTFILE
+
+export LC_COLLATE=C
+
+#================CUSTOM_FUNCTIONS===================
+# Source bash functions, if present
+if [ -f $HOME/.bash_functions ]; then
+    source $HOME/.bash_functions
+fi
+
+#====================ALIASES======================
+if [ -f $HOME/.bash_aliases ]; then
+    source $HOME/.bash_aliases
+fi
+
+
+

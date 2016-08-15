@@ -1,0 +1,67 @@
+##[==========================================================================]##
+##[                              ALIASES                                     ]##
+##[==========================================================================]##
+##-=[moving]=-##
+alias s='cd ..'
+alias b='cd -'
+alias cds='cd $WORKSPACE'
+alias cdd='cd $DOTFILES'
+alias cde='cd ~/_EXP'
+alias cdn='cd $(getNexusPath.sh)'
+alias cdusb='cd ~/_usb'
+
+##[==========================================================================]##
+##-=[moving]=-##
+alias userls='cut -f1 -d: /etc/passwd'
+alias homesize='du -hs ~'
+alias topc='top -o%CPU'
+alias topm='top -o%MEM'
+alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\n'"
+
+
+##[==========================================================================]##
+##-=[print files]=-##
+alias ll='ls -lahF --color=no'
+alias lsh='ls -a | grep "^\."'
+alias gitl='git log --format=oneline'
+
+
+# Tell to df to don't see the supermount filesystems.
+#alias df='df -x supermount'
+
+##[==========================================================================]##
+##-=[dev]=-##
+alias remek='kek && mek'
+alias tigs='tig status'
+
+alias gitusers="git shortlog | grep -E '^[^ ]'"
+
+alias ta='tmux attach -t'
+alias tn='tmux new -s'
+alias tls='tmux ls'
+alias tk='tmux kill-session -t'
+
+
+alias makepass='openssl rand -base64 12'
+alias vm='startVM.sh'
+alias fm='thunarStarter.sh'
+
+
+## Stolen from github.com/zanshin
+## Just for fun
+##alias please='sudo !!'
+alias please='sudo '
+alias fail='tail -f'
+
+## Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+##[==========================================================================]##
+##-=[NET aliases]=-##
+##global
+##ifconfig eth0:0 inet 192.168.0.240 netmask 0xffff0000
+
+
+
+
+
