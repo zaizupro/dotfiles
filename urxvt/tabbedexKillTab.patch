@@ -1,0 +1,4 @@
+689a690,692
+>      elsif ($cmd eq 'tabbedex:kill_tab') {
+>         $tab->destroy;
+>     }

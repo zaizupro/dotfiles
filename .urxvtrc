@@ -183,6 +183,7 @@ URxvt.keysym.1-1: perl:tabbedex:prev_tab
 URxvt.keysym.C-Shift-Left: perl:tabbedex:move_tab_left
 URxvt.keysym.C-Shift-Right: perl:tabbedex:move_tab_right
 URxvt.keysym.C-Shift-R: perl:tabbedex:rename_tab
+URxvt.keysym.C-Shift-W: perl:tabbedex:kill_tab
 
 URxvt.keysym.Shift-C-C: perl:clipboard:copy
 URxvt.keysym.Shift-C-V: perl:clipboard:paste
