@@ -46,6 +46,8 @@ fi
 #check colors
 __colors_checker()
 {
-    for i in $(seq 0 $(tput colors) ) ; do tput setaf $i ; echo -n " [█${SOMON}${i}${SOMOF}█] " ; done ; tput setaf 15 ; echo
-    echo ${NC}
+    if [ -x /usr/bin/tput ]; then
+        for i in $(seq 0 $(tput colors) ) ; do tput setaf $i ; echo -n " [█${SOMON}${i}${SOMOF}█] " ; done ; tput setaf 15 ; echo
+        echo ${NC}
+    fi
 }
