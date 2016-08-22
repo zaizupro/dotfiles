@@ -12,10 +12,11 @@
 
 ! black
 *.color0:       #2d2d2d
-*.color8:       #747369
+*.color8:       #8C8B7F
 
 ! red
-*.color1:       #DA3236
+!*.color1:       #DA3236
+*.color1:       #B90006
 *.color9:       #FF2C31
 !#f2777a
 
