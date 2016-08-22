@@ -1,8 +1,10 @@
-!/*[=============================DEFAULT=THEME================================]*/
-!/*[==========================================================================]*/
-!insert next line in ~/.Xresources :
-!# include "dat.file.name"
-!/*[==========================================================================]*/
+!##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++##
+!##+                                                                           ##
+!##+                      zaizu default colors for Xresources                  ##
+!##+                                                                           ##
+!##+                                                                           ##
+!##++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++##
+
 ! special
 *.foreground:   #d3d0c8
 *.background:   #2d2d2d
@@ -14,20 +16,20 @@
 
 ! red
 *.color1:       #DA3236
-*.color9:       #DA3236
+*.color9:       #FF2C31
 !#f2777a
 
 ! green
-*.color2:       #5ECE5E
-*.color10:      #5ECE5E
+*.color2:       #7DAB07
+*.color10:      #b1d631
 
 ! yellow
 *.color3:       #ffcc66
-*.color11:      #ffcc66
+*.color11:      #FFB92E
 
 ! blue
 *.color4:       #6699cc
-*.color12:      #6699cc
+*.color12:      #90b0d1
 
 ! magenta
 *.color5:       #cc99cc
@@ -37,7 +39,7 @@
 !*.color6:       #66cccc
 !*.color14:      #66cccc
 *.color6:       #DAFFFF
-*.color14:      #DAFFFF
+*.color14:      #87ceeb
 
 ! white
 *.color7:       #d3d0c8
