@@ -13,7 +13,7 @@ if [ "$COLORSNUM" -eq 256 ]; then
     REDFGBG=$(tput setab 52;tput setaf 196)
 
     GREEN=$(tput setaf 112)
-    GREENFGBG=$(tput setab 22;tput setaf 154)
+    GREENFGBG=$(tput setab 58;tput setaf 154)
 
     BLUE=$(tput setaf 38)
 
