@@ -16,10 +16,7 @@ if [ "$1" == "configs" ]; then
     fi
 
     if [ "$2" == "mc" ]; then
-        ln -s $DOTFILES/mc/skins/zaz.ini        $HOME/.local/share/mc/skins/zaz.ini
-
-        cp  $DOTFILES/mc/ini                    $HOME/.config/mc/ini
-        cp  $DOTFILES/mc/panels.ini             $HOME/.config/mc/panels.ini
+        echo $($DOTFILES/mc/install_mc.sh "$1")
     fi
 
 
@@ -30,5 +27,6 @@ if [ "$1" == "configs" ]; then
     echo
 else
     echo
-    # sudo cp $DOTFILES/mc/skins/zaz.ini /usr/share/mc/skins/zaz.ini
 fi
+
+
