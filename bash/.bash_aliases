@@ -11,13 +11,13 @@ alias cdn='cd $(getNexusPath.sh)'
 alias cdusb='cd ~/_usb'
 
 ##[==========================================================================]##
-##-=[moving]=-##
+##-=[shell rutina]=-##
 alias userls='cut -f1 -d: /etc/passwd'
 alias homesize='du -hs ~'
 alias topc='top -o%CPU'
 alias topm='top -o%MEM'
 alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\n'"
-
+alias psw='ps auxf|less -S'
 
 ##[==========================================================================]##
 ##-=[print files]=-##
