@@ -143,6 +143,15 @@ __printfulline()
 }
 
 ##[==========================================================================]##
+## Returns line of symbols.
+__printfullline2()
+{
+    TERMCOLS=$(tput cols)
+    FULLLINE=$(printf '=%0.s' $(eval "echo {1.."$((${TERMCOLS}))"}"))
+    echo ${FULLLINE}
+}
+
+##[==========================================================================]##
 ## tar that
 tarthat()
 {
