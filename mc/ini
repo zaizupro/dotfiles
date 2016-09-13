@@ -85,6 +85,8 @@ filepos_max_saved_entries=1024
 
 editor_wordcompletion_collect_entire_file=false
 
+keymap=
+
 [Layout]
 message_visible=0
 keybar_visible=1
