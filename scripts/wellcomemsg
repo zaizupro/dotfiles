@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -f $HOME/.bash_zaz ]; then
+    . ~/.bash_zaz
+fi
+
+ __msgprintor "$(bash -e ./fortunka )" "${YELLOWFGBG}"
