@@ -231,3 +231,70 @@ function ram()
 }
 
 
+##[==========================================================================]##
+__lnsafe_usage()
+{
+    echo '[II] USAGE: '
+    echo '    '${1}' SRC DST '
+    echo
+}
+##[================]##
+## replaces target to bekap if target exists, makes link from src to target.
+lnsafe()
+{
+    if [ "$#" -ne 2 ]; then
+        echo "[EE] [ Illegal number of parameters ]"
+        echo '[II] [ Stay safe, stay legal ]'
+        __lnsafe_usage ${FUNCNAME}
+        return 1
+    fi
+
+    SRCPATH=${1}
+    DSTPATH=${2}
+    BEKAPPATH="${DSTPATH}.$(date +%d%m%Y%H%M%S).bekap"
+
+    RESULT=1
+
+    if [ -e ${SRCPATH} ]; then
+        RESULT=0
+    else
+        if [ -L ${SRCPATH} ]; then
+           RESULT=0
+        fi
+    fi
+
+    if [ "..${RESULT}" != "..0" ];then
+        echo "[EE] [ SRC not exists ]"
+        __lnsafe_usage ${FUNCNAME}
+        return 2
+    fi
+
+    RESULT=0
+
+    if [ -e ${DSTPATH} ]; then
+        echo '[ target exists: '${DSTPATH}' ]'
+        mv ${DSTPATH} ${BEKAPPATH}; RESULT=$?
+        if [ "..${RESULT}" = "..0" ];then
+            echo '[ bekap created: '${BEKAPPATH}' ]'
+        fi
+    else
+        if [ -L ${DSTPATH} ]; then
+            echo '[ target is symlink: '${DSTPATH}' ]'
+            mv ${DSTPATH} ${BEKAPPATH}; RESULT=$?
+            if [ "..${RESULT}" = "..0" ];then
+                echo '[ bekap created: '${BEKAPPATH}' ]'
+            fi
+        fi
+    fi
+
+
+
+    if [ "..${RESULT}" = "..0" ];then
+        ln -s ${SRCPATH} ${DSTPATH}
+        echo '[ link created: '${DSTPATH}' ]'
+    fi
+
+    return 0
+}
+
+##[==========================================================================]##
