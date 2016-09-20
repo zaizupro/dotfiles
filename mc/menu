@@ -1,0 +1,23 @@
+##  cat /etc/mc/mc.menu |less -S
+
+
+e [EX]tract here 
+    ##ex %f
+
+
+z ZIPDAT item
+    {
+        zip -r %f.zip %f
+    }
+
+= t d
+t TAR DAT dir
+        ## Compress the current subdirectory (tar.gz)
+        Pwd=`basename %d /`
+        echo -n "Name of the compressed file (without extension) [$Pwd]: "
+        read tar
+        if [ "$tar"x = x ]; then tar="$Pwd"; fi
+        cd .. && \
+        tar cf - "$Pwd" | gzip -f9 > "$tar.tar.gz" && \
+        echo "../$tar.tar.gz created."
+
