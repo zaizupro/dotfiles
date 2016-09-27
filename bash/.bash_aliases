@@ -22,7 +22,9 @@ alias psw='ps auxf|less -S'
 ##[==========================================================================]##
 ##-=[print files]=-##
 alias ll='ls -lahF --color=no'
-alias lsh='ls -a | grep "^\."'
+## list hidden files
+alias lsh='ls -a | grep "^\."' 
+
 alias gitl='git log --format=oneline'
 
 
