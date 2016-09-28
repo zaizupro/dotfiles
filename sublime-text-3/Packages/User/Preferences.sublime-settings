@@ -2,26 +2,33 @@
 	"auto_match_enabled": false,
 	"caret_extra_width": 10,
 	"caret_style": "phase",
-	"color_scheme": "Packages/industrial-coding-theme/industrial_coding.tmTheme",
+	"color_scheme": "Packages/Theme - industrial_coding/industrial_coding.tmTheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
 	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "Terminus",
 	"font_size": 14,
+	"font_terminus": true,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"ScopeHunter",
+		"SublimeLinter",
+		"SublimePrettyJson",
 		"Vintage"
 	],
+	"remember_open_files": true,
 	"rulers":
 	[
-		100
+		80,
+		100,
+		120
 	],
+	"show_definitions": true,
 	"show_encoding": true,
-	"sidebar_font_terminus": true,
-	"statusbar_bold_terminus": true,
+	"statusbar_big_bold": true,
 	"tab_size": 4,
 	"theme": "industrial_coding.sublime-theme",
 	"translate_tabs_to_spaces": true,
