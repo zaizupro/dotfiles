@@ -1,0 +1,11 @@
+<snippet>
+	<description>if(…)</description>
+	<content><![CDATA[
+if(${0:/* condition */})
+{
+$TM_SELECTED_TEXT
+}
+]]></content>
+	<tabTrigger>_if_</tabTrigger>
+	<scope>source.c, source.objc, source.c++, source.objc++</scope>
+</snippet>
