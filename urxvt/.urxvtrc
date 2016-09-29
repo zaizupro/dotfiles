@@ -18,7 +18,8 @@ URxvt*geometry:      100x30
 
 !--[transparentsy:real]--!
 URxvt.depth: 32
-URxvt.background: [85]#000000
+!URxvt.background: [85]#000000
+
 ! rgba:1111/1111/1111/aaaa
 
 !--[tresh]--!
@@ -58,14 +59,42 @@ URxvt*urgentOnBell:                   true
 URxvt*cursorBlink:                    true
 ! URxvt*pointerBlank:                   boolean
 
-!URxvt*background:                     #422700
-!URxvt*foreground:                     #FCE597
-URxvt*foreground:                      #FFFEB3
+!-=======[BG]=======-!
+!orangebg
+!URxvt.background: #1A1200 
+!dark orange 
+URxvt.background: #1A0F00
+!grey
+!URxvt.background: #1C1C1C 
+!darkyellow
+!URxvt.background: #875F00
 
+!URxvt*background:                     #422700
+
+!-=======[FG]=======-!
+!URxvt*foreground:                     #FCE597
+!URxvt*foreground:                     #FFFEB3
+
+!yellow
+!URxvt*foreground:                      #FFD700 
+!orange
+!URxvt*foreground:                      #FF9300
+!light orange
+URxvt*foreground:                      #FFAF3D
+URxvt*foreground:                      #DC8D21
+URxvt*foreground:                      #FFD37B
+
+!-=======[FG_EXT]=======-!
 URxvt.colorBD:           #FF8700
 URxvt.colorIT:           #bbbbbb
-URxvt.colorUL:           #FFD7D7
-URxvt.underlineColor:    #FF8700
+
+!pink
+!URxvt.colorUL:           #FFD7D7
+URxvt.colorUL:           #FFDF9A
+
+!URxvt.underlineColor:    #FF8700 
+!light orange
+URxvt.underlineColor:    #FFDF9A
 
 
 
