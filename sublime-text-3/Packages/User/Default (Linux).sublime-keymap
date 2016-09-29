@@ -51,7 +51,7 @@
     // stop retarded command dat breaks texts  >:0
     { "keys": ["ctrl+t"], "command": "" },
 
-    { "keys": ["ctrl+alt+g"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/makeDefineGuard.sublime-snippet"}},
+    { "keys": ["ctrl+shift+g"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/makeDefineGuard.sublime-snippet"}},
     { "keys": ["ctrl+shift+i"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/if.sublime-snippet"}},
     { "keys": ["ctrl+shift+e"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/if_else.sublime-snippet"}},
 
