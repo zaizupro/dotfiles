@@ -1,6 +1,9 @@
 ##  cat /etc/mc/mc.menu |less -S
 
 
+f file <dat>
+    file %f
+
 e [EX]tract here 
     ##ex %f
 
