@@ -10,6 +10,7 @@ color   delimiter               196     default
 color   author                  208     default
 color   date                    16      172
 color   line-number             221     default
+color   id                      16      198
 color   mode                    255     default
 
 # main
@@ -32,7 +33,7 @@ color   diff_del                196     52
 color   diff_del2               196     default
 color   diff-header             221     default
 color   diff-index              208     default
-color   diff-chunk              213     default
+color   diff-chunk              213     198
 color   diff_oldmode            221     default
 color   diff_newmode            221     default
 color   'deleted file mode'     221     default
@@ -40,14 +41,14 @@ color   'copy from'             223     default
 color   'copy to'               221     default
 color   'rename from'           221     default
 color   'rename to'             221     default
-color   diff_similarity         221     default
+color   diff_similarity         143     default
 color   'dissimilarity'         221     default
-color   'diff_tree'             16      196
+color   'diff_tree'             88      196
 color   diff-stat               208      default
 color   "Reported-by:"          156     default
 
-color   'Author:'               156     default
-color   'Commit:'               213     default
+color   'Author:'               226     94
+color   'Commit:'               213     94
 color   'AuthorDate:'           221     default
 color   'CommitDate:'           221     default
 color   'Date:'                 81      default
@@ -61,15 +62,15 @@ color   palette-5               219     default
 color   palette-6               190     default
 
 # status
-#color   status.header           221     default
-#color   status.section          81      default
-color   stat_staged             46     default
-color   stat_unstaged           220     default
-color   stat_untracked          196     default
+color   status.header               16     208
+color   status.section             208     default
+color   stat_staged             16     46
+color   stat_unstaged           16     220
+color   stat_untracked          16     196
 
 # raw commit header
-color   commit                  156     default
-color   committer               213     default
+color   commit                  220       94
+color   committer               9     198
 
 # commit message
 color   'Signed-off-by'         221     default
