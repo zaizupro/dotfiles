@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ls -lahF --color=no | awk '{print $1"  "(substr($5"    ", 1, 4))"  "(substr($9,1))}'
