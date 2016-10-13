@@ -1,0 +1,3 @@
+#!/bin/sh
+
+qmake PREFIX=$MY_PROJECT_QMAKE_PREFIX CONFIG+=${1} && kek && mek
