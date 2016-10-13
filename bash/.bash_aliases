@@ -33,7 +33,7 @@ alias gitl='git log --format=oneline'
 
 ##[==========================================================================]##
 ##-=[dev]=-##
-alias remek='kek && mek'
+alias remek='kek "$@" && mek "$@"'
 alias tigs='tig status'
 
 alias gitusers="git shortlog | grep -E '^[^ ]'"
