@@ -80,8 +80,8 @@ URxvt.background: #1A0F00
 !orange
 !URxvt*foreground:                      #FF9300
 !light orange
-URxvt*foreground:                      #FFAF3D
-URxvt*foreground:                      #DC8D21
+!URxvt*foreground:                      #FFAF3D
+!URxvt*foreground:                      #DC8D21
 URxvt*foreground:                      #FFD37B
 
 !-=======[FG_EXT]=======-!
@@ -112,7 +112,7 @@ URxvt.underlineColor:    #FFDF9A
 URxvt.iconFile:    /usr/share/icons/oxygen/64x64/apps/utilities-terminal.png
 
 !--[font]--!
- URxvt*font: xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
+URxvt*font: xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
 !URxvt*font: -*-terminus-bold-*-normal-*-18-*-*-*-*-*-*-*
 !URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=15
 !URxvt*font: xft:terminus:pixelsize=18
