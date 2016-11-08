@@ -2,27 +2,44 @@
 DOTFILES=$PWD
 
 
+if [ -f ~/.bash_zaz ]; then
+    . $DOTFILES/bash/.bash_functions
+fi
+
+
+LNCOMMAND="ln -s"
+if [ $(type -t lnsafe) = "function" ]; then
+    LNCOMMAND="lnsafe"
+fi
+
+
+
+##[============================================================================]##
 if [ "$1" == "configs" ]; then
     #make links
     if [ "$2" == "bash" ]; then
-        ln -s $DOTFILES/bash/.bash_aliases      $HOME/.bash_aliases
-        ln -s $DOTFILES/bash/.bash_colors       $HOME/.bash_colors
-        ln -s $DOTFILES/bash/.bash_functions    $HOME/.bash_functions
-        ln -s $DOTFILES/bash/.bash_zaz          $HOME/.bash_zaz
+        ${LNCOMMAND} $DOTFILES/bash/.bash_aliases      $HOME/.bash_aliases
+        ${LNCOMMAND} $DOTFILES/bash/.bash_colors       $HOME/.bash_colors
+        ${LNCOMMAND} $DOTFILES/bash/.bash_functions    $HOME/.bash_functions
+        ${LNCOMMAND} $DOTFILES/bash/.bash_zaz          $HOME/.bash_zaz
     fi
+
+## tmux files
     if [ "$2" == "tmux" ]; then
-        ln -s $DOTFILES/tmux/.tmux.conf         $HOME/.tmux.conf
-        ln -s $DOTFILES/tmux/.tmux.status.conf  $HOME/.tmux.status.conf
+        ${LNCOMMAND} $DOTFILES/tmux/.tmux.conf         $HOME/.tmux.conf
+        ${LNCOMMAND} $DOTFILES/tmux/.tmux.status.conf  $HOME/.tmux.status.conf
     fi
 
+## mc's files
     if [ "$2" == "mc" ]; then
-        echo $($DOTFILES/mc/install_mc.sh "$1")
+        echo $($DOTFILES/mc/install_mc.sh "${DOTFILES}" "$1")
     fi
 
-
-    ln -s $DOTFILES/.tigrc                  $HOME/.tigrc
-    ln -s $DOTFILES/.xterm                  $HOME/.xterm
-
+## common files
+    if [ "$2" == "common" ]; then
+        ${LNCOMMAND} $DOTFILES/.tigrc                  $HOME/.tigrc
+        ${LNCOMMAND} $DOTFILES/.xterm                  $HOME/.xterm
+    fi
 
     echo
 else
