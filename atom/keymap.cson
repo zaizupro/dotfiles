@@ -1,0 +1,23 @@
+
+
+'body':
+    'alt-2': 'pane:show-next-item'
+    'alt-1': 'pane:show-previous-item'
+    'alt-f1': 'core:undo'
+    'alt-f2': 'core:redo'
+
+'atom-workspace atom-text-editor:not([mini])':
+    'f7': 'editor:toggle-line-comments'
+      
+'.tree-view':
+    'f2': 'unset!'
+
+
+'atom-text-editor':
+    'f2': 'core:save'
+
+'atom-text-editor:not([mini])':
+    'f8': 'editor:delete-line'
+
+'.platform-win32 atom-text-editor, .platform-linux atom-text-editor':
+    'f4': 'find-and-replace:find-previous'
