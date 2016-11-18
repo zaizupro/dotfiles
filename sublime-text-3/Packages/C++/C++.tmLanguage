@@ -51,6 +51,12 @@
 		</dict>
 		<dict>
 			<key>match</key>
+			<string>\bconst\b</string>
+			<key>name</key>
+			<string>const.func.c++</string>
+		</dict>
+		<dict>
+			<key>match</key>
 			<string>\b(Q)([A-Za-z_]*)</string>
 			<key>name</key>
 			<string>qt.all.c++</string>
@@ -125,7 +131,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(class|wchar_t|nullptr_t)\b</string>
+			<string>\b(class|wchar_t|nullptr_t|const)\b</string>
 			<key>name</key>
 			<string>storage.type.c++</string>
 		</dict>
