@@ -6,7 +6,7 @@
 #==============COLORS============
 # add some color
 if [ -f $HOME/.bash_colors ]; then
-    source $HOME/.bash_colors
+    . $HOME/.bash_colors
 fi
 
 #===============VARIABLES============
@@ -15,6 +15,12 @@ fi
 #2line prompt
 #PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
 PS1="\[${ORANGE}\]${PS1}\[${NC}\]"
+
+
+if [ ${0} = "sh" ]; then
+    PS1='$(whoami)@$(cat /etc/hostname):$(basename $(pwd))\$'
+fi
+
 EDITOR=nano
 
 # set PATH so it includes user's private bin if it exists
@@ -44,12 +50,12 @@ export LC_COLLATE=C
 #================CUSTOM_FUNCTIONS===================
 # Source bash functions, if present
 if [ -f $HOME/.bash_functions ]; then
-    source $HOME/.bash_functions
+    . $HOME/.bash_functions
 fi
 
 #====================ALIASES======================
 if [ -f $HOME/.bash_aliases ]; then
-    source $HOME/.bash_aliases
+    . $HOME/.bash_aliases
 fi
 
 
