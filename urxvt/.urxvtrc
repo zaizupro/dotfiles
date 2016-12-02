@@ -71,6 +71,12 @@ URxvt.background: #1A0F00
 
 !URxvt*background:                     #422700
 
+
+!orange bg fg
+!URxvt.background: #3B290F
+!URxvt*foreground: #D67B23
+
+
 !-=======[FG]=======-!
 !URxvt*foreground:                     #FCE597
 !URxvt*foreground:                     #FFFEB3
