@@ -6,4 +6,4 @@ else
     VBoxHeadless -startvm ${1} --vrde=off &
 fi
 sleep 1
-echo "vm is started"
+echo "vm ${1} is started"
