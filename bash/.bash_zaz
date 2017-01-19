@@ -14,7 +14,7 @@ fi
 #set colorful custom prompt
 #2line prompt
 #PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
-PS1="\[${ORANGE}\]${PS1}\[${NC}\]"
+PS1="\[${NC}\]\[${ORANGE}\]${PS1}\[${NC}\]"
 
 
 if [ ${0} = "sh" ]; then
