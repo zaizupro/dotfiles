@@ -49,7 +49,7 @@ alias vm='startVM.sh'
 alias fm='thunarStarter.sh'
 
 #if [ $TERM = "linux" ]; then
-if [ "$(tput colors).." = "8.." ];
+if [ "$(tput colors).." = "8.." ]; then
     if [ $USER = "root" ]; then
 	myMCFallbackSkin="zaz8root"
     else
