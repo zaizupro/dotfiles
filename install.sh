@@ -8,7 +8,7 @@ fi
 
 
 LNCOMMAND="ln -s"
-if [ $(type -t lnsafe) = "function" ]; then
+if [ "$(type -t lnsafe)" = "function" ]; then
     LNCOMMAND="lnsafe"
 fi
 
