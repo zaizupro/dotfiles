@@ -52,6 +52,8 @@ fi
 if [ "$2" == "configs" ]; then
     #make links
     ${LNCOMMAND} ${DOTFILESFULLPATH}/mc/skins/zaz.ini       ${HOME}/.local/share/mc/skins/zaz.ini
+    ${LNCOMMAND} ${DOTFILESFULLPATH}/mc/skins/zaz8.ini      ${HOME}/.local/share/mc/skins/zaz8.ini
+    ${LNCOMMAND} ${DOTFILESFULLPATH}/mc/skins/zaz8root.ini  ${HOME}/.local/share/mc/skins/zaz8root.ini
 
     ${LNCOMMAND} ${DOTFILESFULLPATH}/mc/ini                 ${HOME}/.config/mc/ini
     ${LNCOMMAND} ${DOTFILESFULLPATH}/mc/menu                ${HOME}/.config/mc/menu
