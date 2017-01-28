@@ -48,18 +48,10 @@ alias makepass='openssl rand -base64 12'
 alias vm='startVM.sh'
 alias fm='thunarStarter.sh'
 
-#if [ $TERM = "linux" ]; then
-if [ "$(tput colors).." = "8.." ]; then
-    if [ $USER = "root" ]; then
-	myMCFallbackSkin="zaz8root"
-    else
-	myMCFallbackSkin="zaz8"
-    fi
-    alias mc="mc --skin $myMCFallbackSkin"
-    alias mcedit="mcedit --skin $myMCFallbackSkin"
-    alias mcview="mcview --skin $myMCFallbackSkin"
-    alias mcdiff="mcdiff --skin $myMCFallbackSkin"
-fi
+alias mc="mcwrp mc"
+alias mcedit="mcwrp mcedit"
+alias mcview="mcwrp mcview"
+alias mcdiff="mcwrp mcdiff"
 
 
 ## Stolen from github.com/zanshin
