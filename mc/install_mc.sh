@@ -50,6 +50,7 @@ fi
 
 
 if [ "$2" == "configs" ]; then
+    mkdir -p ${HOME}/.local/share/mc/skins
     #make links
     ${LNCOMMAND} ${DOTFILESFULLPATH}/mc/skins/zaz.ini       ${HOME}/.local/share/mc/skins/zaz.ini
     ${LNCOMMAND} ${DOTFILESFULLPATH}/mc/skins/zaz8.ini      ${HOME}/.local/share/mc/skins/zaz8.ini

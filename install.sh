@@ -7,7 +7,7 @@ if [ -f ~/.bash_zaz ]; then
 fi
 
 
-LNCOMMAND="ln -s"
+LNCOMMAND="ln -vs"
 if [ "$(type -t lnsafe)" = "function" ]; then
     LNCOMMAND="lnsafe"
 fi
