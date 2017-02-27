@@ -1,0 +1,29 @@
+#!/bin/bash
+
+y=0
+xN=0
+xP=0
+
+currentX=$(wmctrl -d| awk '{print $6}'|awk -F',' '{print  $1}')
+
+
+case "${currentX}" in
+    "0"     ) xP=10240  xN=2560  ;;
+    "2560"  ) xP=0      xN=5120  ;;
+    "5120"  ) xP=2560   xN=7680  ;;
+    "7680"  ) xP=5120   xN=10240 ;;
+    "10240" ) xP=7680   xN=0     ;;
+esac
+
+
+
+#echo "${currentX}" ####DEBUG TRACE
+
+if [ "${1}" = "P" ]; then
+    # echo "$xP,$y" ####DEBUG TRACE
+    wmctrl -o $xP,$y
+fi
+if [ "${1}" = "N" ]; then
+    wmctrl -o $xN,$y
+    # echo "$xN,$y" ####DEBUG TRACE
+fi

@@ -1,0 +1,13 @@
+## desktopNEXT ##  
+"gotodesktop N"
+Mod4 + 2
+
+## desktopPREVIVOS ##
+"gotodesktop P"
+Mod4 + 1
+
+
+## runsmthng ##
+"runsmthng"
+Mod4 + r
+    

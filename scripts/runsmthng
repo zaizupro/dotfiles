@@ -1,0 +1,5 @@
+#!/bin/sh
+
+urxvt -geometry 100x2 &
+#read command
+#$command
