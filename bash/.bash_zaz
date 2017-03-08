@@ -10,16 +10,37 @@ if [ -f $HOME/.bash_colors ]; then
 fi
 
 #===============VARIABLES============
+## PS1 PROMPT LINE
 
 #set colorful custom prompt
 #2line prompt
 #PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
-PS1="\[${NC}\]\[${ORANGE}\]${PS1}\[${NC}\]"
+#PS1="\[${NC}\]\[${ORANGE}\]${PS1}\[${NC}\]"
+
+
+
+__getspace()
+{
+    for i in $(seq 1 $1) ; do echo -n ' ';
+    done
+}
+
+__getprompt()
+{
+    PWD=$(basename $(pwd))
+    echo "$(__getspace $(expr $(tput cols) - ${#PWD} - 1))${PWD}"
+}
+
+PS1='\[${NC}\]\[${ORANGE}\]$(__getprompt)\r>\[${NC}\]'
+
 
 
 if [ ${0} = "sh" ]; then
     PS1='$(whoami)@$(cat /etc/hostname):$(basename $(pwd))\$'
 fi
+
+#====================================
+
 
 EDITOR=nano
 
