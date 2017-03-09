@@ -1,13 +1,21 @@
-## desktopNEXT ##  
-"gotodesktop N"
-Mod4 + 2
+## desktopNEXT ##
+    "gotodesktop N"
+    Mod4 + 2
 
 ## desktopPREVIVOS ##
-"gotodesktop P"
-Mod4 + 1
-
+    "gotodesktop P"
+    Mod4 + 1
 
 ## runsmthng ##
-"runsmthng"
-Mod4 + r
-    
+    "runsmthng"
+    Mod4 + r
+
+## start urxvt ##
+    "urxvtwrp"
+    Mod4 + Return
+
+## history modification
+    "hstr.sh"
+    m:0x48 + c:43
+    Alt+Mod4 + h
+
