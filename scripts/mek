@@ -6,8 +6,9 @@ fi
 
 
 HEADERMSG="$(basename ${0})"
+ARGS="${@}"
 
-if [ ! -z "${@}" ]; then
+if [ ! -z "${ARGS}" ]; then
     HEADERMSG="${HEADERMSG} ${@}"
 fi
 
