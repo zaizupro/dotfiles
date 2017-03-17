@@ -1,13 +1,14 @@
 #!/bin/bash
 
 if [ -f ~/.bash_zaz ]; then
-   source ~/.bash_zaz
+    . ~/.bash_zaz
 fi
 
 
-HEADERMSG=${1^^}
-if [ -z ${HEADERMSG} ]; then
-    HEADERMSG="BUILDING"
+HEADERMSG="$(basename ${0})"
+
+if [ ! -z "${@}" ]; then
+    HEADERMSG="${HEADERMSG} ${@}"
 fi
 
 declare -a TMPMSG
