@@ -118,13 +118,14 @@ URxvt.underlineColor:    #FFDF9A
 URxvt.iconFile:    /usr/share/icons/oxygen/64x64/apps/utilities-terminal.png
 
 !--[font]--!
-URxvt*font: xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
 !!  ## u can get available fonts list:
 !!  fc-list -f "%{family} : %{file}\n" |sort|less -S
 !!  ## for testing font:
 !!  printf '\e]710;%s\007' "xft:xos4 Terminus:pixelsize=14"
 !--
 
+URxvt*font: xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
+!URxvt*font: xft:xos4 Terminus:bold:pixelsize=18   !! AWESOME WM FONT
 !URxvt*font: ter-528b
 !URxvt*font: -*-terminus-bold-*-normal-*-18-*-*-*-*-*-*-*
 !URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=15
