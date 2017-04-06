@@ -23,10 +23,12 @@ alias psw='ps auxf|less -S'
 ##-=[print files]=-##
 
 __filtor()
-{
-    awk '{print $1"  "(substr($5"    ", 1, 4))"  "(substr($9,1))}';
-}
-alias ll='ls -lahF --color=no |__filtor'
+{    awk '{print $1"  "(substr($5"    ", 1, 4))"  "(substr($9,1))}'; }
+__ll()
+{    ls -lahF --color=no $@ |__filtor;   }
+
+alias ll='__ll'
+#alias ll='ls -lahF --color=no |__filtor'
 
 ## list hidden files
 alias lsh='ls -a | grep "^\."' 
