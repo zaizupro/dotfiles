@@ -46,10 +46,10 @@ alias tigs='tig status'
 
 alias gitusers="git shortlog | grep -E '^[^ ]'"
 
-alias ta='tmux attach -t'
-alias tn='tmux new -s'
-alias tls='tmux ls'
-alias tk='tmux kill-session -t'
+alias tma='tmux attach -t'
+alias tmn='tmux new -s'
+alias tmls='tmux ls'
+alias tmk='tmux kill-session -t'
 
 
 alias makepass='openssl rand -base64 12'
