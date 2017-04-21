@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -f $HOME/.bash_zaz ]; then
     . ~/.bash_zaz
