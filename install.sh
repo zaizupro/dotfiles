@@ -1,6 +1,15 @@
 #!/bin/bash
 DOTFILES=$PWD
 
+## TODO:
+##      make dependency list
+##      DEPENDS="awesome ....." 
+##      make one installation script
+##      make installation configs for each part
+##      "link": {
+##                   "./tmux/.tmux.conf":   "~/.tmux.conf",
+
+
 
 if [ -f ~/.bash_zaz ]; then
     . $DOTFILES/bash/.bash_functions
@@ -24,18 +33,18 @@ if [ "$1" == "configs" ]; then
         ${LNCOMMAND} $DOTFILES/bash/.bash_zaz          $HOME/.bash_zaz
     fi
 
-## tmux files
+    ## tmux files
     if [ "$2" == "tmux" ]; then
         ${LNCOMMAND} $DOTFILES/tmux/.tmux.conf         $HOME/.tmux.conf
         ${LNCOMMAND} $DOTFILES/tmux/.tmux.status.conf  $HOME/.tmux.status.conf
     fi
 
-## mc's files
+    ## mc's files
     if [ "$2" == "mc" ]; then
         echo $($DOTFILES/mc/install_mc.sh "${DOTFILES}" "$1")
     fi
 
-## common files
+    ## common files
     if [ "$2" == "common" ]; then
         ${LNCOMMAND} $DOTFILES/.tigrc                  $HOME/.tigrc
         ${LNCOMMAND} $DOTFILES/.xterm                  $HOME/.xterm
