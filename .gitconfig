@@ -9,6 +9,8 @@
 
 [push]
   default = simple
+[color]
+    ui = true
 [color "diff"]
 	meta = black yellow
 	frag = black red
