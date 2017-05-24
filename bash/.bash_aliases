@@ -56,10 +56,10 @@ alias makepass='openssl rand -base64 12'
 alias vm='startVM.sh'
 alias fm='thunarStarter.sh'
 
-alias mc="mcwrp mc"
-alias mcedit="mcwrp mcedit"
-alias mcview="mcwrp mcview"
-alias mcdiff="mcwrp mcdiff"
+alias mc="mcwrp mc $@"
+alias mcedit="mcwrp mcedit $@"
+alias mcview="mcwrp mcview $@"
+alias mcdiff="mcwrp mcdiff $@"
 
 
 ## Stolen from github.com/zanshin
