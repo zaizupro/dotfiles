@@ -1,22 +1,26 @@
 [alias]
-	last = log -1 HEAD
-	lasd = diff HEAD^ HEAD
-	  st = status
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-	   l = log --graph --date=short
-	  co = checkout
-	repo = config --get remote.origin.url
+    last = log -1 HEAD
+    lasd = diff HEAD^ HEAD
+      st = status
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+       l = log --graph --date=short
+      co = checkout
+    repo = config --get remote.origin.url
 
 [push]
-  default = simple
+    default = simple
+
 [color]
     ui = true
+
 [color "diff"]
-	meta = black yellow
-	frag = black red
+    meta = black yellow
+    frag = black red
+
 [color "branch"]
-  current = yellow reverse
-    local = yellow
-   remote = green
+    current = yellow reverse
+      local = yellow
+     remote = green
+
 [include]
-  path = .gitconfig.user
+    path = .gitconfig.user
