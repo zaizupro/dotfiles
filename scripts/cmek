@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ -f ~/.bash_zaz ]; then
+   . ~/.bash_zaz
+fi
+
+ __msgprintor "PREFIX=$MY_PROJECT_QMAKE_PREFIX" "${YELLOWFGBG}" "cmake"
+cmake -DCMAKE_INSTALL_PREFIX=${MY_PROJECT_QMAKE_PREFIX}   && kek "-s" "-j4" && mek "-s" "-j4"
