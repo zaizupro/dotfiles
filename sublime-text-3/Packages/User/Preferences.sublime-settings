@@ -5,7 +5,6 @@
 	"color_scheme": "Packages/Theme - industrial_coding/industrial_coding.tmTheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
 	"draw_white_space": "all",
-	"mouse_wheel_switches_tabs": false,
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	"font_face": "Terminus",
@@ -20,6 +19,7 @@
 		"SublimePrettyJson",
 		"Vintage"
 	],
+	"mouse_wheel_switches_tabs": false,
 	"remember_open_files": true,
 	"rulers":
 	[
