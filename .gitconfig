@@ -22,5 +22,12 @@
       local = yellow
      remote = green
 
+[color "status"]
+     header = yellow 
+     changed = yellow reverse
+     updated = green reverse
+     untracked = red reverse
+     branch = magenta reverse
+
 [include]
     path = .gitconfig.user
