@@ -1,5 +1,32 @@
 [
 
+//[==========================================================================]//
+// EXPERIMENTAL
+
+    /// ctrl+alt+q
+    { "keys": ["escape", "q"], "command": "toggle_record_macro" },
+    /// ctrl+alt+shift+q
+    { "keys": ["escape", "r"], "command": "run_macro" },
+
+    /// TODO: fix it
+    // { "keys": ["ctrl+k", "ctrl+u"], "command": "upper_case" },
+    // { "keys": ["ctrl+k", "ctrl+l"], "command": "lower_case" },  //broken wiw nav
+
+    { "keys": ["ctrl+w"], "command": "delete_word", "args": { "forward": false } },
+
+    /// navigation
+    { "keys": ["ctrl+j"], "command": "move", "args": {"by": "characters", "forward": false} },
+    { "keys": ["ctrl+l"], "command": "move", "args": {"by": "characters", "forward": true} },
+    { "keys": ["ctrl+i"], "command": "move", "args": {"by": "lines", "forward": false} },
+    { "keys": ["ctrl+k"], "command": "move", "args": {"by": "lines", "forward": true} },
+
+    { "keys": ["ctrl+9"], "command": "move", "args": {"by": "pages", "forward": false} },
+    { "keys": ["ctrl+o"], "command": "move", "args": {"by": "pages", "forward": true} },
+
+    // ctrl + o fix
+    { "keys": ["ctrl+alt+o"], "command": "prompt_open_file" },
+
+//[==========================================================================]//
     // comment current line or selection
     { "keys": ["f7"], "command": "toggle_comment", "args": { "block": false } },
     { "keys": ["alt+f7"], "command": "toggle_comment", "args": { "block": true } },
@@ -28,6 +55,7 @@
     // navigation throu tabs
     { "keys": ["alt+1"], "command": "prev_view" },
     { "keys": ["alt+2"], "command": "next_view" },
+    { "keys": ["alt+q"], "command": "close" },
 
     //
     { "keys": ["alt+f1"], "command": "undo" },
@@ -55,10 +83,9 @@
     { "keys": ["ctrl+shift+i"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/if.sublime-snippet"}},
     { "keys": ["ctrl+shift+e"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/if_else.sublime-snippet"}},
 
-
-    { "keys": ["ctrl+,"], "command": "open_file", "args":
-        { "file": "${packages}/User/Preferences.sublime-settings" }
-    }
-
+    // ESC
+    { "keys": ["escape", "c"], "command": "new_file" },
+    { "keys": ["escape", ","], "command": "open_file", "args": { "file": "${packages}/User/Preferences.sublime-settings" }},
+    { "keys": ["escape", "."], "command": "open_file", "args": { "file": "${packages}/User/Default.sublime-keymap" }}
 
 ]
