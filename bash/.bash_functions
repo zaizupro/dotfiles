@@ -102,7 +102,7 @@ __arrayprintor()
     done
 
     declare -a BPHEADERMSG=("${!3}")
-    if [[ ${#BPHEADERMSG} -gt ${BPMAXMSGSPACER} ]]; then
+    if [[ ${#BPHEADERMSG} -ge ${BPMAXMSGSPACER} ]]; then
         BPMAXMSGSPACER=${#BPHEADERMSG}
         local BPHEADERSPACERLINE=
     else
@@ -112,6 +112,14 @@ __arrayprintor()
     local BPSPACERLINE=`printf -v BPSPACERLINETMP "%-$((${BPMAXMSGSPACER}))s" ' '; echo "${BPSPACERLINETMP// /━}"`
     local BPHEADERLINE="${SOMON}${BPHEADERMSG}${SOMOF}${BPHEADERSPACERLINE}"
 
+##===============================DEBUG TRACE =================================##
+    # echo "[ MAX MSG SPACER:           '${BPMAXMSGSPACER}' ]"
+    # echo "[ HEADER SPACER LINE LNGTH: '${#BPHEADERSPACERLINE}' ]"
+    # echo "[ HEADER MSG LINE LNGTH:    '${#BPHEADERMSG}' ]"
+    # echo "[ SPACER LINE LNGTH:        '${#BPSPACERLINE}' ]"
+    # echo "[ HEADER LINE LNGTH:        '${#BPHEADERLINE}' ]"
+##[==========================================================================]##
+
     __printor "┏━${BPHEADERLINE}━┓" "${BPCOLOR}" $(expr ${#BPHEADERMSG} + ${#BPHEADERSPACERLINE} + 4)
     # echo "┏━${BPHEADERMSG}${BPHEADERSPACERLINE}━┓"
 
@@ -120,9 +128,17 @@ __arrayprintor()
         local BPMSGSPACEREXT=""
         local BPCURRENTMSGLNGTH=${#OUTARRAY[$index]}
         local BPMSGSPACER=$(printf "%-$(( (${BPMAXMSGSPACER}-${BPCURRENTMSGLNGTH})/2 ))s" "")
-        if [  $(expr ${BPCURRENTMSGLNGTH} % 2) -eq 0 ]; then
+
+        if [  $(expr $(expr ${BPMAXMSGSPACER} - ${BPCURRENTMSGLNGTH}) % 2) -eq 1 ]; then
             BPMSGSPACEREXT=" "
         fi
+
+##===============================DEBUG TRACE =================================##
+        # echo "[ CURRENT MSG LNGTH:   '${BPCURRENTMSGLNGTH}' ]"
+        # echo "[ TOTAL SPACER LNGTH:  '$(expr ${BPMAXMSGSPACER} - ${BPCURRENTMSGLNGTH})' ]"
+        # echo "[ HALF SPACER LNGTH:   '${#BPMSGSPACER}' ]"
+        # echo "[ MSG SPACEREXT LNGTH: '${#BPMSGSPACEREXT}' ]"
+##[==========================================================================]##
 
 
         # echo "┃ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} ┃"
