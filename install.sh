@@ -11,7 +11,7 @@ DOTFILES=$PWD
 
 
 
-if [ -f ~/.bash_zaz ]; then
+if [ -f $DOTFILES/bash/.bash_functions ]; then
     . $DOTFILES/bash/.bash_functions
 fi
 
@@ -44,15 +44,40 @@ if [ "$1" == "configs" ]; then
         echo $($DOTFILES/mc/install_mc.sh "${DOTFILES}" "$1")
     fi
 
+    ## urxvt's files
+    if [ "$2" == "urxvt" ]; then
+#        echo $($DOTFILES/mc/install_mc.sh "${DOTFILES}" "$1")
+         echo kek
+    fi
+
     ## common files
     if [ "$2" == "common" ]; then
         ${LNCOMMAND} $DOTFILES/.tigrc                  $HOME/.tigrc
         ${LNCOMMAND} $DOTFILES/.xterm                  $HOME/.xterm
+        ${LNCOMMAND} $DOTFILES/.gitconfig              $HOME/.gitconfig
+        touch $HOME/.gitconfig.user
     fi
 
-    echo
-else
-    echo
+    ## patch Xresources
+
+    echo "[ installing ${1} ${2}: done ]"
 fi
+
+if [ "$1" == "utils" ]; then
+    
+    mkdir -pv ${HOME}/_bin
+    
+    #if [ "$2" == "common" ]; then
+        ${LNCOMMAND} $DOTFILES/scripts/mcwrp      ${HOME}/_bin/mcwrp
+    #fi
+    #if [ "$2" == "dev" ]; then
+
+    #fi
+
+    
+    
+    
+fi
+
 
 

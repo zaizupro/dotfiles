@@ -43,7 +43,7 @@ if [ -f $HOME/.bash_functions ]; then
     source $HOME/.bash_functions
 fi
 
-LNCOMMAND="ln -s"
+LNCOMMAND="ln -sv"
 if [ $(type -t lnsafe) = "function" ]; then
     LNCOMMAND="lnsafe"
 fi
