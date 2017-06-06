@@ -1,9 +1,12 @@
 #!/bin/sh
 
+COMMAND=${1}
+
 if [ "$(tput colors).." = "8.." ]; then
     myMCFallbackSkin="zaz8"
 else
     myMCFallbackSkin="zaz"
 fi
 
-${1} --skin $myMCFallbackSkin
+## if COMMAND not empty
+${COMMAND} --skin $myMCFallbackSkin
