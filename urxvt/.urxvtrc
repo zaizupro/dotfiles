@@ -141,9 +141,9 @@ URxvt*font: xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
 ! URxvt*preeditType:                    style
 ! URxvt*imLocale:                       string
 ! URxvt*imFont:                         fontname
-URxvt*title:                          superdupertitle
+!URxvt*title:                          superdupertitle
 ! URxvt*iconName:                       string
-URxvt*saveLines:                      50
+URxvt*saveLines:                      1000
 ! URxvt*buffered:                       boolean
 ! URxvt*depth:                          number
 ! URxvt*visual:                         number
