@@ -11,22 +11,56 @@ DOTFILES=$PWD
 
 
 
+##[==========================================================================]##
 if [ -f $DOTFILES/bash/.bash_functions ]; then
     . $DOTFILES/bash/.bash_functions
 fi
 
-
+##[==========================================================================]##
 LNCOMMAND="ln -vs"
 if [ "$(type -t lnsafe)" = "function" ]; then
     LNCOMMAND="lnsafe"
 fi
 
+##[==========================================================================]##
+CPCOMMAND="cp -v"
+if [ "$(type -t cpsafe)" = "function" ]; then
+    CPCOMMAND="cpsafe"
+fi
 
 
-##[============================================================================]##
-if [ "$1" == "configs" ]; then
+
+addXresEntry()
+{
+    XRES="${HOME}/.Xresources"
+    if [ ! -f ${XRES} ]; then
+        touch ${XRES}
+    fi
+
+    ENTRYLINE="#include \"${1}\""
+    RESULT=$(grep "${ENTRYLINE}" ${XRES})
+    if [ ! -z "${RESULT}"  ]; then
+        echo "[WW] [ entry '${RESULT}' found ]"
+    else
+        echo "" >> ${XRES}
+        echo "![=============================================]" >> ${XRES}
+        echo "${ENTRYLINE}" >> ${XRES}
+        echo "![=============================================]" >> ${XRES}
+        echo "[II] [ entry for '${1}' created]"
+    fi
+}
+
+
+
+
+## DEBUG
+    CPCOMMAND="echo";LNCOMMAND="echo"
+
+
+##[==========================================================================]##
+if [ "${1}" == "configs" ]; then
     #make links
-    if [ "$2" == "bash" ]; then
+    if [ "${2}" == "bash" ] || [ "${2}" = "all" ]; then
         ${LNCOMMAND} $DOTFILES/bash/.bash_aliases      $HOME/.bash_aliases
         ${LNCOMMAND} $DOTFILES/bash/.bash_colors       $HOME/.bash_colors
         ${LNCOMMAND} $DOTFILES/bash/.bash_functions    $HOME/.bash_functions
@@ -34,36 +68,49 @@ if [ "$1" == "configs" ]; then
     fi
 
     ## tmux files
-    if [ "$2" == "tmux" ]; then
+    if [ "${2}" = "tmux" ] || [ "${2}" = "all" ]; then
         ${LNCOMMAND} $DOTFILES/tmux/.tmux.conf         $HOME/.tmux.conf
         ${LNCOMMAND} $DOTFILES/tmux/.tmux.status.conf  $HOME/.tmux.status.conf
     fi
 
     ## mc's files
-    if [ "$2" == "mc" ]; then
-        echo $($DOTFILES/mc/install_mc.sh "${DOTFILES}" "$1")
+    if [ "$2" == "mc" ] || [ "${2}" = "all" ]; then
+#        echo $($DOTFILES/mc/install_mc.sh "${DOTFILES}" "$1")
+        ${LNCOMMAND} ${DOTFILES}/mc/skins/zaz.ini       ${HOME}/.local/share/mc/skins/zaz.ini
+        ${LNCOMMAND} ${DOTFILES}/mc/skins/zaz8.ini      ${HOME}/.local/share/mc/skins/zaz8.ini
+        ${LNCOMMAND} ${DOTFILES}/mc/skins/zaz8root.ini  ${HOME}/.local/share/mc/skins/zaz8root.
+
+        ${LNCOMMAND} ${DOTFILES}/mc/ini                 ${HOME}/.config/mc/ini
+        ${LNCOMMAND} ${DOTFILES}/mc/menu                ${HOME}/.config/mc/menu
+        ${LNCOMMAND} ${DOTFILES}/mc/panels.ini          ${HOME}/.config/mc/panels.ini
     fi
 
     ## urxvt's files
-    if [ "$2" == "urxvt" ]; then
-#        echo $($DOTFILES/mc/install_mc.sh "${DOTFILES}" "$1")
-         echo kek
+    if [ "$2" == "urxvt" ] || [ "${2}" = "all" ]; then
+         ${LNCOMMAND} ${DOTFILES}/urxvt/.urxvtrc ${HOME}/.urxvtrc
+         echo "install urxvt patch from ${DOTFILES}/urxvt"
     fi
 
     ## common files
-    if [ "$2" == "common" ]; then
+    if [ "$2" == "common" ] || [ "${2}" = "all" ]; then
         ${LNCOMMAND} $DOTFILES/.tigrc                  $HOME/.tigrc
         ${LNCOMMAND} $DOTFILES/.xterm                  $HOME/.xterm
         ${LNCOMMAND} $DOTFILES/.gitconfig              $HOME/.gitconfig
-        touch $HOME/.gitconfig.user
+        ${CPCOMMAND} $DOTFILES/.gitconfig.user         $HOME/.gitconfig.user
     fi
 
-    ## patch Xresources
+    ## xres files
+    if [ "$2" == "xres" ] || [ "${2}" = "all" ]; then
+        ${LNCOMMAND} $DOTFILES/Xresources.colors/default    $HOME/.Xresources.colors
+    fi
 
-    echo "[ installing ${1} ${2}: done ]"
+
+
+
+    echo "[II] [ installing ${1} ${2}: done ]"
 fi
 
-if [ "$1" == "utils" ]; then
+if [ "${1}" == "utils" ]; then
     
     mkdir -pv ${HOME}/_bin
     
@@ -77,6 +124,12 @@ if [ "$1" == "utils" ]; then
     
     
     
+fi
+
+
+if [ "${1}" == "entries" ]; then
+    addXresEntry ".urxvtrc"
+    addXresEntry ".Xresources.colors"
 fi
 
 
