@@ -9,12 +9,12 @@
     { "keys": ["escape", "r"], "command": "run_macro" },
 
     /// TODO: fix it
-    // { "keys": ["ctrl+k", "ctrl+u"], "command": "upper_case" },
-    // { "keys": ["ctrl+k", "ctrl+l"], "command": "lower_case" },  //broken wiw nav
+    { "keys": ["ctrl+,", "ctrl+u"], "command": "upper_case" },
+    { "keys": ["ctrl+,", "ctrl+l"], "command": "lower_case" },  //broken wiw nav
 
     { "keys": ["ctrl+w"], "command": "delete_word", "args": { "forward": false } },
 
-    /// navigation
+    /// zaz style navigation
     { "keys": ["ctrl+j"], "command": "move", "args": {"by": "characters", "forward": false} },
     { "keys": ["ctrl+l"], "command": "move", "args": {"by": "characters", "forward": true} },
     { "keys": ["ctrl+i"], "command": "move", "args": {"by": "lines", "forward": false} },
@@ -29,6 +29,7 @@
 //[==========================================================================]//
     // comment current line or selection
     { "keys": ["f7"], "command": "toggle_comment", "args": { "block": false } },
+    { "keys": ["ctrl+shift+c"], "command": "toggle_comment", "args": { "block": false } },
     { "keys": ["alt+f7"], "command": "toggle_comment", "args": { "block": true } },
 
     { "keys": ["ctrl+shift+<"], "command": "toggle_comment", "args": { "block": true } },
