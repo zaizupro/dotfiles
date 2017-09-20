@@ -88,3 +88,22 @@ color   'Reviewed-by'           221     default
 #   LINE(PALETTE_4, "", COLOR_DEFAULT, COLOR_DEFAULT, 0), \
 #   LINE(PALETTE_5, "", COLOR_WHITE, COLOR_DEFAULT, 0), \
 #   LINE(PALETTE_6, "", COLOR_RED, )
+
+
+set tab-size      = 4
+set refresh-mode                = after-command          # Enum: manual, auto, after-command,
+#set refresh-mode                = manual          # Enum: manual, auto, after-command,
+#set refresh-interval            = 1
+set horizontal-scroll           = 50%
+set editor-line-number          = yes
+#set line-number                 = yes
+
+set pager-view  = line-number:yes,interval=5 text
+set stage-view  = line-number:yes,interval=1 text
+set log-view    = line-number:yes,interval=5 text
+set status-view = line-number:yes status:short file-name
+set diff-view   = line-number:yes,interval=1 text:yes,commit-title-overflow=no
+
+
+
+
