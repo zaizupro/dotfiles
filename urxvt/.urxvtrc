@@ -124,7 +124,9 @@ URxvt.iconFile:    /usr/share/icons/oxygen/64x64/apps/utilities-terminal.png
 !!  printf '\e]710;%s\007' "xft:xos4 Terminus:pixelsize=14"
 !--
 
-URxvt*font: xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
+
+URxvt*font: 8x13bold
+!URxvt*font: xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
 !URxvt*font: xft:xos4 Terminus:bold:pixelsize=18   !! AWESOME WM FONT
 !URxvt*font: ter-528b
 !URxvt*font: -*-terminus-bold-*-normal-*-18-*-*-*-*-*-*-*
@@ -141,9 +143,9 @@ URxvt*font: xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
 ! URxvt*preeditType:                    style
 ! URxvt*imLocale:                       string
 ! URxvt*imFont:                         fontname
-URxvt*title:                          superdupertitle
+!URxvt*title:                          superdupertitle
 ! URxvt*iconName:                       string
-URxvt*saveLines:                      50
+URxvt*saveLines:                      1000
 ! URxvt*buffered:                       boolean
 ! URxvt*depth:                          number
 ! URxvt*visual:                         number

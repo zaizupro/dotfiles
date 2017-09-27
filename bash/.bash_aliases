@@ -28,6 +28,7 @@ __ll()
 {    ls -lahF --color=no $@ |__filtor;   }
 
 alias ll='__ll'
+alias lll='ls -la --color=no'
 #alias ll='ls -lahF --color=no |__filtor'
 
 ## list hidden files

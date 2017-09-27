@@ -14,6 +14,10 @@
     "urxvtwrp"
     Mod4 + Return
 
+"mocp -G"
+    m:0x8 + c:52
+    Alt + z
+
 ## history modification
     "hstr.sh"
     m:0x48 + c:43

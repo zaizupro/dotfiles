@@ -8,6 +8,9 @@ __install_usage()
 }
 
 
+install_mc()
+{
+
 if [ "$#" -ne 2 ]; then
     echo "[EE] [ Illegal number of parameters ]"
     echo '[II] [ Stay safe, stay legal ]'
@@ -64,3 +67,8 @@ else
     echo
     echo '[II] [ nothing ]'
 fi
+
+
+}
+
+install_mc $@

@@ -1,0 +1,15 @@
+<snippet>
+	<description>lambda</description>
+	<content><![CDATA[
+auto ${3:funcname} = [&](const ${1:TYPE}& ${2:name})
+{
+    bool result = false;
+
+    $TM_SELECTED_TEXT${0}
+
+    return result;
+};
+]]></content>
+	<tabTrigger>_lam_</tabTrigger>
+	<scope>source.c++, source.objc++</scope>
+</snippet>
