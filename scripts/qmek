@@ -4,5 +4,7 @@ if [ -f ~/.bash_zaz ]; then
    . ~/.bash_zaz
 fi
 
+PRONAME=${2}
+
  __msgprintor "PREFIX=$MY_PROJECT_QMAKE_PREFIX" "${YELLOWFGBG}" "qmake"
-qmake PREFIX=$MY_PROJECT_QMAKE_PREFIX CONFIG+=${1} && kek "-s" "-j4" && mek "-s" "-j4"
+qmake PREFIX=$MY_PROJECT_QMAKE_PREFIX CONFIG+=${1} ${PRONAME} && kek "-s" "-j4" && mek "-s" "-j4"
