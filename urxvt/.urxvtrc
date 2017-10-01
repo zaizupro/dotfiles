@@ -13,11 +13,11 @@ URxvt*geometry:      100x30
 !URxvt*highlightSelection: true
 !URxvt*transparent: true
 !URxvt*shading: 10
-!URxvt*tintColor: #000000
+!URxvt*tintColor: #ff0000
 !URxvt*blurRadius: 15
 
 !--[transparentsy:real]--!
-URxvt.depth: 32
+!URxvt.depth: 32
 !URxvt.background: [85]#000000
 
 ! rgba:1111/1111/1111/aaaa
@@ -36,16 +36,15 @@ URxvt*scrollBar:                      false
 ! URxvt*scrollBar_floating:             boolean
 ! URxvt*scrollBar_align:                mode
 ! URxvt*thickness:                      number
-URxvt*scrollTtyOutput:                true
-! URxvt*scrollTtyKeypress:              boolean
-! URxvt*scrollWithBuffer:               boolean
-! URxvt*inheritPixmap:                  boolean
-! URxvt*transparent:                    boolean
-! URxvt*tintColor:                      color
- URxvt*blurRadius:                     50x22
 
-!URxvt*fading:                         10             ! процент "гашения" цвета текста в неактивном окне
-URxvt*fadeColor:                      #ff0000
+URxvt*scrollTtyOutput:                false
+URxvt*scrollTtyKeypress:              true
+URxvt*scrollWithBuffer:               true
+
+URxvt*blurRadius:                     50x22
+
+URxvt*fading:                         10             ! процент "гашения" цвета текста в неактивном окне
+URxvt*fadeColor:                      #000000
 
 ! URxvt*utmpInhibit:                    boolean
 URxvt*urgentOnBell:                   true
@@ -61,11 +60,11 @@ URxvt*cursorBlink:                    true
 
 !-=======[BG]=======-!
 !orangebg
-!URxvt.background: #1A1200 
-!dark orange 
-URxvt.background: #1A0F00
+!URxvt.background: #1A1200
+!dark orange
+!URxvt.background: [85]#1A0F00
 !grey
-!URxvt.background: #1C1C1C 
+!URxvt.background: #1C1C1C
 !darkyellow
 !URxvt.background: #875F00
 
@@ -73,8 +72,8 @@ URxvt.background: #1A0F00
 
 
 !orange bg fg
-!URxvt.background: #3B290F
-!URxvt*foreground: #D67B23
+URxvt.background: #3B290F
+URxvt*foreground: #D67B23
 
 
 !-=======[FG]=======-!
@@ -82,13 +81,13 @@ URxvt.background: #1A0F00
 !URxvt*foreground:                     #FFFEB3
 
 !yellow
-!URxvt*foreground:                      #FFD700 
+!URxvt*foreground:                      #FFD700
 !orange
 !URxvt*foreground:                      #FF9300
 !light orange
 !URxvt*foreground:                      #FFAF3D
 !URxvt*foreground:                      #DC8D21
-URxvt*foreground:                      #FFD37B
+!URxvt*foreground:                      #FFD37B
 
 !-=======[FG_EXT]=======-!
 URxvt.colorBD:           #FF8700
@@ -98,7 +97,7 @@ URxvt.colorIT:           #bbbbbb
 !URxvt.colorUL:           #FFD7D7
 URxvt.colorUL:           #FFDF9A
 
-!URxvt.underlineColor:    #FF8700 
+!URxvt.underlineColor:    #FF8700
 !light orange
 URxvt.underlineColor:    #FFDF9A
 
@@ -127,13 +126,14 @@ URxvt.iconFile:    /usr/share/icons/oxygen/64x64/apps/utilities-terminal.png
 
 URxvt*font: 8x13bold
 !URxvt*font: xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
-!URxvt*font: xft:xos4 Terminus:bold:pixelsize=18   !! AWESOME WM FONT
-!URxvt*font: ter-528b
+!URxvt*font: xft:xos4 Terminus:bold:pixelsize=16
 !URxvt*font: -*-terminus-bold-*-normal-*-18-*-*-*-*-*-*-*
 !URxvt*font: xft:Bitstream Vera Sans Mono:pixelsize=15
 !URxvt*font: xft:terminus:pixelsize=18
 
-! URxvt*boldFont:                       fontname
+URxvt*letterSpace:                    0
+
+! URxvt*boldFont:                       8x13bold
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
 
@@ -145,19 +145,18 @@ URxvt*font: 8x13bold
 ! URxvt*imFont:                         fontname
 !URxvt*title:                          superdupertitle
 ! URxvt*iconName:                       string
-URxvt*saveLines:                      1000
+URxvt*saveLines:                      10000
 ! URxvt*buffered:                       boolean
-! URxvt*depth:                          number
 ! URxvt*visual:                         number
 ! URxvt*transient-for:                  windowid
 ! URxvt*override-redirect:              boolean
 ! URxvt*hold:                           boolean
-URxvt*borderColor:                    #FF8700
+!URxvt*borderColor:                    #FF8700
 URxvt*externalBorder:                 0
 URxvt*internalBorder:                 0
 !URxvt*borderLess:                     true !need wm support
 URxvt*lineSpace:                      -1
-URxvt*letterSpace:                    0
+
 ! URxvt*skipBuiltinGlyphs:              boolean
 ! URxvt*pointerBlankDelay:              number
 ! URxvt*backspacekey:                   string
@@ -166,8 +165,10 @@ URxvt*letterSpace:                    0
 ! URxvt*modifier:                       modifier
 ! URxvt*cutchars:                       string
 ! URxvt*answerbackString:               string
-! URxvt*secondaryScreen:                boolean
-! URxvt*secondaryScroll:                boolean
+
+URxvt*secondaryScreen:                1
+URxvt*secondaryScroll:                0
+
 ! URxvt*perl-lib:                       string
 ! URxvt*perl-eval:                      perl-eval
 
