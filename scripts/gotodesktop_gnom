@@ -1,0 +1,16 @@
+#!/bin/bash
+
+CURWSNUM=$(wmctrl -d  | grep '*' | cut -f 1 -d' ')
+MAXWSNUM=$(wmctrl -d | tail -n 1 | cut -f 1 -d' ')
+
+PWS=$( expr ${CURWSNUM} - 1 )
+NWS=$( expr ${CURWSNUM} + 1 )
+
+echo "${CURWSNUM}" ####DEBUG TRACE
+
+if [ "${1}" = "P" ]; then
+    wmctrl -s $PWS
+fi
+if [ "${1}" = "N" ]; then
+    wmctrl -s $NWS
+fi
