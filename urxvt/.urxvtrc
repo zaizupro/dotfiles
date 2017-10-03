@@ -117,7 +117,9 @@ URxvt.underlineColor:    #AD7F33
 ! URxvt*troughColor:                    color
 ! URxvt*highlightColor:                 color
 ! URxvt*highlightTextColor:             color
-! URxvt*cursorColor:                    #FF0000
+
+!172/256
+ URxvt*cursorColor:                    #D78700
 ! URxvt*cursorColor2:                   #00FF00
 ! URxvt*pointerColor:                   color
 ! URxvt*pointerColor2:                  color
@@ -220,10 +222,10 @@ URxvt*iso14755:                       false
 
 
 !--[TABS]--!
-URxvt*tab-bg:                         208
-URxvt*tab-fg:                         0
-URxvt*tabbar-bg:                      236
-URxvt*tabbar-fg:                      208
+URxvt*tab-bg:                         172
+URxvt*tab-fg:                         16
+URxvt*tabbar-bg:                      235
+URxvt*tabbar-fg:                      172
 
 !hide tabbar if one tab present
 URxvt.tabbed.autohide: true
