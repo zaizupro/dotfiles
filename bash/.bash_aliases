@@ -28,7 +28,10 @@ __filtor()
 __ll()
 {    ls -lahF --color=no $@ |__filtor;   }
 
-alias ll='__ll'
+#ls -lAhF  |  awk '{out="";for(i=9;i<=NF;i++){out=out" "$i};print $1" "$5""out}'
+
+
+alias ll='ls -AhFGg --time-style=+ --group-directories-first'
 alias lll='ls -la --color=no'
 #alias ll='ls -lahF --color=no |__filtor'
 
