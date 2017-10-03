@@ -43,8 +43,8 @@ URxvt*scrollWithBuffer:               true
 
 URxvt*blurRadius:                     50x22
 
-URxvt*fading:                         10             ! процент "гашения" цвета текста в неактивном окне
-URxvt*fadeColor:                      #000000
+!URxvt*fading:                         10             ! процент "гашения" цвета текста в неактивном окне
+!URxvt*fadeColor:                      #000000
 
 ! URxvt*utmpInhibit:                    boolean
 URxvt*urgentOnBell:                   true
@@ -72,9 +72,19 @@ URxvt*cursorBlink:                    true
 
 
 !orange bg fg
-URxvt.background: #3B290F
-URxvt*foreground: #D67B23
+!URxvt.background: #32260E   !good 
+URxvt.background: #201500
+!URxvt*foreground: #B1680a
 
+!URxvt*foreground: #c58010
+URxvt*foreground: #C1882B
+
+
+URxvt.colorIT:           #E2A43E
+URxvt.colorBD:           #CF8205
+
+URxvt.colorUL:           #EBAB43
+URxvt.underlineColor:    #AD7F33
 
 !-=======[FG]=======-!
 !URxvt*foreground:                     #FCE597
@@ -90,16 +100,16 @@ URxvt*foreground: #D67B23
 !URxvt*foreground:                      #FFD37B
 
 !-=======[FG_EXT]=======-!
-URxvt.colorBD:           #FF8700
-URxvt.colorIT:           #bbbbbb
+!URxvt.colorBD:           #FF8700
+!URxvt.colorIT:           #bbbbbb
 
 !pink
 !URxvt.colorUL:           #FFD7D7
-URxvt.colorUL:           #FFDF9A
+!URxvt.colorUL:           #FFDF9A
 
 !URxvt.underlineColor:    #FF8700
 !light orange
-URxvt.underlineColor:    #FFDF9A
+!URxvt.underlineColor:    #FFDF9A
 
 
 
