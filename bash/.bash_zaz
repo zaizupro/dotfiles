@@ -31,7 +31,8 @@ __getprompt()
     echo "$(__getspace $(expr $(tput cols) - ${#PWD} - 1))${PWD}"
 }
 
-PS1='\[${NC}\]\[${ORANGE}\]$(__getprompt)\r>\[${NC}\]'
+#PS1='\[${NC}\]\[${ORANGE}\]$(__getprompt)\r>\[${NC}\]'
+PS1='\[${NC}\]\[${ORANGE}\]>\[${NC}\]'
 
 
 
