@@ -3,9 +3,11 @@
     lasd = diff HEAD^ HEAD
       st = status
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-       l = log --graph --date=short
+       l = log --oneline --graph --decorate
       co = checkout
     repo = config --get remote.origin.url
+      br = branch -a
+
 
 [push]
     default = simple
