@@ -9,8 +9,8 @@
     { "keys": ["escape", "r"], "command": "run_macro" },
 
     /// TODO: fix it
-    { "keys": ["ctrl+,", "ctrl+u"], "command": "upper_case" },
-    { "keys": ["ctrl+,", "ctrl+l"], "command": "lower_case" },  //broken wiw nav
+    { "keys": ["escape", "u"], "command": "upper_case" },
+    { "keys": ["escape", "l"], "command": "lower_case" },  //broken wiw nav
 
     { "keys": ["ctrl+w"], "command": "delete_word", "args": { "forward": false } },
 
@@ -34,7 +34,6 @@
 
     { "keys": ["ctrl+shift+<"], "command": "toggle_comment", "args": { "block": true } },
     { "keys": ["ctrl+<"], "command": "toggle_comment", "args": { "block": false } },
-
 
     // like in Midnight Commander
     { "keys": ["ctrl+y"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
@@ -77,8 +76,8 @@
         ]
     },
 
-    // stop retarded command dat breaks texts  >:0
-    { "keys": ["ctrl+t"], "command": "" },
+
+    { "keys": ["ctrl+t", "ctrl+f"], "command": "goto_definition" },
 
     { "keys": ["ctrl+shift+g"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/makeDefineGuard.sublime-snippet"}},
     { "keys": ["ctrl+shift+i"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/if.sublime-snippet"}},
@@ -87,6 +86,11 @@
     // ESC
     { "keys": ["escape", "c"], "command": "new_file" },
     { "keys": ["escape", ","], "command": "open_file", "args": { "file": "${packages}/User/Preferences.sublime-settings" }},
-    { "keys": ["escape", "."], "command": "open_file", "args": { "file": "${packages}/User/Default.sublime-keymap" }}
+    { "keys": ["escape", "."], "command": "open_file", "args": { "file": "${packages}/User/Default.sublime-keymap" }},
+
+    { "keys": ["escape", "m"], "command": "toggle_menu"},
+
+    // stop retarded command dat breaks texts  >:0
+    { "keys": ["ctrl+t"], "command": "" }
 
 ]
