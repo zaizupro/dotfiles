@@ -3,7 +3,7 @@ DOTFILES=$PWD
 
 ## TODO:
 ##      make dependency list
-##      DEPENDS="awesome ....." 
+##      DEPENDS="awesome ....."
 ##      make one installation script
 ##      make installation configs for each part
 ##      "link": {
@@ -28,6 +28,7 @@ if [ "$(type -t cpsafe)" = "function" ]; then
     CPCOMMAND="cpsafe"
 fi
 
+MKDIRCOMMAND="mkdir -pv"
 
 
 addXresEntry()
@@ -49,13 +50,33 @@ addXresEntry()
         echo "[II] [ entry for '${1}' created]"
     fi
 }
+ADDXRESENTRY="addXresEntry"
 
 
 
 
 ## DEBUG
-    CPCOMMAND="echo";LNCOMMAND="echo"
+    CPCOMMAND="echo copy: ";LNCOMMAND="echo make link: ";MKDIRCOMMAND="echo create directory: "; ADDXRESENTRY="echo add xres entry for : "
 
+
+ARGS=${#@}
+if [ "..${ARGS}" == "..0" ]; then
+    echo "##[=============================]##"
+    echo "DOTFILES=${DOTFILES}"
+    echo
+    echo -e "\t$0 <type> <category>"
+    echo "types   categories"
+    echo "configs          "
+    echo "          bash"
+    echo "          tmux"
+    echo "          mc"
+    echo "          urxvt"
+    echo "          common"
+    echo "          xres"
+    echo ""
+    echo "utils"
+    echo "entries"
+fi
 
 ##[==========================================================================]##
 if [ "${1}" == "configs" ]; then
@@ -76,10 +97,12 @@ if [ "${1}" == "configs" ]; then
     ## mc's files
     if [ "$2" == "mc" ] || [ "${2}" = "all" ]; then
 #        echo $($DOTFILES/mc/install_mc.sh "${DOTFILES}" "$1")
+        ${MKDIRCOMMAND} -p ${HOME}/.local/share/mc/skins
         ${LNCOMMAND} ${DOTFILES}/mc/skins/zaz.ini       ${HOME}/.local/share/mc/skins/zaz.ini
         ${LNCOMMAND} ${DOTFILES}/mc/skins/zaz8.ini      ${HOME}/.local/share/mc/skins/zaz8.ini
         ${LNCOMMAND} ${DOTFILES}/mc/skins/zaz8root.ini  ${HOME}/.local/share/mc/skins/zaz8root.
 
+        ${MKDIRCOMMAND} -p ${HOME}/.config/mc
         ${LNCOMMAND} ${DOTFILES}/mc/ini                 ${HOME}/.config/mc/ini
         ${LNCOMMAND} ${DOTFILES}/mc/menu                ${HOME}/.config/mc/menu
         ${LNCOMMAND} ${DOTFILES}/mc/panels.ini          ${HOME}/.config/mc/panels.ini
@@ -105,31 +128,29 @@ if [ "${1}" == "configs" ]; then
     fi
 
 
-
-
     echo "[II] [ installing ${1} ${2}: done ]"
 fi
 
 if [ "${1}" == "utils" ]; then
-    
-    mkdir -pv ${HOME}/_bin
-    
-    #if [ "$2" == "common" ]; then
+
+    ${MKDIRCOMMAND} ${HOME}/_bin
+
+    if [ "${2}" == "common" ] || [ "${2}" = "all" ]; then
         ${LNCOMMAND} $DOTFILES/scripts/mcwrp      ${HOME}/_bin/mcwrp
-    #fi
-    #if [ "$2" == "dev" ]; then
+    fi
+    if [ "${2}" == "dev" ] || [ "${2}" = "all" ]; then
+        ${LNCOMMAND} $DOTFILES/scripts/kek      ${HOME}/_bin/kek
+        ${LNCOMMAND} $DOTFILES/scripts/mek      ${HOME}/_bin/mek
+        ${LNCOMMAND} $DOTFILES/scripts/makek.sh      ${HOME}/_bin/makek.sh
+    fi
 
-    #fi
-
-    
-    
-    
 fi
 
 
+
 if [ "${1}" == "entries" ]; then
-    addXresEntry ".urxvtrc"
-    addXresEntry ".Xresources.colors"
+    ${ADDXRESENTRY} ".urxvtrc"
+    ${ADDXRESENTRY} ".Xresources.colors"
 fi
 
 
