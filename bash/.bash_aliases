@@ -32,11 +32,11 @@ __ll()
 
 
 alias ll='ls -AhFGg --time-style=+ --group-directories-first'
-alias lll='ls -la --color=no'
+alias lll='ls -lA --color=no'
 #alias ll='ls -lahF --color=no |__filtor'
 
 ## list hidden files
-alias lsh='ls -a | grep "^\."' 
+alias lsh='ls -A | grep "^\."' 
 
 alias gitl='git log --format=oneline'
 
