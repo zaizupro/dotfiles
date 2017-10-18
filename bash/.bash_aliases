@@ -48,6 +48,7 @@ alias gitl='git log --format=oneline'
 ##-=[dev]=-##
 alias remek='kek "$@" && mek "$@"'
 alias tigs='tig status'
+alias meki='mek install -s "$@"'
 
 alias gitusers="git shortlog | grep -E '^[^ ]'"
 
