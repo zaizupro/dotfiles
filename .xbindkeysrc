@@ -13,6 +13,14 @@
 ## start urxvt ##
     "urxvtwrp"
     Mod4 + Return
+#"slock"
+#    m:0x40 + c:46
+#    alt + Mod4 + l
+"slock"
+    m:0x58 + c:46
+    Alt + Mod4 + l
+
+
 
 "mocp -G"
     m:0x8 + c:52

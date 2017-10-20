@@ -1,5 +1,4 @@
-# vim: set expandtab sw=4 tabstop=4:
-# *color* 'area' 'fgcolor' 'bgcolor' '[attributes]'
+# *color* 'area'               'fgcolor' 'bgcolor' '[attributes]'
 
 # general
 color   default                 default      default
@@ -106,4 +105,5 @@ set diff-view   = line-number:yes,interval=1 text:yes,commit-title-overflow=no
 
 
 
+# BINDINGS
 
