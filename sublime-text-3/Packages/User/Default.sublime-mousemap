@@ -1,0 +1,4 @@
+[
+    { "button": "scroll_down", "modifiers": ["ctrl"], "command": "scroll_width", "args": {"amount": 10 } },
+    { "button": "scroll_up", "modifiers": ["ctrl"], "command": "scroll_width", "args": {"amount": -10 } }
+]
