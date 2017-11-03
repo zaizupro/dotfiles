@@ -6,7 +6,8 @@ alias s='cd ..'
 alias b='cd -'
 alias cds='cd $WORKSPACE'
 alias cdd='cd $DOTFILES'
-alias cde='cd ~/_EXP'
+alias cde='cd ${HOME}/_EXP'
+alias cdh='cd ${HOME}/_hints'
 alias cdn='cd $(getNexusPath.sh)'
 alias cdusb='cd ~/_usb'
 
@@ -39,6 +40,22 @@ alias lll='ls -lA --color=no'
 alias lsh='ls -A | grep "^\."' 
 
 alias gitl='git log --format=oneline'
+
+
+#du -h --max-depth=1 | sort -h
+
+#ps -eo "pid,comm,rss"  --sort rss
+
+duh() { 
+  var=$(
+    if [ -z $1 ]; then 
+      echo "./*"
+    else
+      echo "$1/*"
+    fi
+    )
+  du -s --si $var | sort -h
+} 
 
 
 # Tell to df to don't see the supermount filesystems.
