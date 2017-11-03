@@ -107,3 +107,11 @@ set diff-view   = line-number:yes,interval=1 text:yes,commit-title-overflow=no
 
 # BINDINGS
 
+#bind generic <Ctrl-Up> move-up
+#bind generic <Ctrl-Down> move-down
+
+bind status P !git push origin
+bind status <Ctrl-P> !git pull
+
+bind generic <Ctrl-f> scroll-page-down 
+bind generic <Ctrl-b> scroll-page-up
