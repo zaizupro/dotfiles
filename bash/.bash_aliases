@@ -42,6 +42,8 @@ alias lsh='ls -A | grep "^\."'
 alias gitl='git log --format=oneline'
 
 
+#ip a |grep "inet " | awk '{print $2}'
+
 #du -h --max-depth=1 | sort -h
 
 #ps -eo "pid,comm,rss"  --sort rss
