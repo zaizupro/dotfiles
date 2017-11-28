@@ -8,9 +8,12 @@
     /// ctrl+alt+shift+q
     { "keys": ["escape", "r"], "command": "run_macro" },
 
-    /// TODO: fix it
+    /// sai-bar togle
+    { "keys": ["escape", "b"], "command": "toggle_side_bar" },
+
+    ///
     { "keys": ["escape", "u"], "command": "upper_case" },
-    { "keys": ["escape", "l"], "command": "lower_case" },  //broken wiw nav
+    { "keys": ["escape", "l"], "command": "lower_case" },
 
     { "keys": ["ctrl+w"], "command": "delete_word", "args": { "forward": false } },
 
