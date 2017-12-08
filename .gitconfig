@@ -15,21 +15,36 @@
 [color]
     ui = true
 
+[color "decorate"]
+    branch = 16 208
+    remoteBranch = 220 94
+    tag = 16 44
+    stash = 33
+    HEAD = 196 52
+
 [color "diff"]
-    meta = black yellow
-    frag = black red
+    plain = 221
+    meta = 222 130
+    frag = 16 221
+    func = 222 94
+    old = 196 52
+    new = 154 22
+    whitespace = 52 208
 
 [color "branch"]
-    current = yellow reverse
-      local = yellow
-     remote = green
+    plain = 221
+    upstream = 154
+    current = 222 130
+      local = 222
+     remote = 208
 
 [color "status"]
-     header = yellow 
-     changed = yellow reverse
-     updated = green reverse
-     untracked = red reverse
-     branch = magenta reverse
+    added = 208 22
+    header = 222
+    changed = 220 94
+    updated = 154 22
+    untracked = 196 52
+    branch = 16 208
 
 [include]
     path = .gitconfig.user
