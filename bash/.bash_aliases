@@ -71,14 +71,17 @@ alias meki='mek install -s "$@"'
 
 alias gitusers="git shortlog | grep -E '^[^ ]'"
 
+SETTERM="TERM=xterm-256color"
+
 alias tma='_(){
            SESSIONNAME=${1}
+           export ${SETTERM}
            [ $(tmux has -t ${SESSIONNAME} >/dev/null 2>&1 ;echo $?) == 0 ] \
            &&  tmux attach -t ${SESSIONNAME} \
            || tmux new -s ${SESSIONNAME}
            }; _'
 
-alias tmn='tmux new -s'
+alias tmn='export ${SETTERM}; tmux new -s'
 alias tmls='tmux ls'
 alias tmk='tmux kill-session -t'
 
