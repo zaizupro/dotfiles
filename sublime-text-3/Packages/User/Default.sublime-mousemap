@@ -1,4 +1,6 @@
 [
+    { "button": "scroll_down", "modifiers": ["alt"], "command": "jump_back" },
+    { "button": "scroll_up", "modifiers": ["alt"], "command": "jump_forward" },
     { "button": "scroll_down", "modifiers": ["ctrl"], "command": "scroll_width", "args": {"amount": 10 } },
     { "button": "scroll_up", "modifiers": ["ctrl"], "command": "scroll_width", "args": {"amount": -10 } }
 ]
