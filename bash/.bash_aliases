@@ -33,7 +33,7 @@ __ll()
 
 
 alias ll='ls -AhFGg --time-style=+ --group-directories-first'
-alias lll='ls -lA --color=no'
+alias lll='ls -lAF --color=no'
 #alias ll='ls -lahF --color=no |__filtor'
 
 ## list hidden files
