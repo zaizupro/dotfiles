@@ -1,0 +1,8 @@
+<snippet>
+	<description>toconstref</description>
+	<content><![CDATA[
+${0:const $TM_SELECTED_TEXT&}
+]]></content>
+	<tabTrigger>_toconstref_</tabTrigger>
+	<scope>source.c, source.objc, source.c++, source.objc++</scope>
+</snippet>
