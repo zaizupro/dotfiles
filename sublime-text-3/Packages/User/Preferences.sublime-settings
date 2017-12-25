@@ -1,5 +1,7 @@
 {
 	"auto_match_enabled": false,
+	"caret_extra_bottom": 0,
+	"caret_extra_top": 0,
 	"caret_extra_width": 10,
 	"caret_style": "phase",
 	"color_scheme": "Packages/Theme - industrial_coding/industrial_coding_bleak.tmTheme",
@@ -10,6 +12,7 @@
 	// "font_face": "xos4 Terminus",
 	"font_face": "Misc Fixed",
 	// "font_face": "Terminus (TTF)",
+	"bold_folder_labels": true,
 	"font_size": 14,
 	"font_terminus": true,
 	"highlight_line": true,
@@ -21,6 +24,8 @@
 		"SublimePrettyJson",
 		"Vintage"
 	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
 	"mouse_wheel_switches_tabs": false,
 	"remember_open_files": true,
 	"rulers":
