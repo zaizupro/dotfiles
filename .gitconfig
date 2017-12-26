@@ -1,16 +1,28 @@
 [alias]
     last = log -1 HEAD
     lasd = diff HEAD^ HEAD
-      st = status
+      st = status -sb
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
        l = log --oneline --graph --decorate
+      lg = log --graph --pretty=format:'%C(16 208)%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
       co = checkout
     repo = config --get remote.origin.url
       br = branch -a
 
+      # show changed files for a commit
+      cf = show --pretty="format:" --name-only
+      
+     day = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday 11:59PM\" --author=\"`git config --get user.name`\"'"
+
+   # show number of commits per contributor, sorted
+   count = shortlog -sn
+   amend = commit --amend -C HEAD
 
 [push]
     default = simple
+
+#[rerere]
+#    enabled = true
 
 [color]
     ui = true
