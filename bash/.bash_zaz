@@ -32,8 +32,8 @@ __getprompt()
 }
 
 #PS1='\[${NC}\]\[${ORANGE}\]$(__getprompt)\r>\[${NC}\]'
-PS1='\[${NC}\]\[${ORANGE}\]>\[${NC}\]'
-
+#PS1='\[${NC}\]\[${ORANGE}\]>\[${NC}\]'
+PS1='\[${NC}\]\[$(tput setaf 214)\]>\[$(tput setaf 208)\]>\[$(tput setaf 202)\]>\[${NC}\]'
 
 
 if [ ${0} = "sh" ]; then
