@@ -84,6 +84,8 @@ alias tma='_(){
 alias tmn='export ${SETTERM}; tmux new -s'
 alias tmls='tmux ls'
 alias tmk='tmux kill-session -t'
+alias tmr='tmux rename-window $(basename $PWD)'
+
 
 
 alias makepass='openssl rand -base64 12'
