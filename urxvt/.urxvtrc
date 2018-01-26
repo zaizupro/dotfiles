@@ -32,7 +32,7 @@ URxvt*termName:                         rxvt-256color
 ! URxvt*pastableTabs:                   boolean
 ! URxvt*scrollstyle:                    mode
 URxvt*scrollBar:                      false
-! URxvt*scrollBar_right:                boolean
+URxvt*scrollBar_right:                false
 ! URxvt*scrollBar_floating:             boolean
 ! URxvt*scrollBar_align:                mode
 ! URxvt*thickness:                      number
@@ -235,6 +235,9 @@ URxvt.tabbed.no-tabbedex-keys: true
 
 URxvt.tabbed.new-button:  no
 URxvt.tabbed.title: no
+
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
 
 ! TABS (C-: Ctrl + ...)
 !      (1-: LAlt + ...)
