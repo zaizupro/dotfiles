@@ -85,7 +85,7 @@ alias tmls='tmux ls'
 alias tmk='tmux kill-session -t'
 alias tmr='tmux rename-window $(basename $PWD)'
 
-
+# 'xclip -selection clipboard -o | xsel -i -p'
 
 alias makepass='openssl rand -base64 12'
 alias vm='startVM.sh'
