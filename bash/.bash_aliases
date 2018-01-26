@@ -37,7 +37,7 @@ alias lll='ls -lAF --color=no'
 #alias ll='ls -lahF --color=no |__filtor'
 
 ## list hidden files
-alias lsh='ls -A | grep "^\."' 
+alias lsh='ls -A | grep "^\."'
 
 alias gitl='git log --format=oneline'
 
@@ -47,16 +47,16 @@ alias ipa='ip a | grep "inet " | awk '\''{print $2}'\'' '
 
 #ps -eo "pid,comm,rss"  --sort rss
 
-duh() { 
+duh() {
   var=$(
-    if [ -z $1 ]; then 
+    if [ -z $1 ]; then
       echo "./*"
     else
       echo "$1/*"
     fi
     )
   du -s --si $var | sort -h
-} 
+}
 
 
 # Tell to df to don't see the supermount filesystems.
@@ -86,6 +86,12 @@ alias tmk='tmux kill-session -t'
 alias tmr='tmux rename-window $(basename $PWD)'
 
 # 'xclip -selection clipboard -o | xsel -i -p'
+##[==========================================================================]##
+##-=[ungrouped]=-##
+#alias fixpng='find . -type f -name *.png -exec convert {} -strip {} \;'
+alias pup='pacman -Suy --color=auto $@'
+
+alias merge='xrdb -merge ${HOME}/.Xresources'
 
 alias makepass='openssl rand -base64 12'
 alias vm='startVM.sh'
