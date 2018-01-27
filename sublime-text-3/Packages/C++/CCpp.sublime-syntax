@@ -68,7 +68,7 @@ contexts:
         - include: comments
     - match: \b(break|case|continue|default|do|else|for|goto|if|_Pragma|return|switch|while)\b
       scope: keyword.control.c
-    - match: "(std::)([a-zA-Z_]*)"
+    - match: "(std::)([a-zA-Z0-9_]*)"
       scope: std.all.c++
     - match: \b(catch|operator|try|throw|using|namespace)\b
       scope: keyword.control.c++
