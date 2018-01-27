@@ -36,6 +36,35 @@ __getprompt()
 PS1='\[${NC}\]\[$(tput setaf 214)\]>\[$(tput setaf 208)\]>\[$(tput setaf 202)\]>\[${NC}\]'
 
 
+##[==========================================================================]##
+##                                                                            ##
+_get_f_part()
+{
+    if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
+        OUT=">"
+    else
+        if [ "$(git branch | cut -d ' ' -f 2)" == "master" ]; then OUT="M" ; else OUT="B";fi
+    fi
+    echo ${OUT}
+}
+
+##[==================================]##
+_get_s_part()
+{
+    if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
+        OUT=">"
+    else
+        OUT="NUMOFCOMMITS"
+    fi
+    echo ${OUT}
+}
+
+
+PS1='\[${NC}\]\[$(tput setaf 214)\]$(_get_f_part)\[$(tput setaf 208)\]>\[$(tput setaf 202)\]>\[${NC}\]'
+##                                                                            ##
+##[==========================================================================]##
+
+
 if [ ${0} = "sh" ]; then
     PS1='$(whoami)@$(cat /etc/hostname):$(basename $(pwd))\$'
 fi
