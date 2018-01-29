@@ -4,7 +4,7 @@
       st = status -sb
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
        l = log --oneline --graph --decorate
-      lg = log --graph --pretty=format:'%C(16 208)%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+      ll = log --graph --pretty=format:'%C(16 208)%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
       co = checkout
     repo = config --get remote.origin.url
       br = branch -a
