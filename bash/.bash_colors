@@ -7,7 +7,7 @@ if [ "..${TERM}"  != ".." ]; then
     if [ "..${COLORSNUM}"  != ".." ]; then
         if [ "$COLORSNUM" -eq 256 ]; then
             ##========== 256 colors =======##
-            echo "[ colors: 256 ]"
+            #echo "[ colors: 256 ]"
             REDFG=$(tput setaf 160)
             REDBG=$(tput setab 160)
 
@@ -28,7 +28,7 @@ if [ "..${TERM}"  != ".." ]; then
 
         else
             ##== 8 colors ================##
-            echo "[ colors: 8 ]"
+            #echo "[ colors: 8 ]"
             RED=$(tput setaf 1)
             GREEN=$(tput setaf 2)
             BLUE=$(tput setaf 6)
