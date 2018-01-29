@@ -43,7 +43,7 @@ _get_f_part()
     if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
         OUT=">"
     else
-        if [ "$(git branch | cut -d ' ' -f 2)" == "master" ]; then OUT="M" ; else OUT="B";fi
+        if [ "$(git branch | grep '*' | cut -d ' ' -f 2)" == "master" ]; then OUT="M" ; else OUT="B";fi
     fi
     echo ${OUT}
 }
