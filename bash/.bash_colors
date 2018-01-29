@@ -1,53 +1,62 @@
 
-##include dat  in .bashrc
+##include dat in .bashrc
 
-COLORSNUM=$(tput colors)
-if [ "$COLORSNUM" -eq 256 ]; then
-    #==========256 colors =======
-    REDFG=$(tput setaf 160)
-    REDBG=$(tput setab 160)
+if [ "..${TERM}"  != ".." ]; then
+    #echo $TERM
+    COLORSNUM=$(tput colors)
+    if [ "..${COLORSNUM}"  != ".." ]; then
+        if [ "$COLORSNUM" -eq 256 ]; then
+            ##========== 256 colors =======##
+            echo "[ colors: 256 ]"
+            REDFG=$(tput setaf 160)
+            REDBG=$(tput setab 160)
 
-    DREDFG=$(tput setaf 52)
-    DREDBG=$(tput setab 52)
+            DREDFG=$(tput setaf 52)
+            DREDBG=$(tput setab 52)
 
-    REDFGBG=$(tput setab 52;tput setaf 196)
+            REDFGBG=$(tput setab 52;tput setaf 196)
 
-    GREEN=$(tput setaf 112)
-    GREENFGBG=$(tput setab 58;tput setaf 154)
+            GREEN=$(tput setaf 112)
+            GREENFGBG=$(tput setab 58;tput setaf 154)
 
-    BLUE=$(tput setaf 38)
+            BLUE=$(tput setaf 38)
 
-    YELLOW=$(tput setaf 220)
-    YELLOWFGBG=$(tput setab 94;tput setaf 220)
+            YELLOW=$(tput setaf 220)
+            YELLOWFGBG=$(tput setab 94;tput setaf 220)
 
-    ORANGE=$(tput setaf 208)
+            ORANGE=$(tput setaf 208)
 
-else
-    #==8 colors ================
-    RED=$(tput setaf 1)
-    GREEN=$(tput setaf 2)
-    BLUE=$(tput setaf 6)
-    YELLOW=$(tput setaf 3)
-    ORANGE=$(tput setaf 3)
+        else
+            ##== 8 colors ================##
+            echo "[ colors: 8 ]"
+            RED=$(tput setaf 1)
+            GREEN=$(tput setaf 2)
+            BLUE=$(tput setaf 6)
+            YELLOW=$(tput setaf 3)
+            ORANGE=$(tput setaf 3)
+        fi
+
+        ## clearing tput settings
+            NC=$(tput sgr0)
+
+        ## text color reverting
+            REV=$(tput rev)
+            SOMON=$(tput smso)
+            SOMOF=$(tput rmso)
+
+        ## cursor hiding
+            HCON=$(tput civis)
+            HCOF=$(tput cnorm)
+    fi
+    ## echo "[ TERM empty ]"
 fi
 
-#clearing tput settings
-    NC=$(tput sgr0)
-
-#text color reverting
-    REV=$(tput rev)
-    SOMON=$(tput smso)
-    SOMOF=$(tput rmso)
-
-#cursor hiding
-    HCON=$(tput civis)
-    HCOF=$(tput cnorm)
 
 #check colors
 __colors_checker()
 {
     if [ -x /usr/bin/tput ]; then
-        for i in $(seq 0 $(tput colors) ) ; do tput setaf $i ; echo -n " [█${SOMON}${i}${SOMOF}█] " ; done ; tput setaf 15 ; echo
+        for i in $(seq 0 $(tput colors) ) ; do tput setaf $i ; echo -n " [${SOMON} ${i} ${SOMOF}] " ; done ; tput setaf 15 ; echo
         echo ${NC}
     fi
 }
