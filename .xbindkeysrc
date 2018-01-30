@@ -1,33 +1,61 @@
+###########################
+# xbindkeys configuration #
+###########################
+#
+# List of modifier (on my keyboard):
+#   Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+#
+
+###########################
+#keystate_numlock = enable
+#keystate_scrolllock = enable
+#keystate_capslock = enable
+
+
+###########################
+
 ## desktopNEXT ##
-    "gotodesktop N"
-    Mod4 + 2
+"gotodesktop_gnom N"
+    Mod1 + Mod4 + 2
 
 ## desktopPREVIVOS ##
-    "gotodesktop P"
-    Mod4 + 1
-
-## runsmthng ##
-    "runsmthng"
-    Mod4 + r
+"gotodesktop_gnom P"
+    Mod1 + Mod4 + 1
 
 ## start urxvt ##
-    "urxvtwrp"
+"urxvtwrp"
     Mod4 + Return
+
+###########################
+##
+"gnome-screenshot --area --interactive"
+    Alt + Mod4 + p
+
+##
+#"import png:- | xclip -selection c -t image/png"
+"xfce4-screenshooter -r -c"
+    Control + Mod4 + p
+
+##
+"import  -window $(xwininfo | grep -i 'window id' | cut -d' ' -f 4) png:- | xclip -selection c -t image/png"
+    Control + Mod4 + o
+
+###########################
+
+##
+"sleep 0.5 && xset r off; xdotool type 'export HISTSIZE= HISTFILE='&& xdotool key Return ; xset r on"
+    Control+Alt + 7
+
 #"slock"
-#    m:0x40 + c:46
-#    alt + Mod4 + l
 "slock"
     m:0x58 + c:46
     Alt + Mod4 + l
-
-
 
 "mocp -G"
     m:0x8 + c:52
     Alt + z
 
-## history modification
-    "hstr.sh"
-    m:0x48 + c:43
-    Alt+Mod4 + h
-
+####################################
+## End of xbindkeys configuration ##
+####################################
