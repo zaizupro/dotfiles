@@ -43,7 +43,7 @@ _get_f_part()
     if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
         OUT=">"
     else
-        if [ "$(git branch | grep '*' | cut -d ' ' -f 2)" == "master" ]; then OUT="M" ; else OUT="B";fi
+        if [ "$(git branch | grep '*' | cut -d ' ' -f 2)" == "master" ]; then OUT="|" ; else OUT="/";fi
     fi
     echo ${OUT}
 }
@@ -54,13 +54,13 @@ _get_s_part()
     if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
         OUT=">"
     else
-        OUT="NUMOFCOMMITS"
+        if [ -z "$(git diff)" ] ; then OUT=">" ; else  OUT="<" ; fi
     fi
     echo ${OUT}
 }
 
 
-PS1='\[${NC}\]\[$(tput setaf 214)\]$(_get_f_part)\[$(tput setaf 208)\]>\[$(tput setaf 202)\]>\[${NC}\]'
+PS1='\[${NC}\]\[$(tput setaf 214)\]$(_get_f_part)\[$(tput setaf 208)\]$(_get_s_part)\[$(tput setaf 202)\]>\[${NC}\]'
 ##                                                                            ##
 ##[==========================================================================]##
 
