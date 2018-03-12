@@ -8,6 +8,8 @@
     /// ctrl+alt+shift+q
     { "keys": ["escape", "r"], "command": "run_macro" },
 
+    { "keys": ["escape", "f"], "command": "toggle_full_screen" },
+
     /// sai-bar togle
     { "keys": ["escape", "b"], "command": "toggle_side_bar" },
 
@@ -59,6 +61,7 @@
     { "keys": ["alt+1"], "command": "prev_view" },
     { "keys": ["alt+2"], "command": "next_view" },
     { "keys": ["alt+q"], "command": "close" },
+    { "keys": ["alt+shift+q"], "command": "reopen_last_file" },
 
     //
     { "keys": ["alt+f1"], "command": "undo" },
