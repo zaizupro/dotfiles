@@ -1,12 +1,12 @@
 ##add in $HOME/.bashrc next lines:
-##if [ -f $HOME/.bash_zaz ]; then
+##if [ -f ${HOME}/.bash_zaz ]; then
 ##    source ~/.bash_zaz
 ##fi
 
 #==============COLORS============
 # add some color
-if [ -f $HOME/.bash_colors ]; then
-    . $HOME/.bash_colors
+if [ -f ${HOME}/.bash_colors ]; then
+    source ${HOME}/.bash_colors
 fi
 
 #===============VARIABLES============
@@ -75,14 +75,14 @@ fi
 EDITOR=nano
 
 # set PATH so it includes user's private bin if it exists
-if [ -d $HOME/_bin ] ; then
-    PATH="$HOME/_bin:${PATH}"
+if [ -d ${HOME}/_bin ] ; then
+    PATH="${HOME}/_bin:${PATH}"
 fi
 
-ENV=$HOME/.bashrc
-PATH=$PATH:/sbin
-DOTFILES=$HOME/_dotfiles
-WORKSPACE=$HOME/_WORK
+ENV=${HOME}/.bashrc
+PATH=${PATH}:/sbin
+DOTFILES=${HOME}/_dotfiles
+WORKSPACE=${HOME}/_WORK
 export EDITOR ENV PATH DOTFILES WORKSPACE
 
 
@@ -100,13 +100,13 @@ export LC_COLLATE=C
 
 #================CUSTOM_FUNCTIONS===================
 # Source bash functions, if present
-if [ -f $HOME/.bash_functions ]; then
-    . $HOME/.bash_functions
+if [ -f ${HOME}/.bash_functions ]; then
+    source ${HOME}/.bash_functions
 fi
 
 #====================ALIASES======================
-if [ -f $HOME/.bash_aliases ]; then
-    . $HOME/.bash_aliases
+if [ -f ${HOME}/.bash_aliases ]; then
+    source ${HOME}/.bash_aliases
 fi
 
 #echo "█▒"
