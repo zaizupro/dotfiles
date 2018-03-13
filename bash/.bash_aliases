@@ -37,6 +37,8 @@ alias grepdat="_(){
 
 #grep -n '\<\${1}\>' . -rI
 
+#amixer set Master toggle
+
 alias settitle="_(){
            TITLENAME=\${1} \
            PROMPT_COMMAND='echo -ne \"\033]0;\${TITLENAME}\007\"'
