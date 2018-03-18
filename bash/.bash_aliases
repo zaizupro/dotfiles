@@ -89,9 +89,13 @@ alias tmr='tmux rename-window $(basename $PWD)'
 ##[==========================================================================]##
 ##-=[ungrouped]=-##
 #alias fixpng='find . -type f -name *.png -exec convert {} -strip {} \;'
-alias pup='pacman -Suy --color=auto $@'
+alias pup='sudo pacman -Suy --color=auto $@'
+alias pacman='pacman --color=auto $@'
+alias pins='sudo pacman -S --color=auto $@'
 
 alias merge='xrdb -merge ${HOME}/.Xresources'
+#identify -format '%[EXIF:*]'
+
 
 alias makepass='openssl rand -base64 12'
 alias vm='startVM.sh'
