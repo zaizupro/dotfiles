@@ -1,3 +1,10 @@
+##============================================================================##
+##|                                                                          |##
+##|                                                                          |##
+##|                     > zaizu colors for Xresources <                      |##
+##|                                                                          |##
+##|                                                                          |##
+##============================================================================##
 
 ##include dat in .bashrc
 
@@ -52,11 +59,17 @@ if [ "..${TERM}"  != ".." ]; then
 fi
 
 
+__colors_printor()
+{
+    for _i in $(seq $1 $2 ) ; do tput setaf $_i ; echo -n "${SOMON} ${SOMOF}" ; done ; echo ""
+}
+
 #check colors
 __colors_checker()
 {
+    echo "colors: $(tput colors)"
     if [ -x /usr/bin/tput ]; then
-        for i in $(seq 0 $(tput colors) ) ; do tput setaf $i ; echo -n " [${SOMON} ${i} ${SOMOF}] " ; done ; tput setaf 15 ; echo
+        __colors_printor "0" "16"
         echo ${NC}
     fi
 }
