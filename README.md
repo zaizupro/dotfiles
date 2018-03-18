@@ -1,5 +1,5 @@
-# dotfiles
+# dotfiles #
 ZaiZupro .configs
 
-#rofi#
+# rofi #
 ![Example](screenshots/rofi_example.gif)
