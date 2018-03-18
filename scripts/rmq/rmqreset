@@ -1,0 +1,39 @@
+#!/bin/sh
+
+
+if [ -f ~/.bash_zaz ]; then
+   source ~/.bash_zaz
+else
+    __blockprintor()
+    {
+	echo $1
+    }
+fi
+
+
+
+
+sudo rabbitmqctl -q stop_app 1>/dev/null
+if  [ $? -eq 0 ]; then
+    BTMSG="*************RMQSERVER STOPPED!!***********"
+    __blockprintor "${BTMSG}" ${GREENFGBG}
+    sudo rabbitmqctl -q reset 1>/dev/null
+    if [ $? -eq 0 ]; then
+	BTMSG="*************RMQSERVER RESETED!!***********"
+	__blockprintor "${BTMSG}" ${GREENFGBG}
+	sudo rabbitmqctl -q start_app 1>/dev/null
+	if [ $? -eq 0 ]; then
+	    BTMSG="*************RMQSERVER STARTED!!***********"
+	    __blockprintor "${BTMSG}" ${GREENFGBG}
+	else
+	    BTMSG="*************RMQSERVER START FAILED!!***********"
+	    __blockprintor "${BTMSG}" ${REDFGBG}
+	fi
+    else
+	BTMSG="*************RMQSERVER RESET FAILED!!***********"
+	__blockprintor "${BTMSG}" ${REDFGBG}
+    fi
+else
+    BTMSG="*************RMQSERVER STOP FAILED!!***********"
+    __blockprintor "${BTMSG}" ${REDFGBG}
+fi

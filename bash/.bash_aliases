@@ -31,9 +31,22 @@ __ll()
 
 #ls -lAhF  |  awk '{out="";for(i=9;i<=NF;i++){out=out" "$i};print $1" "$5""out}'
 
+alias grepdat="_(){
+          grep -n \${1} . -rI
+          }; _\$@"
+
+#grep -n '\<\${1}\>' . -rI
+
+#amixer set Master toggle
+
+alias settitle="_(){
+           TITLENAME=\${1} \
+           PROMPT_COMMAND='echo -ne \"\033]0;\${TITLENAME}\007\"'
+           }; _\$@"
+
 
 alias ll='ls -AhFGg --time-style=+ --group-directories-first'
-alias lll='ls -lAF --color=no'
+alias lll='ls -lAF --color=no'  #TODO make colorifikator of permishons
 #alias ll='ls -lahF --color=no |__filtor'
 
 ## list hidden files

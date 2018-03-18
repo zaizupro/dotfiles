@@ -9,6 +9,8 @@
     repo = config --get remote.origin.url
       br = branch -a
 
+#clean -xdf
+
       # show changed files for a commit
       cf = show --pretty="format:" --name-only
       
@@ -30,7 +32,7 @@
 [color "decorate"]
     branch = 16 208
     remoteBranch = 220 94
-    tag = 16 44
+    tag = 190 58
     stash = 33
     HEAD = 196 52
 
