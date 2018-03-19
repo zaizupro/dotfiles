@@ -106,6 +106,9 @@ alias pup='sudo pacman -Suy --color=auto $@'
 alias pacman='pacman --color=auto $@'
 alias pins='sudo pacman -S --color=auto $@'
 
+
+alias pw='sudo pacman $2 $1'
+
 alias merge='xrdb -merge ${HOME}/.Xresources'
 #identify -format '%[EXIF:*]'
 
