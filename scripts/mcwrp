@@ -8,5 +8,11 @@ else
     myMCFallbackSkin="zaz"
 fi
 
+shift
+## DEBUG
+#echo ${COMMAND} --skin $myMCFallbackSkin  $@
+
 ## if COMMAND not empty
-${COMMAND} --skin $myMCFallbackSkin
+${COMMAND} --skin $myMCFallbackSkin $@
+
+
