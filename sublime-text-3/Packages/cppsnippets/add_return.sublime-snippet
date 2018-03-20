@@ -1,0 +1,15 @@
+<snippet>
+    <content>
+
+        <![CDATA[
+    ${1:bool} result${2: = false};
+${3:$TM_SELECTED_TEXT}
+    return result;
+]]>
+
+    </content>
+    <tabTrigger>ret</tabTrigger>
+    <scope>source.c++</scope>
+    <scope>source.c</scope>
+    <description>WRAP IN RETURN</description>
+</snippet>

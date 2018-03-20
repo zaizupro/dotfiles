@@ -1,5 +1,6 @@
 {
 	"auto_match_enabled": false,
+	"bold_folder_labels": true,
 	"caret_extra_bottom": 0,
 	"caret_extra_top": 0,
 	"caret_extra_width": 10,
@@ -7,6 +8,7 @@
 	"color_scheme": "Packages/Theme - industrial_coding/industrial_coding_bleak.tmTheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
 	"draw_white_space": "all",
+	"enable_tab_scrolling": false,
 	"ensure_newline_at_eof_on_save": true,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
 	// "font_face": "xos4 Terminus",

@@ -1,0 +1,2 @@
+#!/bin/sh
+watch 'sudo rabbitmqctl list_queues name messages_unacknowledged messages_ready messages durable auto_delete consumers | grep -v "\.\.\." | sort | column -t;'
