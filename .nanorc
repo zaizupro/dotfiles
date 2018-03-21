@@ -1,0 +1,78 @@
+
+## Use auto-indentation.
+# set autoindent
+
+## Constantly display the cursor position in the statusbar.  Note that
+## this overrides "quickblank".
+set const
+
+## Use cut to end of line by default.
+set cut
+
+## The opening and closing brackets that can be found by bracket
+## searches.  They cannot contain blank characters.  The former set must
+## come before the latter set, and both must be in the same order.
+##
+set matchbrackets "(<[{)>]}"
+
+## Use the blank line below the titlebar as extra editing space.
+set morespace
+
+## Enable mouse support, if available for your system.  When enabled,
+## mouse clicks can be used to place the cursor, set the mark (with a
+## double click), and execute shortcuts.  The mouse will work in the X
+## Window System, and on the console when gpm is running.
+##
+set mouse
+
+## Don't display the helpful shortcut lists at the bottom of the screen.
+set nohelp
+
+## Don't wrap text at all.
+set nowrap
+
+## Use smooth scrolling as the default.
+set smooth
+
+## Allow nano to be suspended.
+set suspend
+
+## Use this tab size instead of the default; it must be greater than 0.
+set tabsize 4
+
+## Convert typed tabs to spaces.
+set tabstospaces
+
+bind ^Q exit all
+
+bind ^F whereis main
+
+#bind ^Q uncut all
+
+bind ^D uncut all
+
+bind ^S cut all
+
+
+
+## Nanorc files
+include "/usr/share/nano/nanorc.nanorc"
+
+## C/C++
+include "/usr/share/nano/c.nanorc"
+
+
+## Patch files
+include "/usr/share/nano/patch.nanorc"
+
+## Manpages
+include "/usr/share/nano/man.nanorc"
+
+## Bourne shell scripts
+include "/usr/share/nano/sh.nanorc"
+
+## XML-type files
+include "/usr/share/nano/xml.nanorc"
+
+
+
