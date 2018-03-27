@@ -77,11 +77,13 @@ URxvt.background: #201500
 !URxvt*foreground: #B1680a
 
 !URxvt*foreground: #c58010
-URxvt*foreground: #C1882B
+!URxvt*foreground: #C1882B
+URxvt*foreground: #D7B270
 
 
 URxvt.colorIT:           #E2A43E
-URxvt.colorBD:           #CF8205
+!URxvt.colorBD:           #CF8205
+URxvt.colorBD:           #EB8E1F
 
 URxvt.colorUL:           #EBAB43
 URxvt.underlineColor:    #AD7F33
