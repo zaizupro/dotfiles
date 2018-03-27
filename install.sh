@@ -118,6 +118,8 @@ if [ "${1}" == "configs" ]; then
     if [ "$2" == "common" ] || [ "${2}" = "all" ]; then
         ${LNCOMMAND} $DOTFILES/.tigrc                  $HOME/.tigrc
         ${LNCOMMAND} $DOTFILES/.xterm                  $HOME/.xterm
+        ${LNCOMMAND} $DOTFILES/.rofi.conf              $HOME/.rofi.conf
+        ${LNCOMMAND} $DOTFILES/.nanorc                 $HOME/.nanorc
         ${LNCOMMAND} $DOTFILES/.gitconfig              $HOME/.gitconfig
         ${CPCOMMAND} $DOTFILES/.gitconfig.user         $HOME/.gitconfig.user
     fi
@@ -151,6 +153,7 @@ fi
 if [ "${1}" == "entries" ]; then
     ${ADDXRESENTRY} ".urxvtrc"
     ${ADDXRESENTRY} ".Xresources.colors"
+    ${ADDXRESENTRY} ".rofi.conf"
 fi
 
 
