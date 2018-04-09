@@ -186,7 +186,7 @@ tardat()
 zipdat()
 {
     if [[ -e $1 ]]; then
-        zip -r $1.zip $1
+        zip -r $1.$(date +%Y%m%d%H%M%S).zip $1
     else
         echo "'$1' is not a valid file"
     fi
