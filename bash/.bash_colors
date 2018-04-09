@@ -8,10 +8,10 @@
 
 ##include dat in .bashrc
 
-if [ "..${TERM}"  != ".." ]; then
+if [ "..${TERM}" != ".." ]; then
     #echo $TERM
     COLORSNUM=$(tput colors)
-    if [ "..${COLORSNUM}"  != ".." ]; then
+    if [ "..${COLORSNUM}" != ".." ]; then
         if [ "$COLORSNUM" -eq 256 ]; then
             ##========== 256 colors =======##
             #echo "[ colors: 256 ]"
@@ -59,17 +59,29 @@ if [ "..${TERM}"  != ".." ]; then
 fi
 
 
-__colors_printor()
+
+##[==================================]##
+__print_color_line()
 {
-    for _i in $(seq $1 $2 ) ; do tput setaf $_i ; echo -n "${SOMON} ${SOMOF}" ; done ; echo ""
+    for _i in $(seq $1 $2 ) ; do tput setaf $_i ; echo -n " ${SOMON}  ${SOMOF}"
+        if (( $_i == 7 )) || ((( $_i == 15 )) || (( $_i > 15 )) && (( ($_i-15) % 6 == 0 ))); then echo "" ; fi
+    done
 }
 
+##[==================================]##
+__print_colors_oneline()
+{
+    for _i in $(seq 0 $(expr $(tput colors) - 1) ) ; do tput setaf $_i ; echo -n " $(tput smso)  $(tput rmso)" ; if (( $_i == 7 )) || ((( $_i == 15 )) || (( $_i > 15 )) && (( ($_i-15) % 6 == 0 ))); then echo "" ; fi ; done
+}
+
+##[==================================]##
 #check colors
 __colors_checker()
 {
     echo "colors: $(tput colors)"
     if [ -x /usr/bin/tput ]; then
-        __colors_printor "0" "16"
-        echo ${NC}
+        echo "${NC}[ START ]"
+        __print_color_line "0" "$(expr $(tput colors) - 1)"
+        echo "${NC}[ END ]"
     fi
 }
