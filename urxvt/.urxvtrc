@@ -74,6 +74,15 @@ URxvt*cursorBlink:                    true
 !orange bg fg
 !URxvt.background: #32260E   !good 
 URxvt.background: #201500
+URxvt.background: #29271D
+
+!good
+URxvt.background: #2B291E
+
+URxvt.background: #212017
+
+
+
 !URxvt*foreground: #B1680a
 
 !URxvt*foreground: #c58010
@@ -84,8 +93,12 @@ URxvt*foreground: #D7B270
 URxvt.colorIT:           #E2A43E
 !URxvt.colorBD:           #CF8205
 URxvt.colorBD:           #EB8E1F
+!URxvt.colorBD:           #DFA256
+!URxvt.colorBD:           #D59C54
+URxvt.colorBD:           #D5923C
 
-URxvt.colorUL:           #EBAB43
+
+URxvt.colorUL:           #EBC963
 URxvt.underlineColor:    #AD7F33
 
 !-=======[FG]=======-!
@@ -104,6 +117,7 @@ URxvt.underlineColor:    #AD7F33
 !-=======[FG_EXT]=======-!
 !URxvt.colorBD:           #FF8700
 !URxvt.colorIT:           #bbbbbb
+URxvt.colorIT:           #E2BE3E
 
 !pink
 !URxvt.colorUL:           #FFD7D7
