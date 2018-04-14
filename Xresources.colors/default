@@ -11,21 +11,19 @@
 *.background:   #2d2d2d
 *.cursorColor:  #FF8700
 
-! black
+! Black + DarkGrey
 *.color0:       #2d2d2d
 *.color8:       #8C8B7F
 
-! red
-!*.color1:       #DA3236
+! DarkRed + Red
 *.color1:       #B90000
 *.color9:       #FF2C31
-!#f2777a
 
-! green
+! DarkGreen + Green
 *.color2:       #7DAB07
 *.color10:      #b1d631
 
-! yellow
+! DarkYellow + Yellow
 *.color3:       #ffcc66
 *.color11:      #FFB92E
 
@@ -33,13 +31,11 @@
 *.color4:       #6699cc
 *.color12:      #90b0d1
 
-! magenta
+! DarkMagenta + Magenta
 *.color5:       #cc99cc
 *.color13:      #cc99cc
 
 ! cyan
-!*.color6:       #66cccc
-!*.color14:      #66cccc
 *.color6:       #DAFFFF
 *.color14:      #87ceeb
 
