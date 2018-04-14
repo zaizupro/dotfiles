@@ -1,6 +1,11 @@
 
-xbindkeys
+xrdb ~/.Xresources
 
-## BG wallpaper
-feh  --image-bg black --bg-max ~/.BGWALPPR
+feh  --image-bg black --bg-scale ${HOME}/.BGWALPPR
+
+#xautolock -time 10 -locker slock
+
+compton &
+sxhkd &
+exec bspwm
 
