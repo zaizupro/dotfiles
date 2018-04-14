@@ -1,0 +1,47 @@
+!##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++##
+!##+                                                                          ##
+!##+                                                                          ##
+!##+                      zaizu dark colors for Xresources                    ##
+!##+                                                                          ##
+!##+                                                                          ##
+!##+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++##
+
+! special
+*.foreground:   #d3d0c8
+*.background:   #2d2d2d
+*.cursorColor:  #D7B270
+
+! Black + DarkGrey
+*color0:        #282828
+*color8:        #928374
+
+! DarkRed + Red
+*color1:        #cc241d
+*color9:        #fb4934
+
+! DarkGreen + Green
+*color2:        #98971a
+*color10:       #b8bb26
+
+! DarkYellow + Yellow
+*color3:        #d79921
+*color11:       #fabd2f
+
+! blue
+*.color4:       #6699cc
+*.color12:      #90b0d1
+
+! DarkMagenta + Magenta
+*color5:        #b16286
+*color13:       #d3869b
+
+! cyan
+*.color6:       #B5FFFF
+*.color14:      #87ceeb
+
+! white
+*.color7:       #d3d0c8
+*.color15:      #f2f0ec
+
+
+
