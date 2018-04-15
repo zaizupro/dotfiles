@@ -1,0 +1,56 @@
+#!/bin/sh
+
+NEWLINE=$(sed -n 1p  /proc/stat)
+
+if [ -f "/tmp/cpuusage_stat_tmp" ]; then
+    PREVLINE=$(sed -n 1p  /tmp/cpuusage_stat_tmp)
+else
+    echo ${NEWLINE} > /tmp/cpuusage_stat_tmp
+    exit 1
+fi
+
+echo ${NEWLINE} > /tmp/cpuusage_stat_tmp
+
+##----------------------------------------------------------------##
+user=$(         echo "${NEWLINE}" | awk -F " " '{print $2}' )
+nice=$(         echo "${NEWLINE}" | awk -F " " '{print $3}' )
+system=$(       echo "${NEWLINE}" | awk -F " " '{print $4}' )
+idle=$(         echo "${NEWLINE}" | awk -F " " '{print $5}' )
+iowait=$(       echo "${NEWLINE}" | awk -F " " '{print $6}' )
+irq=$(          echo "${NEWLINE}" | awk -F " " '{print $7}')
+softirq=$(      echo "${NEWLINE}" | awk -F " " '{print $8}')
+steal=$(        echo "${NEWLINE}" | awk -F " " '{print $9}')
+guest=$(        echo "${NEWLINE}" | awk -F " " '{print $10}')
+guest_nice=$(   echo "${NEWLINE}" | awk -F " " '{print $11}')
+
+prevuser=$(         echo "${PREVLINE}" | awk -F " " '{print $2}' )
+prevnice=$(         echo "${PREVLINE}" | awk -F " " '{print $3}' )
+prevsystem=$(       echo "${PREVLINE}" | awk -F " " '{print $4}' )
+previdle=$(         echo "${PREVLINE}" | awk -F " " '{print $5}' )
+previowait=$(       echo "${PREVLINE}" | awk -F " " '{print $6}' )
+previrq=$(          echo "${PREVLINE}" | awk -F " " '{print $7}')
+prevsoftirq=$(      echo "${PREVLINE}" | awk -F " " '{print $8}')
+prevsteal=$(        echo "${PREVLINE}" | awk -F " " '{print $9}')
+prevguest=$(        echo "${PREVLINE}" | awk -F " " '{print $10}')
+prevguest_nice=$(   echo "${PREVLINE}" | awk -F " " '{print $11}')
+
+##----------------------------------------------------------------##
+PrevIdle=$((previdle + previowait))
+Idle=$((idle + iowait))
+
+PrevNonIdle=$((prevuser + prevnice + prevsystem + previrq + prevsoftirq + prevsteal))
+NonIdle=$((user + nice + system + irq + softirq + steal))
+
+PrevTotal=$((PrevIdle + PrevNonIdle))
+Total=$((Idle + NonIdle))
+
+totald=$((Total - PrevTotal))
+idled=$((Idle - PrevIdle))
+
+CPU_Percentage=$(awk "BEGIN {print ($totald - $idled)/$totald*100}")
+
+if [[ "$cpu" == "cpu" ]]; then
+    echo "total "$CPU_Percentage
+else
+    echo $cpu" "$CPU_Percentage
+fi
