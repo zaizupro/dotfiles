@@ -18,7 +18,7 @@ alias homesize='du -hs ~'
 alias topc='top -o%CPU'
 alias topm='top -o%MEM'
 alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\n'"
-alias psw='ps auxf|less -S'
+alias psw='ps xawwf -eo pid,user,%cpu,%mem,args | less -S'
 alias mktd='mkdir $(date +%Y%m%d)'
 
 ##[==========================================================================]##
