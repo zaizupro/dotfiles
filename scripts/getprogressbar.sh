@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VALUE=${1}
+VALUE=${1%.*}
 if [ 0 -eq ${#VALUE} ]; then
     exit 1;
 fi
