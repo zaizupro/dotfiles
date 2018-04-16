@@ -1,15 +1,18 @@
 #!/bin/sh
 
+TMPSTATFILE="/tmp/$(whoami)_cpuusage_stat_tmp"
+#echo ${TMPSTATFILE}
+
 NEWLINE=$(sed -n 1p  /proc/stat)
 
-if [ -f "/tmp/cpuusage_stat_tmp" ]; then
-    PREVLINE=$(sed -n 1p  /tmp/cpuusage_stat_tmp)
+if [ -f "${TMPSTATFILE}" ]; then
+    PREVLINE=$(sed -n 1p  ${TMPSTATFILE})
 else
-    echo ${NEWLINE} > /tmp/cpuusage_stat_tmp
+    echo ${NEWLINE} > ${TMPSTATFILE}
     exit 1
 fi
 
-echo ${NEWLINE} > /tmp/cpuusage_stat_tmp
+echo ${NEWLINE} > ${TMPSTATFILE}
 
 ##----------------------------------------------------------------##
 user=$(         echo "${NEWLINE}" | awk -F " " '{print $2}' )
