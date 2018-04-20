@@ -1,5 +1,5 @@
 <snippet>
-	<description>lambda</description>
+	<description>full context lambda</description>
 	<content><![CDATA[
 auto ${3:funcname} = [&](const ${1:TYPE}& ${2:name})
 {
@@ -10,6 +10,6 @@ auto ${3:funcname} = [&](const ${1:TYPE}& ${2:name})
     return result;
 };
 ]]></content>
-	<tabTrigger>_lam_</tabTrigger>
+	<tabTrigger>lam_</tabTrigger>
 	<scope>source.c++, source.objc++</scope>
 </snippet>

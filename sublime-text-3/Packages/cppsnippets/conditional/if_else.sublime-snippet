@@ -1,14 +1,15 @@
 <snippet>
-	<description>if(…)</description>
+	<description>if else</description>
 	<content><![CDATA[
-if(${0:/* condition */})
-{${1}
+if(${1:/* condition */})
+{
+    ${2}
 }
 else
 {
-$TM_SELECTED_TEXT
+    $TM_SELECTED_TEXT${0}
 }
 ]]></content>
-	<tabTrigger>_if_</tabTrigger>
+	<tabTrigger>if_</tabTrigger>
 	<scope>source.c, source.objc, source.c++, source.objc++</scope>
 </snippet>

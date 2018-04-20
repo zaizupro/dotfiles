@@ -1,0 +1,14 @@
+<snippet>
+        <description>scope dat </description>
+        <content><![CDATA[
+{
+    $TM_SELECTED_TEXT${0}
+}
+]]></content>
+        <tabTrigger>scope</tabTrigger>
+        <scope>source.c, source.objc, source.c++, source.objc++</scope>
+</snippet>
+
+
+
+

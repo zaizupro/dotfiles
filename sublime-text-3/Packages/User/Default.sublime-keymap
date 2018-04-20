@@ -89,9 +89,9 @@
 
     { "keys": ["ctrl+t", "ctrl+f"], "command": "goto_definition" },
 
-    { "keys": ["ctrl+shift+g"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/makeDefineGuard.sublime-snippet"}},
-    { "keys": ["ctrl+shift+i"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/if.sublime-snippet"}},
-    { "keys": ["ctrl+shift+e"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/if_else.sublime-snippet"}},
+    { "keys": ["ctrl+shift+g"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/utilities/makeDefineGuard.sublime-snippet"}},
+    { "keys": ["ctrl+shift+i"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/conditional/if.sublime-snippet"}},
+    { "keys": ["ctrl+shift+e"],"command": "insert_snippet", "args": {"name": "Packages/cppsnippets/conditional/if_else.sublime-snippet"}},
 
     // ESC
     { "keys": ["escape", "c"], "command": "new_file" },
