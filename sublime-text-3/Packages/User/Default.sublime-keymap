@@ -3,6 +3,10 @@
 //[==========================================================================]//
 // EXPERIMENTAL
 
+    /// horizontal screen scroll
+    { "keys": [ "alt+left" ], "command": "scroll_width", "args": {"amount": -10 } },
+    { "keys": [ "alt+right" ], "command": "scroll_width", "args": {"amount": 10 } },
+
     /// ctrl+alt+q
     { "keys": ["escape", "q"], "command": "toggle_record_macro" },
     /// ctrl+alt+shift+q
@@ -97,6 +101,6 @@
     { "keys": ["escape", "m"], "command": "toggle_menu"},
 
     // stop retarded command dat breaks texts  >:0
-    { "keys": ["ctrl+t"], "command": "" }
+    { "keys": ["ctrl+t"] }
 
 ]
