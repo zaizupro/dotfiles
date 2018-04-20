@@ -94,22 +94,20 @@ contexts:
       scope: storage.modifier.c++
     - match: \b(private:|protected:|public:)
       scope: storage.modifier.c++
-    - match: \b(export|mutable|typename)\b
-      scope: storage.modifier.c++
     - match: \b(constexpr|auto)\b
       scope: storage.modifier.c++
     - match: \b(override|final|noexcept)\b
       scope: storage.modifier.c++
-    - match: '\bk[A-Z]\w*\b'
-      comment: common C constant naming idiom -- kConstantVariable
-      scope: constant.other.variable.mac-classic.c
-    - match: '\bg[A-Z]\w*\b'
-      scope: variable.other.readwrite.global.mac-classic.c
-    - match: '\bs[A-Z]\w*\b'
-      scope: variable.other.readwrite.static.mac-classic.c
-    - match: '\b(f|m)[A-Z]\w*\b'
-      comment: common C++ instance var naming idiom -- fMemberName
-      scope: variable.other.readwrite.member.c++
+    # - match: '\bk[A-Z]\w*\b'
+    #   comment: common C constant naming idiom -- kConstantVariable
+      # scope: constant.other.variable.mac-classic.c
+    # - match: '\bg[A-Z]\w*\b'
+    #   scope: variable.other.readwrite.global.mac-classic.c
+    # - match: '\bs[A-Z]\w*\b'
+    #   scope: variable.other.readwrite.static.mac-classic.c
+    # - match: '\b(f|m)[A-Z]\w*\b'
+    #   comment: common C++ instance var naming idiom -- fMemberName
+      # scope: variable.other.readwrite.member.c++
     - match: \bthis\b
       scope: variable.language.c++
     - match: \b(NULL|true|false|TRUE|FALSE)\b
@@ -162,12 +160,12 @@ contexts:
       scope: meta.function.c entity.name.function.c
     - match: '(?<=\.)\w+(?=[^\w|\.])'
       scope: meta.function.c meta.block.c meta.function-call.c support.function.any-method.c
-    - match: (?<=\:\:)\w+
-      scope: meta.function.c entity.name.function.c
-    - match: '\w+\:\:'
-      scope: meta.function.c entity.name.function.c
-    - match: \:\:\w+
-      scope: meta.function.c entity.name.function.c
+    # - match: (?<=\:\:)\w+
+    #   scope: meta.function.c entity.name.function.c
+    # - match: '\w+\:\:'
+      # scope: meta.function.c entity.name.function.c
+    # - match: \:\:\w+
+    #   scope: meta.function.c entity.name.function.c
     - match: \+\=|\-\=|\*\=|\/\=|\%\=|\&\=|\|\=|\^\=|\<\<\=|\>\>\=
       scope: keyword.operator.compound.ccpp
     - match: '\?|\:'
@@ -214,6 +212,8 @@ contexts:
       scope: open.angle.bracket.ccpp
     - match: '\]'
       scope: close.angle.bracket.ccpp
+    - match: '\]|\[|\)|\(|\}|\{|\<|\>'
+      scope: brekets
     - match: \.
       scope: period.ccpp
     - match: \,
