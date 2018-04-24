@@ -49,6 +49,10 @@ alias ll='ls -AhFGg --time-style=+ --group-directories-first'
 alias lll='ls -lAF --color=no'  #TODO make colorifikator of permishons
 #alias ll='ls -lahF --color=no |__filtor'
 
+alias getrandomcolor="_(){
+             echo $((1 + RANDOM % 10))
+            }; _\$@"
+
 ## list hidden files
 alias lsh='ls -A | grep "^\."'
 
