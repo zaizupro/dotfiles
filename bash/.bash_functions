@@ -180,6 +180,18 @@ __printfullline2()
 }
 
 ##[==========================================================================]##
+## fill spaces for str up 2 max length
+__fillstr()
+{
+    MAXLEN=${1}
+    STR=${2}
+    while [ ${#STR} -lt ${MAXLEN} ]; do
+        STR=" "${STR}
+    done
+    echo "${STR}"
+}
+       
+##[==========================================================================]##
 ## tar that
 tarthat()
 {

@@ -6,6 +6,25 @@
 ##|                                                                          |##
 ##============================================================================##
 
+
+#================CUSTOM_FUNCTIONS===================
+# Source bash functions, if present
+if [ -f ${HOME}/.bash_functions ]; then
+    source ${HOME}/.bash_functions
+fi
+
+
+
+__local_fillstr() { echo $2; }
+
+FILLSTRCOMMAND="__local_fillstr"
+if [ "$(type -t __fillstr)" = "function" ]; then
+    FILLSTRCOMMAND="__fillstr"
+fi
+##[==========================================================================]##
+
+
+
 ##include dat in .bashrc
 
 if [ "..${TERM}" != ".." ]; then
@@ -58,12 +77,13 @@ if [ "..${TERM}" != ".." ]; then
     ## echo "[ TERM empty ]"
 fi
 
-
-
 ##[==================================]##
 __print_color_line()
 {
-    for _i in $(seq $1 $2 ) ; do tput setaf $_i ; echo -n " ${SOMON}  ${SOMOF}"
+    STARTCOLORNUM=$1
+    ENDCOLORNUM=$2
+
+    for _i in $(seq "${STARTCOLORNUM}" "${ENDCOLORNUM}" ) ; do tput setaf $_i ; echo -n " ${SOMON} $(${FILLSTRCOMMAND} ${#ENDCOLORNUM} $_i) ${SOMOF}"
         if (( $_i == 7 )) || ((( $_i == 15 )) || (( $_i > 15 )) && (( ($_i-15) % 6 == 0 ))); then echo "" ; fi
     done
 }
