@@ -11,6 +11,9 @@
 
 #clean -xdf
 
+## get remote revision
+# echo $(git ls-remote $(git rev-parse --abbrev-ref @{u} | sed 's/\// /g') | cut -f1)
+
       # show changed files for a commit
       cf = show --pretty="format:" --name-only
       
@@ -30,10 +33,10 @@
     ui = true
 
 [color "decorate"]
-    branch = 16 208
+    branch = 220 58
     remoteBranch = 220 94
     tag = 190 58
-    stash = 33
+    stash = 141 53
     HEAD = 196 52
 
 [color "diff"]
