@@ -1,10 +1,15 @@
+##                                                                            ##
+##                            ZAIZU's git configs                             ##
+##                                                                            ##
+[pretty]
+        llformat = format:%C(130)%ad%Creset %C(214 94)%h%Creset %s%Creset %C(94)[ %an ]%Creset %C(auto)%d%Creset %Cgreen(%cr)%Creset
+
 [alias]
     last = log -1 HEAD
     lasd = diff HEAD^ HEAD
       st = status -sb
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
        l = log --oneline --graph --decorate
-      ll = log --graph --pretty=format:'%C(16 208)%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+      ll = log --graph --pretty=llformat --abbrev-commit --date=short
       co = checkout
     repo = config --get remote.origin.url
       br = branch -a
@@ -16,7 +21,7 @@
 
       # show changed files for a commit
       cf = show --pretty="format:" --name-only
-      
+
      day = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday 11:59PM\" --author=\"`git config --get user.name`\"'"
 
    # show number of commits per contributor, sorted
@@ -36,32 +41,32 @@
     branch = 220 58
     remoteBranch = 220 94
     tag = 190 58
-    stash = 141 53
-    HEAD = 196 52
+    stash = 183 54
+    HEAD = 202 52
 
 [color "diff"]
-    plain = 221
-    meta = 222 130
-    frag = 16 221
-    func = 222 94
-    old = 196 52
-    new = 154 22
-    whitespace = 52 208
+    plain =
+    meta = 16 214
+    frag = 16 208
+    func = 208
+    old = 202 52
+    new = 190 58
+    whitespace = 52 227
 
 [color "branch"]
-    plain = 221
+    plain = 214
     upstream = 154
-    current = 222 130
-      local = 222
-     remote = 208
+    current = 16 214
+    local = 214
+    remote = 184
 
 [color "status"]
     added = 208 22
-    header = 222
-    changed = 220 94
-    updated = 154 22
-    untracked = 196 52
-    branch = 16 208
+    header =
+    changed = 226 94
+    updated = 190 58
+    untracked = 202 52
+    branch = 16 214
 
 [include]
     path = .gitconfig.user
