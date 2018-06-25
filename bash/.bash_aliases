@@ -31,6 +31,8 @@ __ll()
 
 #ls -lAhF  |  awk '{out="";for(i=9;i<=NF;i++){out=out" "$i};print $1" "$5""out}'
 
+alias grep="grep --color=auto $@"
+
 alias grepdat="_(){
           grep -n \${1} . -rI
           }; _\$@"
@@ -92,6 +94,7 @@ SETTERM="TERM=xterm-256color"
 alias tma='_(){
            SESSIONNAME=${1}
            export ${SETTERM}
+           [ ${#SESSIONNAME} == 0 ]; tmls && return 0
            [ $(tmux has -t ${SESSIONNAME} >/dev/null 2>&1 ;echo $?) == 0 ] \
            &&  tmux attach -t ${SESSIONNAME} \
            || tmux new -s ${SESSIONNAME}

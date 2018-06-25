@@ -74,9 +74,11 @@ fi
 
 EDITOR=nano
 
+## TODO make for loop throu add dirs in _bin
 # set PATH so it includes user's private bin if it exists
 if [ -d ${HOME}/_bin ] ; then
     PATH="${HOME}/_bin:${PATH}"
+    PATH="${HOME}/_bin/vm:${PATH}"
 fi
 
 ENV=${HOME}/.bashrc
