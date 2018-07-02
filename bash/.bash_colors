@@ -52,6 +52,8 @@ if [ "..${TERM}" != ".." ]; then
 
             ORANGE=$(tput setaf 208)
 
+            PURPFGBG=$(tput setab 54;tput setaf 183)
+
         else
             ##== 8 colors ================##
             #echo "[ colors: 8 ]"
