@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo service nfs-kernel-server restart
-sudo service idmapd restart 
+#sudo service nfs-kernel-server restart
+#sudo service idmapd restart 
 
-#exportfs -rav
+sudo exportfs -rav
