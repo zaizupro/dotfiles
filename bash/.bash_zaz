@@ -9,6 +9,9 @@ if [ -f ${HOME}/.bash_colors ]; then
     source ${HOME}/.bash_colors
 fi
 
+##== experimental ==##
+export GCC_COLORS='error=07;31:warning=01;33:note=01;32:caret=01;32:locus=01:quote=01'
+
 #===============VARIABLES============
 ## PS1 PROMPT LINE
 
