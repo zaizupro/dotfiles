@@ -7,19 +7,19 @@ color   title-focus             16      208
 color   title-blur              16      208
 color   delimiter               196     default
 color   author                  208     default
-color   date                    16      172
+color   date                    130     default
 color   line-number             221     default
 color   id                      16      198
 color   mode                    255     default
 
 # main
-color   main-tag                213     default     bold
-color   main-local-tag          213     default
-color   main-remote             154     default
+color   main-tag                190     58     bold
+color   main-local-tag          213     58
+color   main-remote             196     94
 color   main-replace            196      default
-color   main-tracked            221     default     bold
+color   main-tracked            220      58     bold
 color   main-ref                81      default
-color   main-head               213     default     bold
+color   main-head               213     160     bold
 color   graph-commit            208     default
 
 # status
@@ -94,12 +94,12 @@ set refresh-mode                = after-command          # Enum: manual, auto, a
 #set refresh-mode                = manual          # Enum: manual, auto, after-command,
 #set refresh-interval            = 1
 set horizontal-scroll           = 50%
-set editor-line-number          = yes
+#set editor-line-number          = yes
 #set line-number                 = yes
 
 set pager-view  = line-number:yes,interval=5 text
 set stage-view  = line-number:yes,interval=1 text
-set log-view    = line-number:yes,interval=5 text
+#set log-view    = line-number:yes,interval=5 text
 set status-view = line-number:yes status:short file-name
 set diff-view   = line-number:yes,interval=1 text:yes,commit-title-overflow=no
 
