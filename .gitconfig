@@ -14,6 +14,9 @@
     repo = config --get remote.origin.url
       br = branch -a
 
+## command to squash the recent {N} commits:
+## git reset --soft HEAD~{N}  
+
 #clean -xdf
 
 ## get remote revision
