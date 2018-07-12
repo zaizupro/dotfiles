@@ -2,8 +2,10 @@
 ## Use auto-indentation.
 # set autoindent
 
-## Constantly display the cursor position in the statusbar.  Note that
-## this overrides "quickblank".
+## Constantly display the cursor position in the statusbar.
+## Note that this overrides "quickblank".
+## 'const'         for version <  2.9.7
+## 'constantshow'  for version >= 2.9.7
 set constantshow
 
 ## Use cut to end of line by default.
