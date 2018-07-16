@@ -1,13 +1,8 @@
-##add in $HOME/.bashrc next lines:
-##if [ -f ${HOME}/.bash_zaz ]; then
-##    source ~/.bash_zaz
-##fi
+##add in $HOME/.bashrc :
+## [[ -f "${HOME}/.bash_zaz" ]] && source "${HOME}/.bash_zaz"
 
 #==============COLORS============
-# add some color
-if [ -f ${HOME}/.bash_colors ]; then
-    source ${HOME}/.bash_colors
-fi
+[[ -s "${HOME}/.bash_colors" ]] && source "${HOME}/.bash_colors" # Load some colors
 
 ##== experimental ==##
 export GCC_COLORS='error=07;31:warning=01;33:note=01;32:caret=01;32:locus=01:quote=01'
@@ -36,7 +31,7 @@ __getprompt()
 
 #PS1='\[${NC}\]\[${ORANGE}\]$(__getprompt)\r>\[${NC}\]'
 #PS1='\[${NC}\]\[${ORANGE}\]>\[${NC}\]'
-PS1='\[${NC}\]\[$(tput setaf 214)\]>\[$(tput setaf 208)\]>\[$(tput setaf 202)\]>\[${NC}\]'
+#PS1='\[${NC}\]\[$(tput setaf 214)\]>\[$(tput setaf 208)\]>\[$(tput setaf 202)\]>\[${NC}\]'
 
 
 ##[==========================================================================]##
@@ -63,6 +58,7 @@ _get_s_part()
 }
 
 
+# 
 PS1='\[${NC}\]\[$(tput setaf 214)\]$(_get_f_part)\[$(tput setaf 208)\]$(_get_s_part)\[$(tput setaf 202)\]>\[${NC}\]'
 ##                                                                            ##
 ##[==========================================================================]##
@@ -92,27 +88,25 @@ export EDITOR ENV PATH DOTFILES WORKSPACE
 
 
 # configure how history works
-HISTCONTROL=ignoreboth
+HISTCONTROL=ignoreboth        # don't put duplicate lines or lines starting with space in the history.
 #HISTCONTROL=ignoredups                            # ignore the line if it matches previous line
 HISTFILESIZE=20000                                # size of the history file cf. also shopt -s histappend
 HISTSIZE=1000                                     # size of the run-time history list
 HISTIGNORE=ls:ll:lll:la:l:cd:pwd:exit:mc:su:df:clear:rm  # do not put these in history file
 #HISTFILE=$HOME/.bash_history-`hostname`               # track history by host
+
+## --status-column Display a status column
+LESS='--ignore-case  --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --window=-4'
+
 # export settings
-export HISTCONTROL HISTSIZE HISTFILESIZE HISTIGNORE #HISTFILE
+export LESS HISTCONTROL HISTSIZE HISTFILESIZE HISTIGNORE #HISTFILE
 
 export LC_COLLATE=C
 
 #================CUSTOM_FUNCTIONS===================
-# Source bash functions, if present
-if [ -f ${HOME}/.bash_functions ]; then
-    source ${HOME}/.bash_functions
-fi
+[[ -f "${HOME}/.bash_functions" ]] && source "${HOME}/.bash_functions"
 
 #====================ALIASES======================
-if [ -f ${HOME}/.bash_aliases ]; then
-    source ${HOME}/.bash_aliases
-fi
+[[ -f "${HOME}/.bash_aliases" ]] && source "${HOME}/.bash_aliases"
 
-#echo "█▒"
 
