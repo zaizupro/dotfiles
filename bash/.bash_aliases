@@ -109,9 +109,9 @@ alias tmr='tmux rename-window $(basename $PWD)'
 ##[==========================================================================]##
 ##-=[ungrouped]=-##
 #alias fixpng='find . -type f -name *.png -exec convert {} -strip {} \;'
-alias pup='sudo pacman -Suy --color=auto $@'
-alias pacman='pacman --color=auto $@'
-alias pins='sudo pacman -S --color=auto $@'
+alias pacman='pacman --color=auto "$@"'
+alias pup='sudo pacman -Suy "$@"'
+alias pins='sudo pacman -S "$@"'
 
 
 alias pw='sudo pacman $2 $1'
