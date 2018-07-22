@@ -13,6 +13,7 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/top]
+;enable-ipc = true
 width = 100%
 height = 20
 radius = 0.0
@@ -35,7 +36,8 @@ font-0 = "xos4 Terminus:bold:pixelsize=16;3"
 
 modules-left = bspwm
 modules-center =
-modules-right = filesystem volume xkeyboard updates-arch __loadavg __customcpu cpu date powermenu
+;modules-right = filesystem volume xkeyboard updates-arch __loadavg __customcpu cpu date powermenu
+modules-right = filesystem volume xkeyboard updates-arch cpu custom_date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -109,6 +111,21 @@ interval = 1
 type = custom/script
 exec = updates_arch.sh
 interval = 600
+click-left = rofi -e "$(updates_arch.sh)"
+;click-right =
+
+
+
+[module/custom_date]
+type = custom/script
+exec = "date  +'[%A %F] [%T]'"
+
+interval = 1
+click-left = rofi -e "$(cal)"
+format-foreground =#f90
+;format-background =#111
+
+
 
 [module/cpu]
 type = internal/cpu
