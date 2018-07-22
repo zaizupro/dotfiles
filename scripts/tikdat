@@ -1,3 +1,0 @@
-#!/bin/sh 
-
-while [ 1 = 1 ]; do sleep 1; sh -c "${1}"; done

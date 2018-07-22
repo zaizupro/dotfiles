@@ -20,6 +20,7 @@ alias topm='top -o%MEM'
 alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\n'"
 alias psw='ps xawwf -eo pid,user,%cpu,%mem,args | less -S'
 alias mktd='mkdir -v $(date +%Y%m%d)'
+alias tikdat="_(){ while [ 1 = 1 ]; do sleep 1;echo \$(\${1}); done }; _\$@"
 
 ##[==========================================================================]##
 ##-=[print files]=-##
