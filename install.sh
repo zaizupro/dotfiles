@@ -73,6 +73,7 @@ if [ "..${ARGS}" == "..0" ]; then
     echo "          urxvt"
     echo "          common"
     echo "          xres"
+    echo "          polybar"
     echo ""
     echo "utils"
     echo "entries"
@@ -127,6 +128,12 @@ if [ "${1}" = "configs" ]; then
     ## xres files
     if [ "${2}" = "xres" ] || [ "${2}" = "all" ]; then
         ${LNCOMMAND} ${DOTFILES}/Xresources.colors/default    ${HOME}/.Xresources.colors
+    fi
+
+    ## polybar files
+    if [ "${2}" = "polybar" ] || [ "${2}" = "all" ]; then
+        ${MKDIRCOMMAND} ${HOME}/.config/polybar
+        ${LNCOMMAND} ${DOTFILES}/polybar/config    ${HOME}/.config/polybar/config
     fi
 
 
