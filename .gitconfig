@@ -5,6 +5,10 @@
         llformat = format:%C(130)%ad%Creset %C(214 94)%h%Creset %s%Creset %C(94)[ %an ]%Creset %C(auto)%d%Creset %Cgreen(%cr)%Creset
 
 [alias]
+    # list all aliases
+    aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+
+     ver = !git log -1 --format='%cd.%h' --date=short | tr -d -
     last = log -1 HEAD
     lasd = diff HEAD^ HEAD
       st = status -sb
