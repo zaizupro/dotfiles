@@ -2,7 +2,8 @@
 
 # general
 color   default                 default      default
-color   cursor                  16      214
+#color   cursor                  16      214
+color   cursor                  225      93
 color   title-focus             16      208
 color   title-blur              16      208
 color   delimiter               196     default
