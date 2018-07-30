@@ -19,8 +19,9 @@ alias topc='top -o%CPU'
 alias topm='top -o%MEM'
 alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\n'"
 alias psw='ps xawwf -eo pid,user,%cpu,%mem,args | less -S'
+#alias psdat='ps aux |grep "\${@}" | grep -v grep'
 alias mktd='mkdir -v $(date +%Y%m%d)'
-alias tikdat="_(){ while [ 1 = 1 ]; do sleep 1;echo \$(\${1}); done }; _\$@"
+alias tikdat="_(){ while :; do sleep 1;echo \$(\${1}); done }; _\$@"
 
 ##[==========================================================================]##
 ##-=[print files]=-##
@@ -36,6 +37,10 @@ alias grep="grep --color=auto $@"
 
 alias grepdat="_(){
           grep -n \${1} . -rI
+          }; _\$@"
+
+alias finddat="_(){
+          find . -name '\${1}'
           }; _\$@"
 
 #grep -n '\<\${1}\>' . -rI
@@ -113,7 +118,7 @@ alias tmr='tmux rename-window $(basename $PWD)'
 alias pacman='pacman --color=auto "$@"'
 alias pup='sudo pacman -Suy "$@"'
 alias pins='sudo pacman -S "$@"'
-
+alias xmcedit='urxvt -e mcedit "$@"'
 
 alias pw='sudo pacman $2 $1'
 
