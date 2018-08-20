@@ -100,7 +100,9 @@ SETTERM="TERM=xterm-256color"
 alias tma='_(){
            SESSIONNAME=${1}
            export ${SETTERM}
-           [ ${#SESSIONNAME} == 0 ]; tmls && return 0
+           if [ ${#SESSIONNAME} -eq 0 ]; then
+               tmls ; return 0
+           fi
            [ $(tmux has -t ${SESSIONNAME} >/dev/null 2>&1 ;echo $?) == 0 ] \
            &&  tmux attach -t ${SESSIONNAME} \
            || tmux new -s ${SESSIONNAME}
