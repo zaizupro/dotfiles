@@ -89,6 +89,7 @@ if [ "${TYPE}" == "configs" ]; then
         ${LNCOMMAND} ${DOTFILES}/bash/.bash_colors       ${HOME}/.bash_colors
         ${LNCOMMAND} ${DOTFILES}/bash/.bash_functions    ${HOME}/.bash_functions
         ${LNCOMMAND} ${DOTFILES}/bash/.bash_zaz          ${HOME}/.bash_zaz
+        ${LNCOMMAND} ${DOTFILES}/bash/.bash_ps1          ${HOME}/.bash_ps1
     fi
 
     ## tmux files
