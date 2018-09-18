@@ -1,6 +1,11 @@
 ##[==========================================================================]##
 ##[                              ALIASES                                     ]##
 ##[==========================================================================]##
+
+#==============COLORS============
+[[ -s "${HOME}/.bash_colors" ]] && source "${HOME}/.bash_colors" # Load some colors
+
+##[==========================================================================]##
 ##-=[moving]=-##
 alias s='cd ..'
 alias b='cd -'
@@ -97,6 +102,16 @@ alias gitusers="git shortlog | grep -E '^[^ ]'"
 
 SETTERM="TERM=xterm-256color"
 
+alias tmls='_(){
+           RESULT=$(tmux ls > /dev/null  2>&1; echo $?)
+           if [ ${RESULT} -eq 1 ]; then
+               echo "${YELLOWFGBG}no server running${NC}" ; return 0
+           fi
+           if [ ${RESULT} -eq 0 ]; then
+               tmux ls | cut -d ':' -f 1 ; return 0
+           fi
+           }; _'
+
 alias tma='_(){
            SESSIONNAME=${1}
            export ${SETTERM}
@@ -109,7 +124,6 @@ alias tma='_(){
            }; _'
 
 alias tmn='export ${SETTERM}; tmux new -s'
-alias tmls='tmux ls'
 alias tmk='tmux kill-session -t'
 alias tmr='tmux rename-window $(basename $PWD)'
 
@@ -145,7 +159,7 @@ alias please='sudo '
 alias fail='tail -f'
 
 ## Enable aliases to be sudo’ed
-alias sudo='sudo '
+alias sudo='sudo -p "[sudo] passwd:" '
 
 ##[==========================================================================]##
 ##-=[NET aliases]=-##
