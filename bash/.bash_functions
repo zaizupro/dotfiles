@@ -329,7 +329,7 @@ lnsafe()
 
 
 
-    if [ "..${RESULT}" = "..0" ];then
+    if [ "..${RESULT}" = "..0" ]; then
         ln -s ${SRCPATH} ${DSTPATH}
         echo '[ link created: '${DSTPATH}' ]'
     fi
@@ -338,3 +338,8 @@ lnsafe()
 }
 
 ##[==========================================================================]##
+err()
+{
+    echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $@" >&2
+}
+
