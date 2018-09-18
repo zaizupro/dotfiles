@@ -40,8 +40,41 @@ list_types()
 "
 }
 
-TYPE=${1}
-SUBTYPE=${2}
+
+
+while getopts t:s:lfvh OPTIONS; do
+    case $OPTIONS in
+        t)
+            # echo "t"
+            TYPE=$OPTARG;;
+        s)
+            # echo "s"
+            SUBTYPE=$OPTARG;;
+        l)
+            list_types;;
+        f)
+            # echo "f"
+            force=true;;
+        v)
+            # echo "v"
+            verbose=true;;
+        h)
+            # echo "h"
+            showusage
+            exit 1;;
+        ?)
+            # echo "?"
+            showusage
+            exit 1;;
+        *)
+            # echo "*"
+            showusage
+            exit 1;;
+    esac
+done
+
+# echo "   TYPE: "$TYPE
+# echo "SUBTYPE: "$SUBTYPE
 
 ##[==========================================================================]##
 if [ -f ${DOTFILES}/bash/.bash_functions ]; then
