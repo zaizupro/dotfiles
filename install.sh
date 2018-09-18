@@ -10,6 +10,8 @@ DOTFILES=$PWD
 ##                   "./tmux/.tmux.conf":   "~/.tmux.conf",
 
 
+TYPE=${1}
+SUBTYPE=${2}
 
 ##[==========================================================================]##
 if [ -f ${DOTFILES}/bash/.bash_functions ]; then
@@ -60,12 +62,12 @@ ADDXRESENTRY="addXresEntry"
 
 
 ARGS=${#@}
-if [ "..${ARGS}" == "..0" ]; then
+if [ "..${ARGS}" = "..0" ]; then
     echo "##[=============================]##"
     echo "DOTFILES=${DOTFILES}"
     echo
-    echo -e "\t$0 <type> <category>"
-    echo "types   categories"
+    echo -e "\t$0 <type> <subtype>"
+    echo "types   subtypes"
     echo "configs          "
     echo "          bash"
     echo "          tmux"
@@ -80,9 +82,9 @@ if [ "..${ARGS}" == "..0" ]; then
 fi
 
 ##[==========================================================================]##
-if [ "${1}" = "configs" ]; then
+if [ "${TYPE}" == "configs" ]; then
     #make links
-    if [ "${2}" = "bash" ] || [ "${2}" = "all" ]; then
+    if [ "${SUBTYPE}" = "bash" ] || [ "${SUBTYPE}" = "all" ]; then
         ${LNCOMMAND} ${DOTFILES}/bash/.bash_aliases      ${HOME}/.bash_aliases
         ${LNCOMMAND} ${DOTFILES}/bash/.bash_colors       ${HOME}/.bash_colors
         ${LNCOMMAND} ${DOTFILES}/bash/.bash_functions    ${HOME}/.bash_functions
@@ -90,13 +92,13 @@ if [ "${1}" = "configs" ]; then
     fi
 
     ## tmux files
-    if [ "${2}" = "tmux" ] || [ "${2}" = "all" ]; then
+    if [ "${SUBTYPE}" = "tmux" ] || [ "${SUBTYPE}" = "all" ]; then
         ${LNCOMMAND} ${DOTFILES}/tmux/.tmux.conf         ${HOME}/.tmux.conf
         ${LNCOMMAND} ${DOTFILES}/tmux/.tmux.status.conf  ${HOME}/.tmux.status.conf
     fi
 
     ## mc's files
-    if [ "${2}" = "mc" ] || [ "${2}" = "all" ]; then
+    if [ "${SUBTYPE}" = "mc" ] || [ "${SUBTYPE}" = "all" ]; then
 #        echo $(${DOTFILES}/mc/install_mc.sh "${DOTFILES}" "$1")
         ${MKDIRCOMMAND} -p ${HOME}/.local/share/mc/skins
         ${LNCOMMAND} ${DOTFILES}/mc/skins/zaz.ini       ${HOME}/.local/share/mc/skins/zaz.ini
@@ -110,13 +112,13 @@ if [ "${1}" = "configs" ]; then
     fi
 
     ## urxvt's files
-    if [ "${2}" = "urxvt" ] || [ "${2}" = "all" ]; then
+    if [ "${SUBTYPE}" = "urxvt" ] || [ "${SUBTYPE}" = "all" ]; then
          ${LNCOMMAND} ${DOTFILES}/urxvt/.urxvtrc ${HOME}/.urxvtrc
          echo "install urxvt patch from ${DOTFILES}/urxvt"
     fi
 
     ## common files
-    if [ "${2}" = "common" ] || [ "${2}" = "all" ]; then
+    if [ "${SUBTYPE}" = "common" ] || [ "${SUBTYPE}" = "all" ]; then
         ${LNCOMMAND} ${DOTFILES}/.tigrc                  ${HOME}/.tigrc
         ${LNCOMMAND} ${DOTFILES}/.xterm                  ${HOME}/.xterm
         ${LNCOMMAND} ${DOTFILES}/.rofi.conf              ${HOME}/.rofi.conf
@@ -126,7 +128,7 @@ if [ "${1}" = "configs" ]; then
     fi
 
     ## xres files
-    if [ "${2}" = "xres" ] || [ "${2}" = "all" ]; then
+    if [ "${SUBTYPE}" = "xres" ] || [ "${SUBTYPE}" = "all" ]; then
         ${LNCOMMAND} ${DOTFILES}/Xresources.colors/default    ${HOME}/.Xresources.colors
     fi
 
@@ -137,17 +139,17 @@ if [ "${1}" = "configs" ]; then
     fi
 
 
-    echo "[II] [ installing ${1} ${2}: done ]"
+    echo "[II] [ installing ${TYPE} ${SUBTYPE}: done ]"
 fi
 
-if [ "${1}" == "utils" ]; then
+if [ "${TYPE}" = "utils" ]; then
 
     ${MKDIRCOMMAND} ${HOME}/_bin
 
-    if [ "${2}" == "common" ] || [ "${2}" = "all" ]; then
+    if [ "${SUBTYPE}" = "common" ] || [ "${SUBTYPE}" = "all" ]; then
         ${LNCOMMAND} ${DOTFILES}/scripts/mcwrp      ${HOME}/_bin/mcwrp
     fi
-    if [ "${2}" == "dev" ] || [ "${2}" = "all" ]; then
+    if [ "${SUBTYPE}" = "dev" ] || [ "${SUBTYPE}" = "all" ]; then
         ${LNCOMMAND} ${DOTFILES}/scripts/kek      ${HOME}/_bin/kek
         ${LNCOMMAND} ${DOTFILES}/scripts/mek      ${HOME}/_bin/mek
         ${LNCOMMAND} ${DOTFILES}/scripts/makek.sh      ${HOME}/_bin/makek.sh
@@ -157,7 +159,7 @@ fi
 
 
 
-if [ "${1}" == "entries" ]; then
+if [ "${TYPE}" = "entries" ]; then
     ${ADDXRESENTRY} ".urxvtrc"
     ${ADDXRESENTRY} ".Xresources.colors"
     ${ADDXRESENTRY} ".rofi.conf"
