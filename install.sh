@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 DOTFILES=$PWD
 
 ## TODO:
@@ -33,13 +33,13 @@ MKDIRCOMMAND="mkdir -pv"
 
 addXresEntry()
 {
-    XRES="${HOME}/.Xresources"
+    local XRES="${HOME}/.Xresources"
     if [ ! -f ${XRES} ]; then
         touch ${XRES}
     fi
 
-    ENTRYLINE="#include \"${1}\""
-    RESULT=$(grep "${ENTRYLINE}" ${XRES})
+    local ENTRYLINE="#include \"${1}\""
+    local RESULT=$(grep "${ENTRYLINE}" ${XRES})
     if [ ! -z "${RESULT}"  ]; then
         echo "[WW] [ entry '${RESULT}' found ]"
     else
@@ -56,7 +56,7 @@ ADDXRESENTRY="addXresEntry"
 
 
 ## DEBUG
-    CPCOMMAND="echo copy: ";LNCOMMAND="echo make link: ";MKDIRCOMMAND="echo create directory: "; ADDXRESENTRY="echo add xres entry for : "
+    CPCOMMAND="echo copy: ";LNCOMMAND="echo make link: ";MKDIRCOMMAND="echo create directory: "; ADDXRESENTRY="echo add xres entry for : "; echo "DEBUG ENABLED"
 
 
 ARGS=${#@}
