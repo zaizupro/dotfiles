@@ -10,6 +10,17 @@ DOTFILES=$PWD
 ##                   "./tmux/.tmux.conf":   "~/.tmux.conf",
 
 
+showusage()
+{
+    echo "
+usage: $0 [-t type] [-s subtype] [-h]
+-t  type to use for installation
+-s  subtype to use for installation
+-h  display this usage information
+-l  list types and subtypes
+"
+}
+
 TYPE=${1}
 SUBTYPE=${2}
 
