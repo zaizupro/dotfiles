@@ -1,75 +1,26 @@
 ##add in $HOME/.bashrc :
 ## [[ -f "${HOME}/.bash_zaz" ]] && source "${HOME}/.bash_zaz"
 
-#==============COLORS============
+
+##                                                                            ##
+##[==========================================================================]##
+##                                                                            ##
+##    COLORS
+
 [[ -s "${HOME}/.bash_colors" ]] && source "${HOME}/.bash_colors" # Load some colors
 
-##== experimental ==##
+##                                                                            ##
+##[==========================================================================]##
+##                                                                            ##
+##    EXPERIMENTAL
+
 export GCC_COLORS='error=07;31:warning=01;33:note=01;32:caret=01;32:locus=01:quote=01'
 
-#===============VARIABLES============
-## PS1 PROMPT LINE
 
-#set colorful custom prompt
-#2line prompt
-#PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
-#PS1="\[${NC}\]\[${ORANGE}\]${PS1}\[${NC}\]"
-
-
-
-__getspace()
-{
-    for i in $(seq 1 $1) ; do echo -n ' ';
-    done
-}
-
-__getprompt()
-{
-    PWD=$(basename $(pwd))
-    echo "$(__getspace $(expr $(tput cols) - ${#PWD} - 1))${PWD}"
-}
-
-#PS1='\[${NC}\]\[${ORANGE}\]$(__getprompt)\r>\[${NC}\]'
-#PS1='\[${NC}\]\[${ORANGE}\]>\[${NC}\]'
-#PS1='\[${NC}\]\[$(tput setaf 214)\]>\[$(tput setaf 208)\]>\[$(tput setaf 202)\]>\[${NC}\]'
-
-
-##[==========================================================================]##
-##                                                                            ##
-_get_f_part()
-{
-    if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
-        OUT=">"
-    else
-        if [ "$(git branch | grep '*' | cut -d ' ' -f 2)" == "master" ]; then OUT="|" ; else OUT="/";fi
-    fi
-    echo ${OUT}
-}
-
-##[==================================]##
-_get_s_part()
-{
-    if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
-        OUT=">"
-    else
-        if [ -z "$(git diff)" ] ; then OUT=">" ; else  OUT="<" ; fi
-    fi
-    echo ${OUT}
-}
-
-
-# 
-PS1='\[${NC}\]\[$(tput setaf 214)\]$(_get_f_part)\[$(tput setaf 208)\]$(_get_s_part)\[$(tput setaf 202)\]>\[${NC}\]'
 ##                                                                            ##
 ##[==========================================================================]##
-
-
-if [ ${0} = "sh" ]; then
-    PS1='$(whoami)@$(cat /etc/hostname):$(basename $(pwd))\$'
-fi
-
-#====================================
-
+##                                                                            ##
+##    VARIABLES
 
 EDITOR=nano
 
@@ -88,12 +39,14 @@ export EDITOR ENV PATH DOTFILES WORKSPACE
 
 
 # configure how history works
-HISTCONTROL=ignoreboth        # don't put duplicate lines or lines starting with space in the history.
-#HISTCONTROL=ignoredups                            # ignore the line if it matches previous line
-HISTFILESIZE=20000                                # size of the history file cf. also shopt -s histappend
-HISTSIZE=1000                                     # size of the run-time history list
-HISTIGNORE=ls:ll:lll:la:l:cd:pwd:exit:mc:su:df:clear:rm  # do not put these in history file
-#HISTFILE=$HOME/.bash_history-`hostname`               # track history by host
+HISTCONTROL=ignoreboth      # don't put duplicate lines or lines starting with space in the history.
+#HISTCONTROL=ignoredups     # ignore the line if it matches previous line
+HISTFILESIZE=20000          # size of the history file cf. also shopt -s histappend
+HISTSIZE=1000               # size of the run-time history list
+
+HISTIGNORE=ls:ll:lll:la:l:cd:pwd:exit:mc:su:df:clear:rm    ## do not put these in history file
+#HISTFILE=$HOME/.bash_history-$(hostname)                  ## track history by host
+
 
 ## --status-column Display a status column
 LESS='--ignore-case  --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --window=-4'
@@ -103,10 +56,30 @@ export LESS HISTCONTROL HISTSIZE HISTFILESIZE HISTIGNORE #HISTFILE
 
 export LC_COLLATE=C
 
-#================CUSTOM_FUNCTIONS===================
+##                                                                            ##
+##[==========================================================================]##
+##                                                                            ##
+##    CUSTOM_FUNCTIONS
+
 [[ -f "${HOME}/.bash_functions" ]] && source "${HOME}/.bash_functions"
 
-#====================ALIASES======================
+##                                                                            ##
+##[==========================================================================]##
+##                                                                            ##
+##    ALIASES
+
 [[ -f "${HOME}/.bash_aliases" ]] && source "${HOME}/.bash_aliases"
+
+##                                                                            ##
+##[==========================================================================]##
+##                                                                            ##
+##    PS1 prompt line
+
+[[ -f "${HOME}/.bash_ps1" ]] && source "${HOME}/.bash_ps1"
+
+if [ "${0}" = "sh" ]; then
+    PS1='$(whoami)@$(cat /etc/hostname):$(basename $(pwd))\$'
+fi
+
 
 
