@@ -21,6 +21,25 @@ usage: $0 [-t type] [-s subtype] [-h]
 "
 }
 
+list_types()
+{
+    echo "
+| types   | subtypes
+|=========|============
+| configs | all
+|         |  bash
+|         |  tmux
+|         |  mc
+|         |  urxvt
+|         |  common
+|         |  xres
+| utils   | all
+|         |  common
+|         |  dev
+| entries |
+"
+}
+
 TYPE=${1}
 SUBTYPE=${2}
 
