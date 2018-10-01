@@ -99,6 +99,7 @@ alias tigs='tig status'
 alias meki='mek install -s "$@"'
 
 alias gitusers="git shortlog | grep -E '^[^ ]'"
+#alias unlok_dat_git_repo="rm -i $(git rev-parse --show-toplevel)/.git/index.lock"
 
 SETTERM="TERM=xterm-256color"
 

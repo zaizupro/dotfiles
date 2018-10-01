@@ -25,6 +25,7 @@ __getprompt()
 
 ##[==========================================================================]##
 ##                                                                            ##
+## first element | master branch or not
 _get_f_part()
 {
     if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
@@ -36,6 +37,7 @@ _get_f_part()
 }
 
 ##[==================================]##
+## second element | is wc has uncommited changes
 _get_s_part()
 {
     if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
@@ -50,7 +52,15 @@ _get_s_part()
 #    return 0
 #fi
 
+##[==================================]##
+_get_t_part()
+{
+    if [ -f $(git rev-parse --show-toplevel  2>/dev/null)/.git/index.lock ]; then OUT="<" ; else  OUT=">" ; fi
+    echo ${OUT}
+}
+
+
 # 
-PS1='\[${NC}\]\[$(tput setaf 214)\]$(_get_f_part)\[$(tput setaf 208)\]$(_get_s_part)\[$(tput setaf 202)\]>\[${NC}\]'
+PS1='\[${NC}\]\[$(tput setaf 214)\]$(_get_f_part)\[$(tput setaf 208)\]$(_get_s_part)\[$(tput setaf 202)\]$(_get_t_part)\[${NC}\]'
 ##                                                                            ##
 ##[==========================================================================]##
