@@ -41,17 +41,19 @@ normal="\e[0m"
 
 # Errors, warnings, notes and compiler recipes
 KEY="s/(\[-W.*\])/${YELLOWFGBG}\\1${NC}/i"
-error="s/(^.*)(error|[^a-z]error:|undefined reference to|[^a-z]undefined reference to)(.*)/${REDFG}\\1${NC}${REDFGBG}\2${REDFGBG}${YELLOW}\3${NC}/i"
+error="s/(^.*)(multiple definition|\ error|[^a-zA-Z]error:|undefined reference to|[^a-z]undefined reference to)(.*)/${REDFG}\\1${NC}${REDFGBG}\2${REDFGBG}${YELLOW}\3${NC}/i"
 note="s/(^note|^.*[^a-z]note:)/$(printf $green)\\1$(printf $normal)/i"
 warning="s/(^warning|^.*[^a-z]warning:)/$(printf $yellow)\\1$(printf $normal)/i"
+compile_line="s/(^g\+\+\ |^[^ ]*moc\ )(.*)(\ .*\.c[^ ]*|\ .*\.moc)/${YELLOWFGBG}\\1${NC}\2${YELLOWFGBG}\3${NC}/i"
 make="s/(^make(\[[0-9]+\])?:|.*Configuring project)(.*)/${PURPFGBG}\\1${NC}\2${PURP}\3${NC}/i"
 cxx="s/(std=c++)(\[[0-9]+\])?:/$(printf $purple)std=c++\\1:$(printf $normal)/"
 compiler_recipe="s/^(gcc(.exe)? .*)/$(printf $gray)\\1$(printf $normal)/"
 install="s/(^install)(.*)/${GREENFGBG}\\1${NC}${GREEN}\2${NC})/i"
+debug_flag="s/(\ -g\ )/${GREENFGBG}\\1${NC}/"
 
 if [[ $(uname -or) != 1.*Msys ]]; then
-    command make "$@" 2> >(sed -r -e "$warning" -e "$error" -e "$note" -e "$undefined_reference_to" -e "$cxx" -e "$make" -e "$compiler_recipe" -e"$install" -e "$KEY") \
-                       > >(sed -r -e "$warning" -e "$error" -e "$note" -e "$undefined_reference_to" -e "$cxx" -e "$make" -e "$compiler_recipe" -e"$install" -e "$KEY")
+    command make "$@" 2> >(sed -r -e "$warning" -e "$debug_flag" -e "$error" -e "$compile_line" -e "$note" -e "$undefined_reference_to" -e "$cxx" -e "$make" -e "$compiler_recipe" -e"$install" -e "$KEY") \
+                       > >(sed -r -e "$warning" -e "$debug_flag" -e "$error" -e "$compile_line" -e "$note" -e "$undefined_reference_to" -e "$cxx" -e "$make" -e "$compiler_recipe" -e"$install" -e "$KEY")
 else
     # MinGW MSYS does not support process substitution
     command make "$@" 2>&1 | sed -r -e "$warning" -e "$error" -e "$make" -e "$compiler_recipe"
