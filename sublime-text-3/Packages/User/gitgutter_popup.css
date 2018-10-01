@@ -1,0 +1,56 @@
+/* GitGutter Popup Stylesheet - User */
+
+/**
+ * TEXT VIEW
+ * Shows the old content or diff.
+ **/
+.git-gutter div.highlight {
+    font-family: "xos4 Terminus";
+    font-weight: bold;
+}
+
+/**
+ * POPUP BACKGROUND
+ **/
+html.dark {
+    --mdpopups-hl-bg: color(var(--background) blend(black 95%));
+    --diffpopup-tb-bg: color(var(--mdpopups-hl-bg) blend(black 95%));
+    --diffpopup-ins-bg: color(#5F5F00);
+    --diffpopup-ins-fg: color(#D7FF00);
+    --diffpopup-del-bg: color(#5F0000);
+    --diffpopup-del-fg: color(#FF5F00);
+    --diffpopup-chg-ins-bg: color(#5F5F00);
+    --diffpopup-chg-ins-fg: color(#D7FF00);
+    --diffpopup-chg-del-bg: color(#5F0000);
+    --diffpopup-chg-del-fg: color(#FF5F00);
+}
+
+/**
+ * TOOLBAR
+ *
+ * The navigation toolbar
+ **/
+.git-gutter div.toolbar {
+    background-color: var(--diffpopup-tb-bg);
+    color: color(var(--foreground) blend(var(--diffpopup-tb-bg) 30%));
+    margin: 0;
+    padding: 0.0rem 0.4rem 0.2rem 0.4em;
+}
+
+
+/**
+ * ICON BUTTONS
+ *
+ * <symbol>⟲</symbol>
+ *
+ * Unicode chars are rendered smaller than normal text and sometimes ugly
+ * depending on font-family, so force fonts known to render well.
+ * This rule is used to fix the font-family and font-size.
+ **/
+.git-gutter div.toolbar symbol {
+    font-family: "xos4 Terminus";
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0.0rem 0.1rem 0.0rem 0.1em;
+}
+
