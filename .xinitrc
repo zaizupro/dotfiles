@@ -3,7 +3,7 @@ xrdb ~/.Xresources
 
 feh  --image-bg black --bg-scale ${HOME}/.BGWALPPR
 
-#xautolock -time 10 -locker slock
+# xautolock -time 5 -locker "urxvt -e 'slock'" &
 
 compton &
 sxhkd &
