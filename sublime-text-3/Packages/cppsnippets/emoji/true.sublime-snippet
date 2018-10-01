@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+${1:👍}
+]]></content>
+        <tabTrigger>true_</tabTrigger>
+        <description>false</description>
+</snippet>

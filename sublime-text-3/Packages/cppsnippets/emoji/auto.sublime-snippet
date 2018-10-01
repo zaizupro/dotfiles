@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[
+${1:🚘}
+]]></content>
+        <tabTrigger>auto_</tabTrigger>
+        <description>auto</description>
+</snippet>
