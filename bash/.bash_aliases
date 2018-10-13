@@ -41,7 +41,8 @@ __ll()
 alias grep="grep --color=auto $@"
 
 alias grepdat="_(){
-          grep -n \${1} . -rI
+          [[ \$1 = -h ]] && echo 'use single quotes and ekran symbol \\' && return; \
+          grep -n \"\${@}\" . -rI
           }; _\$@"
 
 alias finddat="_(){
@@ -134,7 +135,19 @@ alias tmr='tmux rename-window $(basename $PWD)'
 #alias fixpng='find . -type f -name *.png -exec convert {} -strip {} \;'
 alias pacman='pacman --color=auto "$@"'
 alias pup='sudo pacman -Suy "$@"'
+alias pupclean='sudo pacman -Rns $(pacman -Qtdq)'
 alias pins='sudo pacman -S "$@"'
+
+## show aur packages
+alias puplisttresh="_(){
+    pacman -Qm
+          }; _\$@"
+
+## show normal packages
+alias puplist="_(){
+    pacman -Qent
+          }; _\$@"
+
 alias xmcedit='urxvt -e mcedit "$@"'
 
 alias pw='sudo pacman $2 $1'
