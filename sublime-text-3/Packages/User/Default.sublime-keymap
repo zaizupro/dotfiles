@@ -14,6 +14,17 @@
 
     { "keys": ["escape", "f"], "command": "toggle_full_screen" },
 
+    { "keys": ["escape", "z"], "command": "toggle_regex", "context":
+        [
+            { "key": "setting.is_widget", "operator": "equal", "operand": true }
+        ]
+    },
+    { "keys": ["escape", "x"], "command": "toggle_case_sensitive", "context":
+        [
+            { "key": "setting.is_widget", "operator": "equal", "operand": true }
+        ]
+    },
+
     /// sai-bar togle
     { "keys": ["escape", "b"], "command": "toggle_side_bar" },
 
