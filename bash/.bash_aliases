@@ -138,6 +138,8 @@ alias pup='sudo pacman -Suy "$@"'
 alias pupclean='sudo pacman -Rns $(pacman -Qtdq)'
 alias pins='sudo pacman -S "$@"'
 
+alias xnano='urxvt -e "nano" &'
+
 ## show aur packages
 alias puplisttresh="_(){
     pacman -Qm
