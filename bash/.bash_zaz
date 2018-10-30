@@ -40,6 +40,7 @@ export EDITOR ENV PATH DOTFILES WORKSPACE
 
 # configure how history works
 HISTCONTROL=ignoreboth      # don't put duplicate lines or lines starting with space in the history.
+#HISTCONTROL=erasedups
 #HISTCONTROL=ignoredups     # ignore the line if it matches previous line
 HISTFILESIZE=20000          # size of the history file cf. also shopt -s histappend
 HISTSIZE=1000               # size of the run-time history list
