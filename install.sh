@@ -129,7 +129,7 @@ if [ "..${ARGS}" = "..0" ]; then
     echo "##[=============================]##"
     echo "DOTFILES=${DOTFILES}"
     echo
-    echo -e "\t$0 <type> <subtype>"
+    echo -e "\t$0 -t <type> -s <subtype>"
     echo "types   subtypes"
     echo "configs          "
     echo "          bash"
@@ -173,6 +173,11 @@ if [ "${TYPE}" == "configs" ]; then
         ${LNCOMMAND} ${DOTFILES}/mc/ini                 ${HOME}/.config/mc/ini
         ${LNCOMMAND} ${DOTFILES}/mc/menu                ${HOME}/.config/mc/menu
         ${LNCOMMAND} ${DOTFILES}/mc/panels.ini          ${HOME}/.config/mc/panels.ini
+    fi
+
+    if [ "${SUBTYPE}" = "cmus" ] || [ "${SUBTYPE}" = "all" ]; then
+        ${MKDIRCOMMAND} -p ${HOME}/.config/cmus
+        ${LNCOMMAND} ${DOTFILES}/cmus/industrial.theme  ${HOME}/.config/cmus/industrial.theme
     fi
 
     ## urxvt's files
