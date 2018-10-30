@@ -3,16 +3,16 @@
 text=$(cmus-remote -Q)
 
 OUT=$(echo "$text" | grep "tag artist\ " | cut -d ' ' -f 3-)
-newline=$(echo "$text" | grep "tag album\ " | cut -d ' ' -f 3-)
+newline=$(echo "$text" | grep "tag date\ " | cut -d ' ' -f 3-)
 OUT=$(echo -e "$OUT\n$newline")
+newline=$(echo "$text" | grep "tag album\ " | cut -d ' ' -f 3-)
+OUT=$(echo -e "$OUT - $newline")
 newline=$(echo "$text" | grep "tag tracknumber\ " | cut -d ' ' -f 3-)
 OUT=$(echo -e "$OUT\n$newline")
 newline=$(echo "$text" | grep "tag title\ " | cut -d ' ' -f 3-)
 OUT=$(echo -e "$OUT  -  $newline")
-newline=$(echo "$text" | grep "tag date\ " | cut -d ' ' -f 3-)
-OUT=$(echo -e "$OUT\n$newline")
 newline=$(echo "$text" | grep "tag genre\ " | cut -d ' ' -f 3-)
-OUT=$(echo -e "$OUT - $newline")
+OUT=$(echo -e "$OUT\n$newline")
 
 echo "$OUT"
 
