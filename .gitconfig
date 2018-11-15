@@ -7,6 +7,8 @@
 [alias]
     # list all aliases
     aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+    whoami = !git config --get-regexp 'user' | cut -f 2 -d ' '
+
 
      ver = !git log -1 --format='%cd.%h' --date=short | tr -d -
     last = log -1 HEAD
@@ -75,5 +77,8 @@
     untracked = 202 52
     branch = 16 214
 
-[include]
+[includeIf "gitdir:~/_WORK/"]
     path = .gitconfig.user
+
+[includeIf "gitdir:~/_tresh/"]
+    path = .gitconfig_tresh
