@@ -2,13 +2,30 @@
 # wm independent hotkeys
 #
 
+# wm lock
+super + l
+    urxvt -e 'slock'
+
+shift + Print
+    bash -c 'import png:- | xclip -selection c -t image/png'
+
+ctrl + Print
+    flameshot gui
+
+alt + z
+    cmus-remote -u
+
+super + z
+    cmus-remote -u
+
+
 # terminal emulator
 super + Return
     urxvt
 
-# run
+# run command
 super + r
-    rofi -show run
+    rofi -show run -disable-history
 
 # program launcher
 #super + @space
