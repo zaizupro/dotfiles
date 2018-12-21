@@ -41,7 +41,7 @@ normal="\e[0m"
 
 # Errors, warnings, notes and compiler recipes
 KEY="s/(\[-W.*\])/${YELLOWFGBG}\\1${NC}/i"
-error="s/(^.*)(multiple definition|\ error|[^a-zA-Z]error:|undefined reference to|[^a-z]undefined reference to)(.*)/${REDFG}\\1${NC}${REDFGBG}\2${REDFGBG}${YELLOW}\3${NC}/i"
+error="s/(^.*)(multiple definition|\ error|[^a-zA-Z]error:|undefined reference to|[^a-z]undefined reference to)(.*)/${NC}${REDFG}\\1${NC}${REDFGBG}\2${REDFGBG}${YELLOW}\3${NC}/i"
 note="s/(^note|^.*[^a-z]note:)/$(printf $green)\\1$(printf $normal)/i"
 warning="s/(^warning|^.*[^a-z]warning:)/$(printf $yellow)\\1$(printf $normal)/i"
 compile_line="s/(^g\+\+\ |^[^ ]*moc\ )(.*)(\ .*\.c[^ ]*|\ .*\.moc)/${YELLOWFGBG}\\1${NC}\2${YELLOWFGBG}\3${NC}/i"
