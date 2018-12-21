@@ -86,7 +86,7 @@ __printor()
     local STLNLNGTH=${#STARTLINE}
     local ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "")
 
-    echo $ORANGE"${STARTLINE// / }${COLOR}${MSG}${NC}${ORANGE}${ENDLINE// / }"$NC
+    echo ${NC}"${STARTLINE// / }${COLOR}${MSG}${NC}${NC}${ENDLINE// / }"$NC
 }
 
 ##[==========================================================================]##
@@ -213,17 +213,17 @@ packdat()
     CMND=$1
     SRC_PATH=$2
     SUFIX=$3
-        if [[ -e $SRC_PATH ]]; then
-            BEKAP_NAME="$(basename ${SRC_PATH}).$(date +%Y%m%d%H%M%S)${SUFIX}"
-            $CMND ./${BEKAP_NAME} ${SRC_PATH};RES=$?
-        else
-            echo "path '$SRC_PATH' is not valid"
-        fi
-        if [ $RES -ne 0 ]; then
-            echo "ERROR"
-        else
-            echo -e "\nBEKAP_NAME: $BEKAP_NAME $(du -hs ${BEKAP_NAME} | cut  -f 1)"
-        fi
+    if [[ -e $SRC_PATH ]]; then
+        BEKAP_NAME="$(basename ${SRC_PATH}).$(date +%Y%m%d%H%M%S)${SUFIX}"
+        $CMND ./${BEKAP_NAME} ${SRC_PATH};RES=$?
+    else
+        echo "path '$SRC_PATH' is not valid"
+    fi
+    if [ $RES -ne 0 ]; then
+        echo "ERROR"
+    else
+        echo -e "\nBEKAP_NAME: $BEKAP_NAME $(du -hs ${BEKAP_NAME} | cut  -f 1)"
+    fi
 }
 
 
@@ -232,6 +232,7 @@ tardat()
 {
     packdat "tar cvzf" "$1" ".tar.gz"
 }
+
 ## zip dat
 zipdat()
 {
@@ -266,6 +267,12 @@ ex()
     fi
 }
 
+
+fg[red]=$(tput setaf 160)
+fg[yellow]=$(tput setaf 220)
+fg[blue]=$(tput setaf 51)
+fg[green]=$(tput setaf 112)
+reset_color=$(tput sgr 0)
 ##[==========================================================================]##
 # Show how much RAM application uses.  from github.com/zanshin
 # $ ram safari
@@ -285,9 +292,9 @@ function ram()
         done
         sum=$(echo "scale=2; $sum / 1024.0" | bc)
         if [[ $sum != "0" ]]; then
-            echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
+            echo "${fg[yellow]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
         else
-            echo "There are no processes with pattern '${fg[blue]}${app}${reset_color}' are running."
+            echo "There are no processes with pattern '${fg[yellow]}${app}${reset_color}' are running."
         fi
     fi
 }
