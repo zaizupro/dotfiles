@@ -51,6 +51,10 @@ alias finddat="_(){
           find . -name \"\${1}\" | grep \"\${1}\"
           }; _\$@"
 
+alias calcdat="_(){
+            echo \"\${@}\" | bc
+          }; _\$@"
+
 #grep -n '\<\${1}\>' . -rI
 
 #amixer set Master toggle
