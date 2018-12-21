@@ -2,6 +2,8 @@
 ##[                              ALIASES                                     ]##
 ##[==========================================================================]##
 
+# shopt -s expand_aliases
+
 #==============COLORS============
 [[ -s "${HOME}/.bash_colors" ]] && source "${HOME}/.bash_colors" # Load some colors
 
@@ -46,7 +48,7 @@ alias grepdat="_(){
           }; _\$@"
 
 alias finddat="_(){
-          find . -name '\${1}'
+          find . -name \"\${1}\" | grep \"\${1}\"
           }; _\$@"
 
 #grep -n '\<\${1}\>' . -rI
