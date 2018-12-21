@@ -204,30 +204,38 @@ __fillstr()
     done
     echo "${STR}"
 }
-       
+
 ##[==========================================================================]##
-## tar that
-tarthat()
+
+## pack dat
+packdat()
 {
-    tardat
+    CMND=$1
+    SRC_PATH=$2
+    SUFIX=$3
+        if [[ -e $SRC_PATH ]]; then
+            BEKAP_NAME="$(basename ${SRC_PATH}).$(date +%Y%m%d%H%M%S)${SUFIX}"
+            $CMND ./${BEKAP_NAME} ${SRC_PATH};RES=$?
+        else
+            echo "path '$SRC_PATH' is not valid"
+        fi
+        if [ $RES -ne 0 ]; then
+            echo "ERROR"
+        else
+            echo -e "\nBEKAP_NAME: $BEKAP_NAME $(du -hs ${BEKAP_NAME} | cut  -f 1)"
+        fi
 }
+
+
 ## tar dat
 tardat()
 {
-    if [[ -e $1 ]]; then
-        tar cvzf $1.tar.gz $1
-    else
-        echo "'$1' is not a valid file"
-    fi
+    packdat "tar cvzf" "$1" ".tar.gz"
 }
 ## zip dat
 zipdat()
 {
-    if [[ -e $1 ]]; then
-        zip -r $1.$(date +%Y%m%d%H%M%S).zip $1
-    else
-        echo "'$1' is not a valid file"
-    fi
+    packdat "zip -r" "$1" ".zip"
 }
 
 ##[==========================================================================]##
