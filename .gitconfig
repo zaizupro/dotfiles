@@ -16,6 +16,7 @@
       st = status -sb
        l = log --oneline --graph --decorate
       ll = log --graph --pretty=llformat --abbrev-commit --date=short
+     lll = ll --all
       co = checkout
     repo = config --get remote.origin.url
       br = branch -a
