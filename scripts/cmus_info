@@ -1,5 +1,12 @@
 #!/bin/sh
 
+
+if [ "$(cmus-remote -Q > /dev/null 2 >&1 ; echo $?)" -ne 0 ]; then
+#    echo "$(cmus-remote -Q)"
+    exit 1;
+fi
+
+
 text=$(cmus-remote -Q)
 
 OUT=$(echo "$text" | grep "tag artist\ " | cut -d ' ' -f 3-)
