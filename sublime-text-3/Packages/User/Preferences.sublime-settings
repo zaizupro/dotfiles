@@ -29,6 +29,7 @@
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
 	"mouse_wheel_switches_tabs": false,
+	"mini_diff": false,
 	"remember_open_files": true,
 	"rulers":
 	[
