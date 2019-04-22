@@ -20,6 +20,7 @@
       co = checkout
     repo = config --get remote.origin.url
       br = branch -a
+    restore-modified = !git checkout $(git ls-files -m)
 
 ## command to squash the recent {N} commits:
 ## git reset --soft HEAD~{N}  
