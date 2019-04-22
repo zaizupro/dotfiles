@@ -4,6 +4,8 @@
 
 # shopt -s expand_aliases
 
+#alias ldddat=="_(){ ldd '$(which \${1})' }; _\$@"
+
 #==============COLORS============
 [[ -s "${HOME}/.bash_colors" ]] && source "${HOME}/.bash_colors" # Load some colors
 
@@ -28,6 +30,7 @@ alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\
 alias psw='ps xawwf -eo pid,user,%cpu,%mem,args | less -S'
 #alias psdat='ps aux |grep "\${@}" | grep -v grep'
 alias mktd='mkdir -v $(date +%Y%m%d)'
+alias gototd='newdir="/tmp/"$(date +%Y%m%d)"_"$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9)); mkdir $newdir && cd $newdir'
 alias tikdat="_(){ while :; do sleep 1;echo \"\$(\${1})\"; done }; _\$@"
 
 alias diff='diff --color=auto "${@}"'
@@ -46,7 +49,7 @@ alias grep="grep --color=auto $@"
 
 alias grepdat="_(){
           [[ \$1 = -h ]] && echo 'use single quotes and ekran symbol \\' && return; \
-          grep -n \"\${@}\" . -rI
+                  grep -n \"\${1}\" . -rI --exclude-dir=\"\${2}\"  --exclude=\"\${2}\"
           }; _\$@"
 
 alias finddat="_(){
