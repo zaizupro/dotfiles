@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-${1:/*[==================================]*/}
+${1:/*    ----------------------------    */}
 ]]></content>
         <tabTrigger>cm40</tabTrigger>
         <description>Comment - Single-line 40 symbols</description>
