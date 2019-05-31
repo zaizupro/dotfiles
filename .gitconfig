@@ -3,6 +3,7 @@
 ##                                                                            ##
 [pretty]
         llformat = format:%C(130)%ad%Creset %C(214 94)%h%Creset %s%Creset %C(94)[ %an ]%Creset %C(auto)%d%Creset %Cgreen(%cr)%Creset
+        llformatlight = format:%C(auto)%d%Creset
 
 [alias]
     # list all aliases
@@ -14,7 +15,7 @@
     last = log -1 HEAD
     lasd = diff HEAD^ HEAD
       st = status -sb
-       l = log --oneline --graph --decorate
+      l = log --graph --pretty=llformatlight  --abbrev-commit --date=short --all
       ll = log --graph --pretty=llformat --abbrev-commit --date=short
      lll = ll --all
       co = checkout
