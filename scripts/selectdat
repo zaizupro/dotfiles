@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+SEPARATOR=" "
+NC=$(tput sgr0)
+
+_-_getrndcolor()
+{
+    MIN=0
+    MAX=235
+    COLORNUM=$(( RANDOM % $MAX + $MIN))
+    COLORFG="$(tput setaf $COLORNUM)"
+    COLORBG="$(tput setab $(($COLORNUM + 20)))"
+
+    echo "$COLORFG$COLORBG"
+}
+
+MAX_ELEMENT_LENGTH=0
+MAX_ELEMENTS_COUNT=0
+for ELEMENT in $@
+do
+    if [ "${MAX_ELEMENT_LENGTH}" -lt "${#ELEMENT}" ]; then
+        MAX_ELEMENT_LENGTH=${#ELEMENT}
+    fi
+    ((MAX_ELEMENTS_COUNT++))
+done
+
+## 3 coz  '[' and ']' and space ' ' in end of element
+LINE_PREFIX_LENGTH=$((3 + ${#SEPARATOR} + ${#MAX_ELEMENTS_COUNT}))
+LINELENGTH=$(($MAX_ELEMENT_LENGTH + $LINE_PREFIX_LENGTH))
+COLUMNS=$(($(tput cols) / $LINELENGTH))
+CURRENT_COLUMN=0
+
+for ELEMENT in $@
+do
+    ((SEQUENCE_NUM++))
+    ARAY[$SEQUENCE_NUM]="$ELEMENT"
+    MSGSPACER=$(printf "%-$(($MAX_ELEMENT_LENGTH - ${#ELEMENT}))s" "")
+
+    OUT_LIST_STR=$OUT_LIST_STR"$(_-_getrndcolor)" ## TODO fix lags here
+    OUT_LIST_STR=$OUT_LIST_STR"[$(printf "%0${#MAX_ELEMENTS_COUNT}d" $SEQUENCE_NUM)]"
+    OUT_LIST_STR=$OUT_LIST_STR"${NC}"
+    OUT_LIST_STR=$OUT_LIST_STR"$SEPARATOR"
+    OUT_LIST_STR=$OUT_LIST_STR"$(_-_getrndcolor)" ## TODO fix lags here
+    OUT_LIST_STR=$OUT_LIST_STR"$ELEMENT"
+    OUT_LIST_STR=$OUT_LIST_STR"${NC} "${MSGSPACER}
+
+    NEW_COLUMN=$((SEQUENCE_NUM / $COLUMNS))
+    if [ ! "${CURRENT_COLUMN}" == "${NEW_COLUMN}" ]; then
+        OUT_LIST_STR=$OUT_LIST_STR"\n"
+        CURRENT_COLUMN=$NEW_COLUMN
+    fi
+done
+
+echo -e "$OUT_LIST_STR"
+read -p "$PS3" kek_var
+echo -n "${ARAY[$kek_var]}"
+
