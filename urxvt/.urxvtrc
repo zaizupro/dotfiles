@@ -81,6 +81,9 @@ URxvt.background: #2B291E
 
 URxvt.background: #212017
 
+URxvt.background: #47392B
+URxvt.background: #332B1F
+
 
 
 !URxvt*foreground: #B1680a
@@ -261,9 +264,13 @@ URxvt.keysym.Control-Shift-T: perl:tabbedex:new_tab
 URxvt.keysym.1-2: perl:tabbedex:next_tab
 URxvt.keysym.1-1: perl:tabbedex:prev_tab
 
+!! wana m-shift-1 here
+URxvt.keysym.C-1: perl:tabbedex:move_tab_left
+URxvt.keysym.C-2: perl:tabbedex:move_tab_right
 
 URxvt.keysym.C-Shift-Left: perl:tabbedex:move_tab_left
 URxvt.keysym.C-Shift-Right: perl:tabbedex:move_tab_right
+
 URxvt.keysym.C-Shift-R: perl:tabbedex:rename_tab
 URxvt.keysym.C-Shift-W: perl:tabbedex:kill_tab
 URxvt.keysym.C-Shift-X: perl:tabbedex:kill_tab
