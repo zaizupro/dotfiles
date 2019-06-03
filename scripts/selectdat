@@ -51,7 +51,7 @@ do
     fi
 done
 
-echo -e "$OUT_LIST_STR"
+echo -e "$OUT_LIST_STR" >&2
 read -p "$PS3" kek_var
 echo -n "${ARAY[$kek_var]}"
 
