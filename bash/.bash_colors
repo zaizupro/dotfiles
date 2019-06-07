@@ -59,7 +59,11 @@ fi
                 DYELLOWBG=$(tput setab 94)
                 YELLOWFGBG="${YELLOWFG}${DYELLOWBG}"
 
+
+                ORANGEFG=$(tput setaf 214)
+                ORANGEBG=$(tput setab 130)
                 ORANGE=$(tput setaf 208)
+                ORANGEFGBG="${ORANGEFG}${ORANGEBG}"
 
                 PURPFG=$(tput setaf 183)
                 PURPBG=$(tput setab 183)
