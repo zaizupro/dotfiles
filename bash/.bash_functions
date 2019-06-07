@@ -258,6 +258,21 @@ dekreeptdat()
 
 
 ##[==========================================================================]##
+
+path() {
+  echo $PATH | tr ":" "\n" | \
+    awk "{ sub(\"/usr\",   \"${GREENFGBG}/usr${NC}\"); \
+           sub(\"/bin\",   \"${BLUEFGBG}/bin${NC}\"); \
+           sub(\"/_bin\",   \"${ORANGEFGBG}/_bin${NC}\"); \
+           sub(\"/sbin\",  \"${PURPFGBG}/sbin${NC}\"); \
+           sub(\"/local\", \"${YELLOWFGBG}/local${NC}\"); \
+           sub(\"/opt\",   \"${PURPFGBG}/opt${NC}\"); \
+           sub(\"/Users\", \"${REDFGBG}/Users${NC}\"); \
+           sub(\"/home\",  \"${REDFGBG}/home${NC}\"); \
+           print }"
+}
+
+##[==========================================================================]##
 # compressed file expander from github.com/zanshin
 # (from https://github.com/myfreeweb/zshuery/blob/master/zshuery.sh)
 ex()
