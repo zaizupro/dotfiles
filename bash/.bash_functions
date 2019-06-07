@@ -213,6 +213,7 @@ packdat()
     CMND=$1
     SRC_PATH=$2
     SUFIX=$3
+    RES=1
     if [[ -e $SRC_PATH ]]; then
         BEKAP_NAME="$(basename ${SRC_PATH}).$(date +%Y%m%d%H%M%S)${SUFIX}"
         $CMND ./${BEKAP_NAME} ${SRC_PATH};RES=$?
@@ -238,6 +239,23 @@ zipdat()
 {
     packdat "zip -r" "$1" ".zip"
 }
+
+
+kreeptdat()
+{
+    SUFIX=".kreept.zip"
+    SRC_PATH="${1}"
+    BEKAP_NAME="$(basename ${SRC_PATH}).$(date +%Y%m%d%H%M%S)${SUFIX}"
+
+    tar cf - "${SRC_PATH}" | zip -1 -e "${BEKAP_NAME}" -
+}
+
+dekreeptdat()
+{
+    SRC_PATH="${1}"
+    unzip -p ${SRC_PATH} | tar xf -
+}
+
 
 ##[==========================================================================]##
 # compressed file expander from github.com/zanshin
