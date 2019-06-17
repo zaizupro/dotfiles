@@ -47,7 +47,7 @@ get_colored_state()
 
 
 if [ -z "${1}" ]; then
-    for NAME in $(vboxls.sh | cut -f 1 -d ' ' | cut -f 2 -d '"' ) ;do
+    for NAME in $(vboxls.sh) ;do
         get_colored_state "${NAME}"
     done
     exit 1
