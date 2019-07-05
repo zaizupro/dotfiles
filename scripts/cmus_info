@@ -1,9 +1,13 @@
 #!/bin/sh
 
 
-if [ "$(cmus-remote -Q > /dev/null 2 >&1 ; echo $?)" -ne 0 ]; then
+if [ "$(cmus-remote -Q > /dev/null 2>&1 ; echo $?)" -ne 0 ]; then
 #    echo "$(cmus-remote -Q)"
-    exit 1;
+    exit 1
+else
+    if [ "$(cmus-remote -Q | grep status | cut -d ' ' -f 2)" == "stopped" ]; then
+        exit 2
+    fi
 fi
 
 
@@ -21,5 +25,5 @@ OUT=$(echo -e "$OUT  -  $newline")
 newline=$(echo "$text" | grep "tag genre\ " | cut -d ' ' -f 3-)
 OUT=$(echo -e "$OUT\n$newline")
 
-echo "$OUT"
+echo -n "$OUT"
 
