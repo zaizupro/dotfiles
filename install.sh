@@ -132,6 +132,7 @@ if [ "..${ARGS}" = "..0" ]; then
     echo -e "\t$0 -t <type> -s <subtype>"
     echo "types   subtypes"
     echo "configs          "
+    echo "          awesome"
     echo "          bash"
     echo "          tmux"
     echo "          mc"
@@ -205,8 +206,12 @@ if [ "${TYPE}" == "configs" ]; then
     if [ "${2}" = "polybar" ] || [ "${2}" = "all" ]; then
         ${MKDIRCOMMAND} ${HOME}/.config/polybar
         ${LNCOMMAND} ${DOTFILES}/polybar/config    ${HOME}/.config/polybar/config
+    ## awesome files
+    if [ "${SUBTYPE}" = "awesome" ] || [ "${SUBTYPE}" = "all" ]; then
+        ${LNCOMMAND} ${DOTFILES}/awesome/autorun    ${HOME}/.config/awesome/autorun
+        # add to ${HOME}/.config/awesome/rc.lua: 
+        # require("awful").spawn.with_shell("~/.config/awesome/autorun")
     fi
-
 
     echo "[II] [ installing ${TYPE} ${SUBTYPE}: done ]"
 fi

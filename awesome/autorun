@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+function run()
+{
+  if ! pgrep $1 ;
+  then
+    $@&
+  fi
+}
+
+~/.fehbg
+run sxhkd
+#run kbdd
+
+if ! pgrep xautolock ;then
+    xautolock -time 5 -locker "urxvt -e 'slock'" &
+fi
