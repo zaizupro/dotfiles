@@ -72,6 +72,9 @@ fi
                 # PURPFGBG=$(tput setab 54;tput setaf 183)
                 PURPFGBG="${PURPFG}${DPURPBG}"
 
+                PINKBG=$(tput setab 90)
+                PINKFG=$(tput setaf 213)
+                PINKFGBG="${PINKFG}${PINKBG}"
             else
                 ##== 8 colors ================##
                 #echo "[ colors: 8 ]"
@@ -104,8 +107,17 @@ __print_color_line()
     STARTCOLORNUM=$1
     ENDCOLORNUM=$2
 
-    for _i in $(seq "${STARTCOLORNUM}" "${ENDCOLORNUM}" ) ; do tput setaf $_i ; echo -n " ${SOMON} $(${FILLSTRCOMMAND} ${#ENDCOLORNUM} $_i) ${SOMOF}"
-        if (( $_i == 7 )) || ((( $_i == 15 )) || (( $_i > 15 )) && (( ($_i-15) % 6 == 0 ))); then echo "" ; fi
+    for _i in $(seq "${STARTCOLORNUM}" "${ENDCOLORNUM}" )
+    do
+        echo -n " "
+        #tput setaf $(($_i + 24))
+        tput setab $_i
+        echo -n " $(${FILLSTRCOMMAND} ${#ENDCOLORNUM} $_i) "
+        echo -n "$NC "
+        #echo -n " ${SOMON} $(${FILLSTRCOMMAND} ${#ENDCOLORNUM} $_i) ${SOMOF}"
+        if (( $_i == 7 )) || ((( $_i == 15 )) || (( $_i > 15 )) && (( ($_i-15) % 6 == 0 ))) ;then
+            echo
+        fi
     done
 }
 
