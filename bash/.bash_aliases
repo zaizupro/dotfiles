@@ -84,6 +84,7 @@ alias lsh='ls -A | grep "^\."'
 alias gitl='git log --format=oneline'
 
 alias ipa='ip a | grep "inet " | awk '\''{print $2}'\'' '
+alias ipall="ip -o a  | grep -o  \"^[0-9]*:\ \w*\" | cut -d ' ' -f 2 | uniq"
 
 #du -h --max-depth=1 | sort -h
 
