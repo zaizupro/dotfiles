@@ -84,7 +84,7 @@ alias lsh='ls -A | grep "^\."'
 alias gitl='git log --format=oneline'
 
 alias ipa='ip a | grep "inet " | awk '\''{print $2}'\'' '
-alias ipall="ip -o a  | grep -o  \"^[0-9]*:\ \w*\" | cut -d ' ' -f 2 | uniq"
+alias ipall="ip a  | grep -o  \"^[0-9]*:\ \w*\" | cut -d ' ' -f 2 | uniq"
 
 #du -h --max-depth=1 | sort -h
 
@@ -122,7 +122,8 @@ alias tmls='_(){
                echo "${YELLOWFGBG}no server running${NC}" ; return 0
            fi
            if [ ${RESULT} -eq 0 ]; then
-               tmux ls | cut -d ':' -f 1 ; return 0
+                echo "$(for i in $(tmux ls | cut -d ':' -f 1 ); do  echo ${GREENFGBG}${i}$NC ; done )$NC"
+                return 0
            fi
            }; _'
 
