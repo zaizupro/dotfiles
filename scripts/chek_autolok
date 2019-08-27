@@ -1,0 +1,20 @@
+#!/bin/sh
+
+V="$1"
+
+echodat()
+{
+if [ "$V" == "-v" ]; then
+    echo -n "$1"
+fi
+}
+
+if pgrep xautolock > /dev/null ;then
+    echodat "ENABLED"
+    STATUS=0
+else
+    echodat "DISABLED"
+    STATUS=1
+fi
+
+exit $STATUS

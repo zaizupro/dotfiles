@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+CMND="${1}"
+
+RUN[1]="run"
+RUN[2]="run"
+LIST[1]="list"
+LIST[2]="ls"
+SUSPEND[1]="suspend"
+SUSPEND[2]="sus"
+STATUS[1]="status"
+STATUS[2]="st"
+
+
+if [ -z "${CMND}" ]; then
+    echo -e "run\nlist|ls\nsuspend|sus\nstatus|st"
+else
+    if [ "${CMND}" = ${RUN[1]} ] || [ "${CMND}" = ${RUN[2]} ]; then
+        shift
+        vboxrun.sh $@
+    fi
+    if [ "${CMND}" = ${LIST[1]} ] || [ "${CMND}" = ${LIST[2]} ]; then
+        shift
+        vboxls.sh $@
+    fi
+    if [ "${CMND}" = ${SUSPEND[1]} ] || [ "${CMND}" = ${SUSPEND[2]} ]; then
+        shift
+        vboxsuspend.sh $@
+    fi
+    if [ "${CMND}" = ${STATUS[1]} ] || [ "${CMND}" = ${STATUS[2]} ]; then
+        shift
+        vboxgetstate.sh $@
+    fi
+fi
+
