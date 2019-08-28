@@ -231,7 +231,6 @@ fi
 if [ "${TYPE}" = "entries" ]; then
     ${ADDXRESENTRY} ".urxvtrc"
     ${ADDXRESENTRY} ".Xresources.colors"
-    ${ADDXRESENTRY} ".rofi.conf"
 fi
 
 
