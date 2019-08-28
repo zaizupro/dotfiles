@@ -85,6 +85,7 @@ alias gitl='git log --format=oneline'
 
 alias ipa='ip a | grep "inet " | awk '\''{print $2}'\'' '
 alias ipall="ip a  | grep -o  \"^[0-9]*:\ \w*\" | cut -d ' ' -f 2 | uniq"
+alias ipmacs="ifconfig | grep -o -E '([[:xdigit:]]{1,2}:){5}[[:xdigit:]]{1,2}|^[a-z].*:'"
 
 #du -h --max-depth=1 | sort -h
 
