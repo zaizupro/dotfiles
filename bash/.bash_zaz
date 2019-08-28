@@ -29,6 +29,7 @@ EDITOR=nano
 if [ -d ${HOME}/_bin ] ; then
     PATH="${HOME}/_bin:${PATH}"
     PATH="${HOME}/_bin/vm:${PATH}"
+    PATH="${HOME}/_bin/base:${PATH}"
 fi
 
 ENV=${HOME}/.bashrc

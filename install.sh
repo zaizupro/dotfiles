@@ -117,7 +117,7 @@ addXresEntry()
 }
 ADDXRESENTRY="addXresEntry"
 
-
+HOME_BIN_DIR="${HOME}/_bin/base"
 
 
 ## DEBUG
@@ -218,15 +218,10 @@ fi
 
 if [ "${TYPE}" = "utils" ]; then
 
-    ${MKDIRCOMMAND} ${HOME}/_bin
+    ${MKDIRCOMMAND} ${HOME_BIN_DIR}
 
-    if [ "${SUBTYPE}" = "common" ] || [ "${SUBTYPE}" = "all" ]; then
-        ${LNCOMMAND} ${DOTFILES}/scripts/mcwrp      ${HOME}/_bin/mcwrp
-    fi
-    if [ "${SUBTYPE}" = "dev" ] || [ "${SUBTYPE}" = "all" ]; then
-        ${LNCOMMAND} ${DOTFILES}/scripts/kek      ${HOME}/_bin/kek
-        ${LNCOMMAND} ${DOTFILES}/scripts/mek      ${HOME}/_bin/mek
-        ${LNCOMMAND} ${DOTFILES}/scripts/makek.sh      ${HOME}/_bin/makek.sh
+    if [ "${SUBTYPE}" = "all" ]; then
+        ${LNCOMMAND} ${DOTFILES}/scripts      ${HOME_BIN_DIR}
     fi
 
 fi
