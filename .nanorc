@@ -8,8 +8,17 @@
 ## 'constantshow'  for version >= 2.9.7
 set constantshow
 
+# set finalnewline
+
+set guidestripe 80
+
 ## Use cut to end of line by default.
-set cut
+#set cut
+
+## for v 2.8.6
+set cutfromcursor
+
+set whitespace "»·"
 
 ## The opening and closing brackets that can be found by bracket
 ## searches.  They cannot contain blank characters.  The former set must
@@ -17,8 +26,8 @@ set cut
 ##
 set matchbrackets "(<[{)>]}"
 
-## Use the blank line below the titlebar as extra editing space.
-set morespace
+## Use the blank line below the titlebar as extra editing space. before v4
+#set morespace
 
 ## Enable mouse support, if available for your system.  When enabled,
 ## mouse clicks can be used to place the cursor, set the mark (with a
@@ -33,8 +42,8 @@ set nohelp
 ## Don't wrap text at all.
 set nowrap
 
-## Use smooth scrolling as the default.
-set smooth
+## Use smooth scrolling as the default. before v4
+# set smooth
 
 ## Allow nano to be suspended.
 set suspend
@@ -49,9 +58,10 @@ bind ^Q exit all
 
 bind ^F whereis main
 
-#bind ^Q uncut all
+## before v4
+#bind ^D uncut all
 
-bind ^D uncut all
+bind ^D paste all
 
 bind ^S cut all
 
