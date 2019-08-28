@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+PS1='';echo -en "$(tput setab 255;tput setaf 255) $(dmesg)";sleep 3;PS1="$\[{NC}\]>"

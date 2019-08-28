@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+mkdir -p $HOME/Pictures/Screenshots; 
+import -w root png:- > $HOME/Pictures/Screenshots/$(date +%Y_%m_%dT%H_%M_%S_%N).png; 
+notify-send "Screenshot captured"; 
+aplay ~/_bin/done.wav > /dev/null 2>&1 
