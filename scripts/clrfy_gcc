@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+COLORS_PATH="${HOME}/.bash_colors"
+
+#==============COLORS============
+if [ -t 1 ] ; then
+    [[ -s "${COLORS_PATH}" ]] && [ -f "${COLORS_PATH}" ] && source "${COLORS_PATH}"
+fi
+
+KEY="s/(\[-W.*\]|\^~*)/${YELLOWFGBG}\\1${NC}/i"
+KEY_W="s/(-W(=|\w|\.|\/|-|\+)*\b)(\ )*/${YELLOWFGBG}\\1${NC}\3/g"
+KEY_D_ext="s/(-D([^\ ]|[_])*)(=*)([0-9_A-Za-z\"\\\/\{\}]*)(\ |$)/${YELLOWFGBG}$(tput setaf 222)\\1$(tput setaf 221)\\3\\4${NC}\\5/g"
+undef_refr="s/(^|.*)(\ )*(undefined reference to |multiple definition)(.*)/${REDFG}\\1${REDFGBG}\\2${REDFG}\\3${DREDBG}$(tput setaf 214)\\4${NC}/g"
+error="s/(^|.*)(\/[A-Za-z0-9\.]*:[0-9]*:[0-9]*:)(\ )*(error)(: )(.*)$/${REDFG}\\1${REDFGBG}\\2${NC}\\3${REDFG}\\4${NC}\\5${DREDBG}$(tput setaf 214)\\6${NC}/gI"
+note="s/(^|.*)(\/[A-Za-z0-9\.]*:[0-9]*:[0-9]*:)(\ )*(note)(: )(.*)$/${GREENFG}\\1${GREENFGBG}\\2${NC}\\3${GREENFG}\\4${NC}\\5${GREENFGBG}$(tput setaf 184)\\6${NC}/g"
+warning="s/(^|.*)(\/[A-Za-z0-9\.]*:[0-9]*:[0-9]*:)(\ )*(warning)(: )(.*)$/${YELLOWFG}\\1${YELLOWFGBG}$(tput setaf 214)\\2${NC}\\3${YELLOWFG}\\4${NC}\\5${YELLOWFGBG}\\6${NC}/g"
+compile_line="s/(^g\+\+\ |^[^ ]*moc\ )(.*)(\ .*\.c[^ ]*|\ .*\.moc)/${YELLOWFGBG}\\1${NC}\2${YELLOWFGBG}\3${NC}/i"
+compile_line2="s/(^g\+\+|^[^ ]*moc)(\ )/${YELLOWFG}\\1${NC}\\2${NC}/g"
+make="s/(^make(\[[0-9]+\])?:|.*Configuring project)(.*)/${PURPFGBG}\\1${NC}${PURPFG}\3${NC}/i"
+cxx="s/(std=c++)(\[[0-9]+\])?:/${PURPFGBG}std=c++\\1:${NC}/"
+compiler_recipe="s/^(gcc(.exe)? .*)/${GREENFGBG}\\1${NC}/"
+install="s/(^install)(.*)/${GREENFGBG}\\1${NC}${GREEN}\2${NC})/i"
+debug_flag="s/(\ )(-g|-fPIC)(\ )/\\1${GREENFGBG}\\2${NC}\\3/g"
+std_14="s/(-std=(gnu|c)\+\+14)/${PURPFGBG}\\1${NC}/g"
+std_11="s/(-std=(gnu|c)\+\+11)/${PURPFGBG}$(tput setaf 219)\\1${NC}/g"
+lib="s/(\ )+(-l(\+|\w|\.|\/|-)*\b(\+)*)/\\1$(tput setaf 218)\\2${NC}/g"
+lib_dir="s/(\ )+(-L(\+|\w|\.|\/|-)*\b(\+)*)/\\1$(tput setaf 212)\\2${NC}/g"
+includ_err="s/(-I(\ )+(\+|\w|\.|\/|-)*\b(\+)*)/$(tput setaf 166)\\1${NC}/g"
+includ="s/(-I(\+|\w|\.|\/|-)*\b(\+)*)/$(tput setaf 246)\\1${NC}/g"
+includ_sys="s/(-isystem\ (\w|\.|\/|-|\+)*\b)/$(tput setaf 243)\\1${NC}/g"
+includ_="s/(\ --include\ (\w|\.|\/|-|\+)*\b)/$(tput setaf 248)\\1${NC}/g"
+includ_sys_err="s/(-isystem(\w|\.|\/|-|\+)+\b)/$(tput setaf 243)$(tput setab 236)\\1${NC}/g"
+#position="s/(\/(\w|\.)*:[0-9]*:[0-9]*:)/$(tput setaf 202)$(tput setab 88)\\1${NC}/g"
+in_func="s/(In member function ‘)(.*)(’:)/${PURPFG}\\1${PURPFGBG}\\2${NC}${PURPFG}\\3${NC}/g"
+
+
+(
+cat /dev/stdin
+) 2>&1 | sed -E \
+           -e "$err_only" \
+           -e "$warning" \
+           -e "$debug_flag" \
+           -e "$error" \
+           -e "$undef_refr" \
+           -e "$compile_line" \
+           -e "$compile_line2" \
+           -e "$note" \
+           -e "$undefined_reference_to" \
+           -e "$cxx" \
+           -e "$make" \
+           -e "$compiler_recipe" \
+           -e "$install" \
+           -e "$KEY" \
+           -e "$KEY_W" \
+           -e "$KEY_D" \
+           -e "$KEY_D_ext" \
+           -e "$std_14" \
+           -e "$std_11" \
+           -e "$position" \
+           -e "$includ_sys_err" \
+           -e "$includ_sys" \
+           -e "$includ_err" \
+           -e "$includ_" \
+           -e "$lib" \
+           -e "$lib_dir" \
+           -e "$in_func" \
+           -e "$includ"
