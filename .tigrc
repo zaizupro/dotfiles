@@ -90,6 +90,7 @@ color   'Reviewed-by'           221     default
 #   LINE(PALETTE_6, "", COLOR_RED, )
 
 
+set history-size = 0
 set tab-size      = 4
 set refresh-mode                = after-command          # Enum: manual, auto, after-command,
 #set refresh-mode                = manual          # Enum: manual, auto, after-command,

@@ -17,4 +17,7 @@ else
     STATUS=1
 fi
 
-exit $STATUS
+    echo "$STATUS"
+    #if pgrep xautolock > /dev/null ;then echo -n 0; else echo -n 1; fi
+
+#exit $STATUS
