@@ -1,0 +1,10 @@
+#!/bin/sh
+
+notify-send --urgency="normal" --app-name="xautolock"  --icon='/usr/share/icons/Arc/actions/24/system-lock-screen.png' \
+    -- \
+    " " \
+    "$(echo -e " +                   ---              +\n"  \
+    "I                                    I\n"  \
+    "I          Screen Lock               I\n"  \
+    "I                                    I\n"  \
+    "+                   ---              +" )" 
