@@ -81,7 +81,6 @@ alias getrandomcolor="_(){
 ## list hidden files
 alias lsh='ls -A | grep "^\."'
 
-alias gitl='git log --format=oneline'
 
 alias ipa='ip a | grep "inet " | awk '\''{print $2}'\'' '
 alias ipall="ip a  | grep -o  \"^[0-9]*:\ \w*\" | cut -d ' ' -f 2 | uniq"
@@ -112,7 +111,6 @@ alias remek='kek "$@" && mek "$@"'
 alias tigs='tig status'
 alias meki='mek install -s "$@"'
 
-alias gitusers="git shortlog | grep -E '^[^ ]'"
 #alias unlok_dat_git_repo="rm -i $(git rev-parse --show-toplevel)/.git/index.lock"
 
 SETTERM="TERM=xterm-256color"

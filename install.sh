@@ -10,6 +10,9 @@ DOTFILES=$PWD
 ##                   "./tmux/.tmux.conf":   "~/.tmux.conf",
 
 
+## dotfiles path
+# cd $(dirname $0) 
+
 showusage()
 {
     echo "

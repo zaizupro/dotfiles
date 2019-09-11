@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+## colorize output of make and GCC
+##
+
 COLORS_PATH="${HOME}/.bash_colors"
 
 #==============COLORS============
