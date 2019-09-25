@@ -4,6 +4,9 @@
 f file <dat>
     file %f
 
+n newfile
+    touch filename
+
 e [EX]tract here 
     ##ex %f
 
