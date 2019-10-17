@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-DOTFILES=$PWD
+
+DOTFILES="$(dirname $0)"
 
 ## TODO:
 ##      make dependency list
@@ -146,6 +147,7 @@ if [ "..${ARGS}" = "..0" ]; then
     echo ""
     echo "utils"
     echo "entries"
+    exit 0
 fi
 
 ##[==========================================================================]##
