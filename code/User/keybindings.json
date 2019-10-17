@@ -1,5 +1,10 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
+
+    {
+        "key": "escape .",
+        "command": "workbench.action.openGlobalKeybindings"
+    }
     {
         "key": "f2",
         "command": "-editor.action.rename",
