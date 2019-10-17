@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+( cat /dev/stdin ) 2>&1 | while read line; do echo "$(date '+%m.%d %H:%M:%S'): $line"; done

@@ -4,6 +4,7 @@
 if [ -z "${1}" ]; then
     if [ $(type selectdat > /dev/null  2>&1 ;echo $?) == "0" ]; then
         VMNAME=$(selectdat $(vboxls.sh))
+#        VMNAME=$(echo -en \"$(vboxls.sh)\" | rofi  -dmenu -p '' )
     else
         echo "selectdat not found. vm name is required"
         exit 1
