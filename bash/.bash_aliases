@@ -7,7 +7,7 @@
 #alias ldddat=="_(){ ldd '$(which \${1})' }; _\$@"
 
 #==============COLORS============
-[[ -s "${HOME}/.bash_colors" ]] && source "${HOME}/.bash_colors" # Load some colors
+[ -r "${HOME}/.bash_colors" ] && source "${HOME}/.bash_colors" # Load some colors
 
 ##[==========================================================================]##
 ##-=[moving]=-##
@@ -26,7 +26,7 @@ alias userls='cut -f1 -d: /etc/passwd'
 alias homesize='du -hs ~'
 alias topc='top -o%CPU'
 alias topm='top -o%MEM'
-alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}-%{VERSION}-%{RELEASE}\n'"
+alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}\t%{VERSION}-%{RELEASE}\n' | column -t"
 alias psw='ps xawwf -eo pid,user,%cpu,%mem,args | less -S'
 #alias psdat='ps aux |grep "\${@}" | grep -v grep'
 alias mktd='mkdir -v $(date +%Y%m%d)'
@@ -38,6 +38,11 @@ alias diff='diff --color=auto "${@}"'
 ##[==========================================================================]##
 ##-=[print files]=-##
 
+fehdat()
+{
+    feh "$1" --auto-zoom --sort filename --borderless --scale-down --draw-filename --image-bg black
+}
+
 __filtor()
 {    awk '{print $1"  "(substr($5"    ", 1, 4))"  "(substr($9,1))}'; }
 __ll()
@@ -45,15 +50,16 @@ __ll()
 
 #ls -lAhF  |  awk '{out="";for(i=9;i<=NF;i++){out=out" "$i};print $1" "$5""out}'
 
-alias grep="grep --color=auto $@"
+#alias grep='grep --color=auto $@'
 
 alias grepdat="_(){
           [[ \$1 = -h ]] && echo 'use single quotes and ekran symbol \\' && return; \
                   grep -n \"\${1}\" . -rI --exclude-dir=\"\${2}\"  --exclude=\"\${2}\"
           }; _\$@"
 
+# find . -iname "*${1:-}*"
 alias finddat="_(){
-          find . -name \"\${1}\" | grep \"\${1}\"
+          find . -name \"\${1}\"   | grep --color=auto \"\${1}\"
           }; _\$@"
 
 alias calcdat="_(){
@@ -168,7 +174,6 @@ alias pw='sudo pacman $2 $1'
 
 alias merge='xrdb -merge ${HOME}/.Xresources'
 #identify -format '%[EXIF:*]'
-
 
 alias makepass='openssl rand -base64 12'
 alias vm='startVM.sh'

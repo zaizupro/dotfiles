@@ -1,3 +1,4 @@
+#!/bin/bash
 
 ##yo, include dat file in ur .bashrc
 
@@ -5,15 +6,32 @@
 ##
 source_file()
 {
-  [ -f "${1}" ] && source "${1}"
+    [ -r "${1}" ] && source "${1}"
 }
 
 source_dat()
 {
-    [[ -s "${1}" ]] && [ -f "${1}" ] && source "${1}"
+    [ -r "${1}" ] && source "${1}"
+}
+
+##=-                                                                        -=##
+embrace()
+{
+    if [ "$1" = "--help" ] || [ "$#" -eq 0 ]; then
+        echo "USAGE: embrace STR [OPENING_BRACE] [CLOSING_BRACE]"
+        return 0
+    fi
+
+    echo -e "${2}${1}${3}"
 }
 
 
+##=-                                                                        -=##
+embracedat()
+{
+    STR=$(embrace "${1}" '[ '  ' ]')
+    echo -e "$STR"
+}
 
 ##[==========================================================================]##
 ## svn
@@ -70,6 +88,14 @@ __currentTTY()
     temp=$(tty) ; echo ${temp:5}
 }
 
+##=-                                                                        -=##
+mek_laine()
+{
+    FILLER=${2}
+    [ -z "${FILLER}" ] && FILLER=" "
+    pad=$(printf "%${1}s" "");pad=${pad// /${FILLER}};echo -en "$pad"
+}
+
 ##[==========================================================================]##
 ## prints MSG(1) of COLOR(2) in middle of term line.
 __printor()
@@ -82,11 +108,11 @@ __printor()
     if [[ ${MSGLNGTH} == "" ]]; then
         MSGLNGTH=${#MSG}
     fi
-    local STARTLINE=$(printf "%-$((${TERMCOLS}/2 - ${MSGLNGTH}/2))s" "")
+    local STARTLINE=$(mek_laine "$((${TERMCOLS}/2 - ${MSGLNGTH}/2))")
     local STLNLNGTH=${#STARTLINE}
-    local ENDLINE=$(printf "%-$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))s" "")
+    local ENDLINE=$(mek_laine "$((${TERMCOLS} - (${STLNLNGTH} + ${MSGLNGTH})))")
 
-    echo ${NC}"${STARTLINE// / }${COLOR}${MSG}${NC}${NC}${ENDLINE// / }"$NC
+    echo ${NC}"${STARTLINE}${COLOR}${MSG}${NC}${NC}${ENDLINE}"$NC
 }
 
 ##[==========================================================================]##
@@ -104,6 +130,21 @@ __blockprintor()
 {
     declare -a HEADER=("$3")
     __arrayprintor "${1}" "${2}" "HEADER"
+}
+##=-                                                                        -=##
+function each()
+{
+  for dir in *; do
+
+    if [ -d ${dir} ] && [ -r ${dir} ]; then
+#        echo "${dir}:"
+        cd $dir;RES="$?"
+        if [ ${RES} -eq 0 ]; then
+            $@
+            cd ..
+        fi
+    fi
+  done
 }
 
 ##[==========================================================================]##
@@ -132,10 +173,10 @@ __arrayprintor()
         BPMAXMSGSPACER=${#BPHEADERMSG}
         local BPHEADERSPACERLINE=
     else
-        local BPHEADERSPACERLINE=`printf -v BPSPACERLINETMP "%-$((${BPMAXMSGSPACER} - ${#BPHEADERMSG}))s" ' '; echo "${BPSPACERLINETMP// /━}"`
+        local BPHEADERSPACERLINE=$(mek_laine "$((${BPMAXMSGSPACER} - ${#BPHEADERMSG}))" "━" )
     fi
 
-    local BPSPACERLINE=`printf -v BPSPACERLINETMP "%-$((${BPMAXMSGSPACER}))s" ' '; echo "${BPSPACERLINETMP// /━}"`
+    local BPSPACERLINE=$(mek_laine "${BPMAXMSGSPACER}" "━" )
     local BPHEADERLINE="${SOMON}${BPHEADERMSG}${SOMOF}${BPHEADERSPACERLINE}"
 
 ##===============================DEBUG TRACE =================================##
@@ -146,14 +187,15 @@ __arrayprintor()
     # echo "[ HEADER LINE LNGTH:        '${#BPHEADERLINE}' ]"
 ##[==========================================================================]##
 
-    __printor "┏━${BPHEADERLINE}━┓" "${BPCOLOR}" $(expr ${#BPHEADERMSG} + ${#BPHEADERSPACERLINE} + 4)
-    # echo "┏━${BPHEADERMSG}${BPHEADERSPACERLINE}━┓"
-
+    OUT=${OUT}$(__printor "┏━${BPHEADERLINE}━┓" \
+                          "${BPCOLOR}" \
+                          "$(expr ${#BPHEADERMSG} + ${#BPHEADERSPACERLINE} + 4)" \
+               )
 
     for index in ${!OUTARRAY[*]};do
         local BPMSGSPACEREXT=""
         local BPCURRENTMSGLNGTH=${#OUTARRAY[$index]}
-        local BPMSGSPACER=$(printf "%-$(( (${BPMAXMSGSPACER}-${BPCURRENTMSGLNGTH})/2 ))s" "")
+        local BPMSGSPACER=$(mek_laine $(( (${BPMAXMSGSPACER}-${BPCURRENTMSGLNGTH})/2 )) )
 
         if [  $(expr $(expr ${BPMAXMSGSPACER} - ${BPCURRENTMSGLNGTH}) % 2) -eq 1 ]; then
             BPMSGSPACEREXT=" "
@@ -166,32 +208,23 @@ __arrayprintor()
         # echo "[ MSG SPACEREXT LNGTH: '${#BPMSGSPACEREXT}' ]"
 ##[==========================================================================]##
 
-
-        # echo "┃ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} ┃"
-        __printor "┃ ${BPMSGSPACER// / }${OUTARRAY[$index]}${BPMSGSPACER// / }${BPMSGSPACEREXT} ┃" ${BPCOLOR}
+        local CURRENT_LINE="${BPMSGSPACER}${OUTARRAY[$index]}${BPMSGSPACER}${BPMSGSPACEREXT}"
+        OUT=${OUT}$(__printor "┃ ${CURRENT_LINE} ┃" ${BPCOLOR})
     done
 
-    __printor "┗━${BPSPACERLINE}━┛" ${BPCOLOR}
-    # echo "┗━${BPSPACERLINE}━┛"
-
+    OUT=${OUT}$(__printor "┗━${BPSPACERLINE}━┛" ${BPCOLOR})
+    echo -e "${OUT}"
 }
 
 ##[==========================================================================]##
 __printfulline()
 {
-    TERMCOLS=$(tput cols)
-    FULLLINE=$(printf "%-${TERMCOLS}s" "*")
-    __printor "${FULLLINE// /*}"
+    # TERMCOLS=$(tput cols)
+    # FULLLINE=$(printf "%-${TERMCOLS}s" "*")
+    # __printor "${FULLLINE// /*}"
+    mek_laine "$(tput cols)" "*"
 }
 
-##[==========================================================================]##
-## Returns line of symbols.
-__printfullline2()
-{
-    TERMCOLS=$(tput cols)
-    FULLLINE=$(printf '=%0.s' $(eval "echo {1.."$((${TERMCOLS}))"}"))
-    echo ${FULLLINE}
-}
 
 ##[==========================================================================]##
 ## fill spaces for str up 2 max length
@@ -206,7 +239,7 @@ __fillstr()
 }
 
 ##[==========================================================================]##
-
+##=-                                                                        -=##
 ## pack dat
 packdat()
 {
@@ -227,20 +260,21 @@ packdat()
     fi
 }
 
-
+##=-                                                                        -=##
 ## tar dat
 tardat()
 {
     packdat "tar cvzf" "$1" ".tar.gz"
 }
 
+##=-                                                                        -=##
 ## zip dat
 zipdat()
 {
     packdat "zip -r" "$1" ".zip"
 }
 
-
+##=-                                                                        -=##
 kreeptdat()
 {
     SUFIX=".kreept.zip"
@@ -250,90 +284,14 @@ kreeptdat()
     tar cf - "${SRC_PATH}" | zip -1 -e "${BEKAP_NAME}" -
 }
 
+##=-                                                                        -=##
 dekreeptdat()
 {
     SRC_PATH="${1}"
     unzip -p ${SRC_PATH} | tar xf -
 }
 
-
-##[==========================================================================]##
-
-path() {
-  echo $PATH | tr ":" "\n" | \
-    awk "{ sub(\"/usr\",   \"${GREENFGBG}/usr${NC}\"); \
-           sub(\"/bin\",   \"${BLUEFGBG}/bin${NC}\"); \
-           sub(\"/_bin\",   \"${ORANGEFGBG}/_bin${NC}\"); \
-           sub(\"/sbin\",  \"${PURPFGBG}/sbin${NC}\"); \
-           sub(\"/local\", \"${YELLOWFGBG}/local${NC}\"); \
-           sub(\"/opt\",   \"${PURPFGBG}/opt${NC}\"); \
-           sub(\"/Users\", \"${REDFGBG}/Users${NC}\"); \
-           sub(\"/home\",  \"${REDFGBG}/home${NC}\"); \
-           print }"
-}
-
-##[==========================================================================]##
-# compressed file expander from github.com/zanshin
-# (from https://github.com/myfreeweb/zshuery/blob/master/zshuery.sh)
-ex()
-{
-    if [[ -e $1 ]]; then
-        case $1 in
-            *.tar.bz2) tar xvjf $1;;
-            *.tar.gz) tar xvzf $1;;
-            *.tar.xz) tar xvJf $1;;
-            *.tar.lzma) tar --lzma xvf $1;;
-            *.bz2) bunzip $1;;
-            *.rar) unrar $1;;
-            *.gz) gunzip $1;;
-            *.tar) tar xvf $1;;
-            *.tbz2) tar xvjf $1;;
-            *.tgz) tar xvzf $1;;
-            *.zip) unzip $1;;
-            *.Z) uncompress $1;;
-            *.7z) 7z x $1;;
-            *.dmg) hdiutul mount $1;; # mount OS X disk images
-            *) echo "'$1' cannot be extracted via >ex<";;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
-
-
-fg[red]=$(tput setaf 160)
-fg[yellow]=$(tput setaf 220)
-fg[blue]=$(tput setaf 51)
-fg[green]=$(tput setaf 112)
-reset_color=$(tput sgr 0)
-##[==========================================================================]##
-# Show how much RAM application uses.  from github.com/zanshin
-# $ ram safari
-# # => safari uses 154.69 MBs of RAM.
-# from https://github.com/paulmillr/dotfiles
-function ram()
-{
-    local sum
-    local items
-    local app="$1"
-    if [[ -z "$app" ]]; then
-        echo "First argument - pattern to grep from processes"
-    else
-        sum=0
-        for i in `ps aux | grep -i "$app" | grep -v "grep" | awk '{print $6}'`; do
-            sum=$(($i + $sum))
-        done
-        sum=$(echo "scale=2; $sum / 1024.0" | bc)
-        if [[ $sum != "0" ]]; then
-            echo "${fg[yellow]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
-        else
-            echo "There are no processes with pattern '${fg[yellow]}${app}${reset_color}' are running."
-        fi
-    fi
-}
-
-
-##[==========================================================================]##
+##=-                                                                        -=##
 __lnsafe_usage()
 {
     echo '[II] USAGE: '
@@ -405,3 +363,5 @@ err()
     echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $@" >&2
 }
 
+## 3p_FUNCTIONS
+source_dat "${HOME}/.bash_3rd_party"

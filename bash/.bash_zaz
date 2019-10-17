@@ -1,5 +1,7 @@
+#!/bin/bash
+
 ##add in $HOME/.bashrc :
-## [[ -f "${HOME}/.bash_zaz" ]] && source "${HOME}/.bash_zaz"
+## [ -r "${HOME}/.bash_zaz" ] && source "${HOME}/.bash_zaz"
 
 
 ##                                                                            ##
@@ -7,7 +9,8 @@
 ##                                                                            ##
 ##    COLORS
 
-[[ -s "${HOME}/.bash_colors" ]] && source "${HOME}/.bash_colors" # Load some colors
+## Load some colors
+[ -r "${HOME}/.bash_colors" ] && . "${HOME}/.bash_colors"
 
 ##                                                                            ##
 ##[==========================================================================]##
@@ -52,6 +55,7 @@ HISTIGNORE=ls:ll:lll:la:l:cd:pwd:exit:mc:su:df:clear:rm    ## do not put these i
 
 ## --status-column Display a status column
 LESS='--ignore-case  --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --window=-4'
+export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 
 # export settings
 export LESS HISTCONTROL HISTSIZE HISTFILESIZE HISTIGNORE #HISTFILE
@@ -59,25 +63,19 @@ export LESS HISTCONTROL HISTSIZE HISTFILESIZE HISTIGNORE #HISTFILE
 export LC_COLLATE=C
 
 ##                                                                            ##
-##[==========================================================================]##
-##                                                                            ##
 ##    CUSTOM_FUNCTIONS
 
-[[ -f "${HOME}/.bash_functions" ]] && source "${HOME}/.bash_functions"
+[ -r "${HOME}/.bash_functions" ] && source "${HOME}/.bash_functions"
 
-##                                                                            ##
-##[==========================================================================]##
 ##                                                                            ##
 ##    ALIASES
 
-[[ -f "${HOME}/.bash_aliases" ]] && source "${HOME}/.bash_aliases"
+[ -r "${HOME}/.bash_aliases" ] && source "${HOME}/.bash_aliases"
 
-##                                                                            ##
-##[==========================================================================]##
 ##                                                                            ##
 ##    PS1 prompt line
 
-[[ -f "${HOME}/.bash_ps1" ]] && source "${HOME}/.bash_ps1"
+[ -r "${HOME}/.bash_ps1" ] && source "${HOME}/.bash_ps1"
 
 if [ "${0}" = "sh" ]; then
     PS1='$(whoami)@$(cat /etc/hostname):$(basename $(pwd))\$'

@@ -5,6 +5,7 @@
 #PS1='${REV}${GREEN}[$(__currentTTY)]${NC}${YELLOW} \u${RED}@${YELLOW}\H[${RED}\W${NC}]\$'
 #PS1="\[${NC}\]\[${ORANGE}\]${PS1}\[${NC}\]"
 
+NC=$(tput sgr0)
 
 __getspace()
 {
@@ -28,7 +29,8 @@ __getprompt()
 ## first element | master branch or not
 _get_f_part()
 {
-    if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
+#    if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
+    if [ $(git rev-parse --is-inside-work-tree >/dev/null 2>&1; echo $?) -ne 0 ]; then
         OUT=">"
     else
         if [ "$(git branch | grep '*' | cut -d ' ' -f 2)" == "master" ]; then OUT="|" ; else OUT="/";fi
@@ -43,7 +45,7 @@ _get_s_part()
     if [ $(git st >/dev/null 2>&1; echo $?) -ne 0 ]; then
         OUT=">"
     else
-        if [ $(git diff --quiet >/dev/null 2>&1; echo $?) -eq 0 ] ; then OUT=">" ; else  OUT="<" ; fi
+        if [ $(git diff --quiet --ignore-submodules HEAD >/dev/null 2>&1; echo $?) -eq 0 ] ; then OUT=">" ; else  OUT="<" ; fi
     fi
     echo ${OUT}
 }
