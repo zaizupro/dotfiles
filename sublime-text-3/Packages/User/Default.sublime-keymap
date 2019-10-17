@@ -70,6 +70,7 @@
     { "keys": ["f11"], "command": "jump_forward" },
     { "keys": ["f9"], "command": "jump_back" },
 
+    { "keys": ["alt+up"], "command": "git_gutter_diff_popup" },
     { "keys": ["alt+enter"], "command": "git_gutter_next_change" },
     { "keys": ["alt+backspace"], "command": "git_gutter_prev_change" },
     { "keys": ["alt+l"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
