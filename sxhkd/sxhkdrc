@@ -2,6 +2,14 @@
 # wm independent hotkeys
 #
 
+# grave
+super + grave
+    xnano
+
+# FILE MANAGER
+super + BackSpace
+    thunar ${HOME}
+
 # wm lock
 super + l
     urxvt -e 'slock'
@@ -12,8 +20,14 @@ shift + Print
 ctrl + Print
     flameshot gui
 
+ctrl + shift + Print
+    xclip -se c -t image/png -o > /tmp/out.png ; feh -Z /tmp/out.png
+
 alt + z
     cmus-remote -u
+
+super + {Up,Left,Right}
+    notify-send {"u","l","r"}
 
 super + z
     cmus-remote -u
@@ -25,6 +39,10 @@ super + Return
 
 # run command
 super + r
+    rofi -show run -disable-history
+
+# run command
+super + e
     rofi -show run -disable-history
 
 # program launcher
@@ -70,7 +88,7 @@ alt + Tab
     rofi -show windowcd
 
 Print
-    scrot -q 100
+    mkdir -p $HOME/Pictures/Screenshots; import -w root png:- > $HOME/Pictures/Screenshots/$(date +%Y_%m_%dT%H_%M_%S_%N).png; notify-send "Screenshot captured";aplay ~/_bin/done.wav
 
 
 
