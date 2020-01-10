@@ -30,7 +30,8 @@ alias rpmlist="rpm -qa --queryformat '%010{SIZE}\t%{NAME}\t%{VERSION}-%{RELEASE}
 alias psw='ps xawwf -eo pid,user,%cpu,%mem,args | less -S'
 #alias psdat='ps aux |grep "\${@}" | grep -v grep'
 alias mktd='mkdir -v $(date +%Y%m%d)'
-alias gototd='newdir="/tmp/"$(date +%Y%m%d)"_"$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9))$((RANDOM % 9)); mkdir $newdir && cd $newdir'
+alias mktf='newfile="$(date +%Y%m%d)_$(getrnd 5)";touch ${newfile} && nano "${newfile}" '
+alias gototd='newdir="/tmp/"$(date +%Y%m%d)"_"$(getrnd 8); mkdir $newdir && cd $newdir'
 alias tikdat="_(){ while :; do sleep 1;echo \"\$(\${1})\"; done }; _\$@"
 
 alias diff='diff --color=auto "${@}"'

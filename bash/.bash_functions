@@ -4,6 +4,7 @@
 
 ##[==========================================================================]##
 ##
+##=-                                                                        -=##
 source_file()
 {
     [ -r "${1}" ] && source "${1}"
@@ -25,6 +26,16 @@ embrace()
     echo -e "${2}${1}${3}"
 }
 
+
+##=-                                                                        -=##
+trymntdat()
+{
+    MNTPATH=${1}
+    if [ $(mount | grep ${MNTPATH} >/dev/null 2>&1 ; echo $?) -ne 0 ]; then
+        [[ ${2} != "-s" ]] && echo "mounting ${MNTPATH}"
+        mount ${MNTPATH}
+    fi
+}
 
 ##=-                                                                        -=##
 embracedat()
@@ -361,6 +372,20 @@ lnsafe()
 err()
 {
     echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $@" >&2
+}
+
+
+##                                                                             ##
+getrnd()
+{
+    local ranks=1
+    local OUT=
+    [ ! -z "$1" ] && ranks=${1}
+    for (( a = 0; a < $ranks; a++ )); do
+         OUT="${OUT}$((RANDOM % 9))"
+    done
+    echo -e "${OUT}"
+
 }
 
 ## 3p_FUNCTIONS
