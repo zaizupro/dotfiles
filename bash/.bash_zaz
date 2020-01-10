@@ -3,6 +3,8 @@
 ##add in $HOME/.bashrc :
 ## [ -r "${HOME}/.bash_zaz" ] && source "${HOME}/.bash_zaz"
 
+# Load shell independent environment variables
+#[[ -r ~/.shrc ]] && . ~/.shrc
 
 ##                                                                            ##
 ##[==========================================================================]##
@@ -33,6 +35,7 @@ if [ -d ${HOME}/_bin ] ; then
     PATH="${HOME}/_bin:${PATH}"
     PATH="${HOME}/_bin/vm:${PATH}"
     PATH="${HOME}/_bin/base:${PATH}"
+    PATH="${HOME}/_bin/local:${PATH}"
 fi
 
 ENV=${HOME}/.bashrc
@@ -42,16 +45,17 @@ WORKSPACE=${HOME}/_WORK
 export EDITOR ENV PATH DOTFILES WORKSPACE
 
 
-# configure how history works
+# configure how history works bash(1)
 HISTCONTROL=ignoreboth      # don't put duplicate lines or lines starting with space in the history.
-#HISTCONTROL=erasedups
-#HISTCONTROL=ignoredups     # ignore the line if it matches previous line
 HISTFILESIZE=20000          # size of the history file cf. also shopt -s histappend
 HISTSIZE=1000               # size of the run-time history list
 
 HISTIGNORE=ls:ll:lll:la:l:cd:pwd:exit:mc:su:df:clear:rm    ## do not put these in history file
 #HISTFILE=$HOME/.bash_history-$(hostname)                  ## track history by host
 
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
 ## --status-column Display a status column
 LESS='--ignore-case  --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --window=-4'
@@ -82,4 +86,4 @@ if [ "${0}" = "sh" ]; then
 fi
 
 
-
+# EOF
