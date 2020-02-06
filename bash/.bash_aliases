@@ -125,12 +125,13 @@ SETTERM="TERM=xterm-256color"
 alias tmls='_(){
            RESULT=$(tmux ls > /dev/null  2>&1; echo $?)
            if [ ${RESULT} -eq 1 ]; then
-               echo "${YELLOWFGBG}no server running${NC}" ; return 0
+               echo "${YELLOWFGBG}no server running${NC}" ; return ${RESULT}
            fi
            if [ ${RESULT} -eq 0 ]; then
                 echo "$(for i in $(tmux ls | cut -d ':' -f 1 ); do  echo ${GREENFGBG}${i}$NC ; done )$NC"
-                return 0
+                return ${RESULT}
            fi
+           return ${RESULT}
            }; _'
 
 alias tma='_(){
