@@ -9,7 +9,8 @@ shift
 _FUNKNAME=$1
 shift
 
-. "${_FILENAME}"
+[ -r "${_FILENAME}" ] && . "${_FILENAME}"
+
 
 _-_getrndcolor()
 {
@@ -21,6 +22,15 @@ _-_getrndcolor()
 
     echo "${COLORFG}${COLORBG}"
 }
+
+if [ -z ${_FUNKNAME} ]; then
+    _FUNKNAME="_-_getrndcolor"
+fi
+
+if [ ! "$(type -t ${_FUNKNAME})" = "function" ]; then
+    exit 1
+fi
+
 
 MAX_ELEMENT_LENGTH=0
 MAX_ELEMENTS_COUNT=0
@@ -49,7 +59,7 @@ do
     ARAY[$SEQUENCE_NUM]="$ELEMENT"
     MSGSPACER=$(printf "%-$(($MAX_ELEMENT_LENGTH - ${#ELEMENT}))s" "")
 
-    ITR_CLR=$(${_FUNKNAME})
+    ITR_CLR=$(${_FUNKNAME} ${ELEMENT})
 
     OUT_LIST_STR=$OUT_LIST_STR"${ITR_CLR}$(printf "%0${#MAX_ELEMENTS_COUNT}d" $SEQUENCE_NUM)$NC"
     OUT_LIST_STR=$OUT_LIST_STR"$SEPARATOR"

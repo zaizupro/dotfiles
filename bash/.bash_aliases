@@ -55,7 +55,7 @@ __ll()
 
 alias grepdat="_(){
           [[ \$1 = -h ]] && echo 'use single quotes and ekran symbol \\' && return; \
-                  grep -n \"\${1}\" . -rI --exclude-dir=\"\${2}\"  --exclude=\"\${2}\"
+                  grep --color=auto -in \"\${1}\" . -rI --exclude-dir=\"\${2}\"  --exclude=\"\${2}\"
           }; _\$@"
 
 # find . -iname "*${1:-}*"

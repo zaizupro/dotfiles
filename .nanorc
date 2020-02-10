@@ -8,6 +8,8 @@
 ## 'constantshow'  for version >= 2.9.7
 set constantshow
 
+set quickblank
+set linenumbers
 # set finalnewline
 
 set guidestripe 80
