@@ -1,0 +1,178 @@
+#!/bin/sh
+
+PURPFGBG=$(tput setab 54;tput setaf 183)
+YELLOWFGBG=$(tput setab 94;tput setaf 220)
+REDFGBG=$(tput setab 52;tput setaf 196)
+GREENFGBG=$(tput setab 58;tput setaf 154)
+NC=$(tput sgr0)
+
+export _ROOT_DIR=$(cd $(dirname $0); echo $PWD) ## TODO: sletaet in funktions
+#echo "${_ROOT_DIR}"
+
+vboxutil_ls()
+{
+    if [ -z "${1}" ]; then
+        VBoxManage list vms | cut -d '"' -f 2
+    else
+        if [ "${1}" == "full" ]; then
+            VBoxManage list vms
+        fi
+    fi
+}
+
+
+get_colored_state()
+{
+    if [ -z "${1}" ]; then
+        return 1
+    else
+        VMNAME=${1}
+    fi
+
+    VM_NAME_IS_VALID=$(VBoxManage showvminfo ${VMNAME} --machinereadable > /dev/null 2>&1 ;echo $?)
+    if  [ ${VM_NAME_IS_VALID} -eq 0 ]; then
+        VMSTATE=$(VBoxManage showvminfo ${VMNAME} --machinereadable | grep VMState= | cut -d '"' -f 2)
+    else
+        echo "${REDFGBG}error: bad name '${VMNAME}'${NC}"
+        return 2
+    fi
+
+    local _RETURN_CODE=0
+
+    case "${VMSTATE}" in
+        aborted)
+        COLOR="${REDFGBG}"
+        _RETURN_CODE=10
+        ;;
+        saved)
+        COLOR="${YELLOWFGBG}"
+        _RETURN_CODE=11
+        ;;
+        poweroff)
+        COLOR="${PURPFGBG}"
+        _RETURN_CODE=12
+        ;;
+        running)
+        COLOR="${GREENFGBG}"
+        _RETURN_CODE=13
+        ;;
+        *)
+        _RETURN_CODE=20
+        ;;
+    esac
+
+    #●
+    echo "${COLOR}${VMNAME} is ${VMSTATE}${NC}"
+    return ${_RETURN_CODE}
+}
+
+
+vboxutil_getstate()
+{
+    if [ -z "${1}" ]; then
+        for NAME in $(vbx ls) ;do
+            get_colored_state "${NAME}"
+        done
+        exit 1
+    else
+        VMNAME=${1}
+        get_colored_state "${VMNAME}"
+    fi
+}
+
+
+vm_color_by_state()
+{
+    local RET=$(vboxutil_getstate ${1} > /dev/null  2>&1 ;echo $?)
+#    echo $RET
+
+    case "${RET}" in
+        10) COLOR="${REDFGBG}" ;;
+        11) COLOR="${YELLOWFGBG}" ;;
+        12) COLOR="${PURPFGBG}" ;;
+        13) COLOR="${GREENFGBG}" ;;
+        *) ;;
+    esac
+    echo "$COLOR"
+}
+
+
+vboxutil_stop()
+{
+    local _VMNAME=${1}
+    if [ -z "${_VMNAME}" ]; then
+        echo "vboxutil_stop 4 _VMNAME:'${_VMNAME}' failed"
+        return 1
+    fi
+    read -p "lol really ${YELLOWFGBG}stop${NC} '${_VMNAME}' vm?" RESULT
+    if [ "11" = "$( vboxutil_getstate ${_VMNAME} > /dev/null 2>&1 ; echo $? )" ];then
+        read -p "lol '${_VMNAME}' is saved. ${REDFGBG}really${NC} ${PURPFGBG}discardstate${NC} '${_VMNAME}' vm?" RESULT
+        VBoxManage discardstate ${_VMNAME}
+    else
+        VBoxManage controlvm ${_VMNAME} poweroff
+    fi
+}
+
+
+vboxutil_suspend()
+{
+    if [ -z "${1}" ]; then
+        if [ $(type selectdat_ext > /dev/null  2>&1 ;echo $?) == "0" ]; then
+            local _FILENAME="$(cd $(dirname $0); echo $PWD)/vboxutillib"  ## vm_color_by_state file
+            VMNAME=$(selectdat_ext "${_FILENAME}" "vm_color_by_state"  $(vboxutil_ls));local RES=$?
+        else
+            echo "selectdat_ext not found. vm name is required"
+            exit 1
+        fi
+        if [ ! "${RES}" = 0 ]; then
+            echo "selectdat_ext error [${RES}]"
+            return ${RES}
+        fi
+    else
+        VMNAME=${1}
+    fi
+
+    if [ ! -z "${VMNAME}" ]; then
+        VBoxManage controlvm ${VMNAME} savestate
+    else
+        echo "vboxutil_suspend '${1}' failed"
+    fi
+}
+
+
+vboxutil_run()
+{
+    if [ -z "${1}" ]; then
+        if [ $(type selectdat_ext > /dev/null  2>&1 ;echo $?) == "0" ]; then
+            local _FILENAME="$(cd $(dirname $0); echo $PWD)/vboxutillib"  ## vm_color_by_state file
+            VMNAME=$(selectdat_ext "${_FILENAME}" "vm_color_by_state"  $(vboxutil_ls));local RES=$?
+    #        VMNAME=$(vboxutil_ls | rofi  -dmenu -p '' )
+        else
+            echo "selectdat_ext not found. vm name is required"
+            exit 1
+        fi
+        if [ ! "${RES}" = 0 ]; then
+            echo "selectdat_ext error [${RES}]"
+            return 1
+        fi
+    else
+        VMNAME=${1}
+    fi
+
+    if [ -z "${VMNAME}" ]; then
+        echo "ERROR: VMNAME is empty"
+        return 2
+    fi
+
+    if [ "saved" = "$( vboxutil_getstate ${VMNAME} )" ]; then
+        VBoxHeadless -startvm ${VMNAME} --vrde=off > /dev/null &
+    else
+        VBoxHeadless -startvm ${VMNAME} --vrde=off > /dev/null &
+    fi
+
+    sleep 1
+    echo "vm ${VMNAME} is started"
+}
+
+
+

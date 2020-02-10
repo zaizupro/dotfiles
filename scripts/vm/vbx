@@ -1,5 +1,23 @@
 #!/usr/bin/env bash
 
+LIBNAME="vboxutillib"
+
+try_2_load()
+{
+    local _LIBNAME="$1"
+    local _ROOT_DIR=$(cd $(dirname $0); echo $PWD)
+    #current_=${PWD##*/}
+    if [ -r ${_ROOT_DIR}/${_LIBNAME} ]; then
+        . ${_ROOT_DIR}/${_LIBNAME}
+    else
+        echo "ERROR: fail to load '${_LIBNAME}'"
+        exit 2
+    fi
+}
+
+try_2_load "$LIBNAME"
+
+
 CMND="${1}"
 
 RUN[1]="run"
@@ -10,26 +28,27 @@ SUSPEND[1]="suspend"
 SUSPEND[2]="sus"
 STATUS[1]="status"
 STATUS[2]="st"
+STOP[1]="stop"
+STOP[2]="stop"
 
 
 if [ -z "${CMND}" ]; then
-    echo -e "run\nlist|ls\nsuspend|sus\nstatus|st"
+    echo -e "run\nlist|ls\nsuspend|sus\nstatus|st\nstop"
 else
     if [ "${CMND}" = ${RUN[1]} ] || [ "${CMND}" = ${RUN[2]} ]; then
-        shift
-        vboxrun.sh $@
+        shift ; vboxutil_run $@
     fi
     if [ "${CMND}" = ${LIST[1]} ] || [ "${CMND}" = ${LIST[2]} ]; then
-        shift
-        vboxls.sh $@
+        shift ; vboxutil_ls $@
     fi
     if [ "${CMND}" = ${SUSPEND[1]} ] || [ "${CMND}" = ${SUSPEND[2]} ]; then
-        shift
-        vboxsuspend.sh $@
+        shift ; vboxutil_suspend $@
     fi
     if [ "${CMND}" = ${STATUS[1]} ] || [ "${CMND}" = ${STATUS[2]} ]; then
-        shift
-        vboxgetstate.sh $@
+        shift ; vboxutil_getstate $@
+    fi
+    if [ "${CMND}" = ${STOP[1]} ] || [ "${CMND}" = ${STOP[2]} ]; then
+        shift ; vboxutil_stop $@
     fi
 fi
 
