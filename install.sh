@@ -10,9 +10,15 @@ DOTFILES="$(dirname $0)"
 ##      "link": {
 ##                   "./tmux/.tmux.conf":   "~/.tmux.conf",
 
+_NC="$(tput sgr 0)"
+_ORANGEFG=$(tput setaf 208)
+_ORANGEFGD=$(tput setaf 202)
+_YELLOWFG=$(tput setaf 226)
+_GREENFG=$(tput setaf 118)
+_PURPFG=$(tput setaf 183)
 
 ## dotfiles path
-# cd $(dirname $0) 
+# cd $(dirname $0)
 
 showusage()
 {
@@ -45,7 +51,7 @@ list_types()
 }
 
 
-
+##                                                                                                ##
 while getopts t:s:lfvh OPTIONS; do
     case $OPTIONS in
         t)
@@ -100,6 +106,7 @@ fi
 MKDIRCOMMAND="mkdir -pv"
 
 
+##                                                                                                ##
 addXresEntry()
 {
     local XRES="${HOME}/.Xresources"
@@ -123,7 +130,13 @@ ADDXRESENTRY="addXresEntry"
 
 HOME_BIN_DIR="${HOME}/_bin/base"
 
+##                                                                                                ##
+_WARNDAT()
+{
+    echo "${_ORANGEFG}WARN:${_NC} ${_YELLOWFG}$@${_NC}"
+}
 
+##                                                                                                ##
 ## DEBUG
     CPCOMMAND="echo copy: ";LNCOMMAND="echo make link: ";MKDIRCOMMAND="echo create directory: "; ADDXRESENTRY="echo add xres entry for : "; echo "DEBUG ENABLED"
 

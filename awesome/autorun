@@ -14,3 +14,8 @@ run sxhkd
 if ! pgrep xautolock ;then
     xautolock -time 5 -notify 30 -notifier loker_notify  -locker "urxvt -e 'slock'" &
 fi
+
+LOCAL_ROOT=$(cd $(dirname $0); echo $PWD)
+if [ -r ${LOCAL_ROOT}/autorun.local ]; then
+    ${LOCAL_ROOT}/autorun.local
+fi

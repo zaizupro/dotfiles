@@ -155,10 +155,19 @@ alias tmr='tmux rename-window $(basename $PWD)'
 #alias fixpng='find . -type f -name *.png -exec convert {} -strip {} \;'
 alias pacman='pacman --color=auto "$@"'
 alias pup='sudo pacman -Suy "$@" ; sudo -k'
-alias pupclean='sudo pacman -Rns $(pacman -Qtdq)'
+alias pacclean='[[ ! -z "$(pacman -Qtdq)" ]] && sudo pacman -Rns $(pacman -Qtdq)'
 alias pins='sudo pacman -S "$@"'
 
 alias xnano='urxvt -e "nano" &'
+alias soklist='_(){
+                if [[ $(command -v lsof > /dev/null 2>&1 ; echo $?) -eq 0 ]]; then
+                    sudo lsof -i -P -n | grep LISTEN
+                else
+                    if [[ $(command -v netstat > /dev/null 2>&1 ; echo $?) -eq 0 ]]; then
+                        sudo netstat -tulpn | grep LISTEN
+                    fi
+                fi
+                }; _'
 
 ## show aur packages
 alias puplisttresh="_(){
