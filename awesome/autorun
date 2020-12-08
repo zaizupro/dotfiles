@@ -9,7 +9,7 @@ function run()
 }
 
 run sxhkd
-#run kbdd
+# run kbdd
 
 if ! pgrep xautolock ;then
     xautolock -time 5 -notify 30 -notifier loker_notify  -locker "urxvt -e 'slock'" &

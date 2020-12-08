@@ -12,7 +12,7 @@ set quickblank
 set linenumbers
 # set finalnewline
 
-set guidestripe 80
+#set guidestripe 80
 
 ## Use cut to end of line by default.
 #set cut

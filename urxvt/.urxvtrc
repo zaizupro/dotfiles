@@ -73,15 +73,15 @@ URxvt*cursorBlink:                    true
 
 !orange bg fg
 !URxvt.background: #32260E   !good 
-URxvt.background: #201500
-URxvt.background: #29271D
+!URxvt.background: #201500
+!URxvt.background: #29271D
 
 !good
-URxvt.background: #2B291E
+!URxvt.background: #2B291E
 
-URxvt.background: #212017
+!URxvt.background: #212017
 
-URxvt.background: #47392B
+!URxvt.background: #47392B
 URxvt.background: #332B1F
 
 
@@ -93,9 +93,9 @@ URxvt.background: #332B1F
 URxvt*foreground: #D7B270
 
 
-URxvt.colorIT:           #E2A43E
+!URxvt.colorIT:           #E2A43E
 !URxvt.colorBD:           #CF8205
-URxvt.colorBD:           #EB8E1F
+!URxvt.colorBD:           #EB8E1F
 !URxvt.colorBD:           #DFA256
 !URxvt.colorBD:           #D59C54
 URxvt.colorBD:           #D5923C
@@ -155,7 +155,7 @@ URxvt.iconFile:    /usr/share/icons/oxygen/64x64/apps/utilities-terminal.png
 !--
 
 
-URxvt*font: 8x13bold
+!URxvt*font: 8x13bold
 !URxvt*font: xft:Terminus-14:Bold,xft:Monospace,xft:antialias=false
 !URxvt*font: xft:xos4 Terminus:bold:pixelsize=16
 !URxvt*font: -*-terminus-bold-*-normal-*-18-*-*-*-*-*-*-*
@@ -213,7 +213,7 @@ URxvt*secondaryScroll:                0
 !urxvt.clipboard.pastecmd: xsel -ob
 
 URxvt*perl-ext-common:                tabbedex,selection-to-clipboard
-URxvt*perl-ext:
+!URxvt*perl-ext:
 URxvt*iso14755:                       false
 !URxvt.clipboard.autocopy: true
 
@@ -246,7 +246,7 @@ URxvt*tab-fg:                         16
 URxvt*tabbar-bg:                      235
 URxvt*tabbar-fg:                      172
 
-!hide tabbar if one tab present
+! hide tabbar if one tab present
 URxvt.tabbed.autohide: true
 
 !undind default keys
