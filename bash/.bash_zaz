@@ -9,14 +9,6 @@
 ##                                                                            ##
 ##[==========================================================================]##
 ##                                                                            ##
-##    COLORS
-
-## Load some colors
-[ -r "${HOME}/.bash_colors" ] && . "${HOME}/.bash_colors"
-
-##                                                                            ##
-##[==========================================================================]##
-##                                                                            ##
 ##    EXPERIMENTAL
 
 export GCC_COLORS='error=07;31:warning=01;33:note=01;32:caret=01;32:locus=01:quote=01'
@@ -39,11 +31,16 @@ if [ -d ${HOME}/_bin ] ; then
 fi
 
 ENV=${HOME}/.bashrc
-PATH=${PATH}:/sbin
+PATH=/sbin:${PATH}
 DOTFILES=${HOME}/_dotfiles
 WORKSPACE=${HOME}/_WORK
 export EDITOR ENV PATH DOTFILES WORKSPACE
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+## Load some colors
+[ -r "${HOME}/.bash_colors" ] && . "${HOME}/.bash_colors"
 
 # configure how history works bash(1)
 HISTCONTROL=ignoreboth      # don't put duplicate lines or lines starting with space in the history.

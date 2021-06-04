@@ -144,12 +144,12 @@ URxvt.colorIT:           #E2BE3E
 ! URxvt*pointerColor2:                  color
 ! URxvt*path:                           search path
 ! URxvt*backgroundPixmap:               file[;geom]
-!URxvt*iconFile:                       /usr/share/pixmaps/gnome-terminal.xpm    ! иконка для иксов
-URxvt.iconFile:    /usr/share/icons/oxygen/64x64/apps/utilities-terminal.png
+!URxvt.iconFile:     /usr/share/icons/HighContrast/scalable/apps/utilities-terminal.svg
+URxvt.iconFile:     /usr/share/icons/Adwaita/32x32/apps/utilities-terminal-symbolic.symbolic.png
 
 !--[font]--!
 !!  ## u can get available fonts list:
-!!  fc-list -f "%{family} : %{file}\n" |sort|less -S
+!!  fc-list -f "%{family} : %{file}\n" | sort -u | grep ".local/share/fonts" | column -t -s ":" | less -SR
 !!  ## for testing font:
 !!  printf '\e]710;%s\007' "xft:xos4 Terminus:pixelsize=14"
 !--
@@ -241,10 +241,10 @@ URxvt*iso14755:                       false
 
 
 !--[TABS]--!
-URxvt*tab-bg:                         172
-URxvt*tab-fg:                         16
-URxvt*tabbar-bg:                      235
-URxvt*tabbar-fg:                      172
+URxvt.tabbed.tab-bg:                    172
+URxvt.tabbed.tab-fg:                    16
+URxvt.tabbed.tabbar-bg:                 235
+URxvt.tabbed.tabbar-fg:                 172
 
 ! hide tabbar if one tab present
 URxvt.tabbed.autohide: true

@@ -1,3 +1,4 @@
+#!/bin/bash
 ##============================================================================##
 ##|                                                                          |##
 ##|                                                                          |##
@@ -10,17 +11,7 @@
 ## CUSTOM_FUNCTIONS
 [ -r "${HOME}/.bash_functions" ] && source "${HOME}/.bash_functions"
 
-
-__local_fillstr() { echo $2; }
-
-FILLSTRCOMMAND="__local_fillstr"
-if [ "$(type -t __fillstr)" = "function" ]; then
-    FILLSTRCOMMAND="__fillstr"
-fi
-##[==========================================================================]##
-
-
-
+##=-                                                                        -=##
 ##include dat in .bashrc
     if [ "..${TERM}" != ".." ]; then
         #echo $TERM
@@ -97,42 +88,57 @@ fi
     fi
     ## echo "[ stdout isn't a terminal ]"
 
-##[==================================]##
+##=-                                                                        -=##
+
+__local_fillstr() { echo $2; }
+
+FILLSTRCOMMAND="__local_fillstr"
+if [ "$(type -t __fillstr)" = "function" ]; then
+    FILLSTRCOMMAND="__fillstr"
+fi
+##=-                                                                        -=##
 __print_color_line()
 {
     STARTCOLORNUM=$1
     ENDCOLORNUM=$2
 
-    for _i in $(seq "${STARTCOLORNUM}" "${ENDCOLORNUM}" )
-    do
-        echo -n " "
-        #tput setaf $(($_i + 24))
-        tput setab $_i
-        echo -n " $(${FILLSTRCOMMAND} ${#ENDCOLORNUM} $_i) "
-        echo -n "$NC "
-        #echo -n " ${SOMON} $(${FILLSTRCOMMAND} ${#ENDCOLORNUM} $_i) ${SOMOF}"
-        if (( $_i == 7 )) || ((( $_i == 15 )) || (( $_i > 15 )) && (( ($_i-15) % 6 == 0 ))) ;then
-            echo
-        fi
-    done
+    if [ ! -z ${FILLSTRCOMMAND} ]; then
+
+        for _i in $(seq "${STARTCOLORNUM}" "${ENDCOLORNUM}" )
+        do
+            echo -n " "
+            #tput setaf $((${_i} + 24))
+            tput setab ${_i}
+            echo -n " $(${FILLSTRCOMMAND} ${#ENDCOLORNUM} ${_i}) "
+            echo -n "$NC "
+            #echo -n " ${SOMON} $(${FILLSTRCOMMAND} ${#ENDCOLORNUM} ${_i}) ${SOMOF}"
+            if (( ${_i} == 7 )) || ((( ${_i} == 15 )) || (( ${_i} > 15 )) && (( (${_i}-15) % 6 == 0 ))) ;then
+                echo
+            fi
+        done
+    else
+        echo "fix FILLSTRCOMMAND"
+    fi
 }
 
-##[==================================]##
-__print_colors_oneline()
-{
-    for _i in $(seq 0 $(expr $(tput colors) - 1) ) ; do tput setaf $_i ; echo -n " $(tput smso)  $(tput rmso)" ; if (( $_i == 7 )) || ((( $_i == 15 )) || (( $_i > 15 )) && (( ($_i-15) % 6 == 0 ))); then echo "" ; fi ; done
-}
-
-##[==================================]##
+##=-                                                                        -=##
 #check colors
 __colors_checker()
 {
     if [ -t 1 ] ; then
         echo "colors: $(tput colors)"
-        if [ -x /usr/bin/tput ]; then
+        if [ -x $(type -p tput) ]; then
             echo "${NC}[ START ]"
             __print_color_line "0" "$(expr $(tput colors) - 1)"
             echo "${NC}[ END ]"
         fi
     fi
 }
+
+
+##=-                                                                        -=##
+__print_colors_oneline()
+{
+    for _i in $(seq 0 $(expr $(tput colors) - 1) ) ; do tput setaf ${_i} ; echo -n " $(tput smso)  $(tput rmso)" ; if (( ${_i} == 7 )) || ((( ${_i} == 15 )) || (( ${_i} > 15 )) && (( (${_i}-15) % 6 == 0 ))); then echo "" ; fi ; done
+}
+
