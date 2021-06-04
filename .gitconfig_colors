@@ -1,0 +1,34 @@
+
+[color]
+    ui = true
+
+[color "decorate"]
+    branch = 220 58
+    remoteBranch = 220 94
+    tag = 190 58
+    stash = 183 54
+    HEAD = 202 52
+
+[color "diff"]
+    plain =
+    meta = 16 214
+    frag = 16 208
+    func = 208
+    old = 202 52
+    new = 190 58
+    whitespace = 52 227
+
+[color "branch"]
+    plain = 214
+    upstream = 154
+    current = 16 214
+    local = 214
+    remote = 184
+
+[color "status"]
+    added = 208 22
+    header =
+    changed = 226 94
+    updated = 190 58
+    untracked = 202 52
+    branch = 16 214
