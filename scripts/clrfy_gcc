@@ -2,6 +2,8 @@
 
 ## colorize output of make and GCC
 ##
+BASE_PATH="$( cd  $( dirname ${BASH_SOURCE[0]} )  && pwd -L && echo x)"
+ROOT_FULL_PATH="${BASE_PATH%?x}"
 
 COLORS_PATH="${HOME}/.bash_colors"
 

@@ -1,59 +1,81 @@
 #!/bin/sh
 
-TMPSTATFILE="/tmp/$(whoami)_cpuusage_stat_tmp"
-#echo ${TMPSTATFILE}
+MODE=${1}
+[ -z "$1" ] && MODE="fast"
 
-NEWLINE=$(sed -n 1p  /proc/stat)
+TMPSTATFILE="/tmp/$(whoami)_cpuusage_stat_tmp"
+
+NEWLINE=$(head -n 1  /proc/stat)
 
 if [ -f "${TMPSTATFILE}" ]; then
-    PREVLINE=$(sed -n 1p  ${TMPSTATFILE})
+    PREVLINE=$(head -n 1  ${TMPSTATFILE})
 else
-    echo ${NEWLINE} > ${TMPSTATFILE}
+    echo "${NEWLINE}" > ${TMPSTATFILE}
     exit 1
 fi
 
 echo ${NEWLINE} > ${TMPSTATFILE}
 
-##----------------------------------------------------------------##
-user=$(         echo "${NEWLINE}" | awk -F " " '{print $2}' )
-nice=$(         echo "${NEWLINE}" | awk -F " " '{print $3}' )
-system=$(       echo "${NEWLINE}" | awk -F " " '{print $4}' )
-idle=$(         echo "${NEWLINE}" | awk -F " " '{print $5}' )
-iowait=$(       echo "${NEWLINE}" | awk -F " " '{print $6}' )
-irq=$(          echo "${NEWLINE}" | awk -F " " '{print $7}')
-softirq=$(      echo "${NEWLINE}" | awk -F " " '{print $8}')
-steal=$(        echo "${NEWLINE}" | awk -F " " '{print $9}')
-guest=$(        echo "${NEWLINE}" | awk -F " " '{print $10}')
-guest_nice=$(   echo "${NEWLINE}" | awk -F " " '{print $11}')
+#                                                                              #
+user=$(         echo "${NEWLINE}" | awk -F " " '{print $2}')
+nice=$(         echo "${NEWLINE}" | awk -F " " '{print $3}')
+system=$(       echo "${NEWLINE}" | awk -F " " '{print $4}')
+idle=$(         echo "${NEWLINE}" | awk -F " " '{print $5}')
+iowait=$(       echo "${NEWLINE}" | awk -F " " '{print $6}')
 
-prevuser=$(         echo "${PREVLINE}" | awk -F " " '{print $2}' )
-prevnice=$(         echo "${PREVLINE}" | awk -F " " '{print $3}' )
-prevsystem=$(       echo "${PREVLINE}" | awk -F " " '{print $4}' )
-previdle=$(         echo "${PREVLINE}" | awk -F " " '{print $5}' )
-previowait=$(       echo "${PREVLINE}" | awk -F " " '{print $6}' )
-previrq=$(          echo "${PREVLINE}" | awk -F " " '{print $7}')
-prevsoftirq=$(      echo "${PREVLINE}" | awk -F " " '{print $8}')
-prevsteal=$(        echo "${PREVLINE}" | awk -F " " '{print $9}')
-prevguest=$(        echo "${PREVLINE}" | awk -F " " '{print $10}')
-prevguest_nice=$(   echo "${PREVLINE}" | awk -F " " '{print $11}')
+prevuser=$(         echo "${PREVLINE}" | awk -F " " '{print $2}')
+prevnice=$(         echo "${PREVLINE}" | awk -F " " '{print $3}')
+prevsystem=$(       echo "${PREVLINE}" | awk -F " " '{print $4}')
+previdle=$(         echo "${PREVLINE}" | awk -F " " '{print $5}')
+previowait=$(       echo "${PREVLINE}" | awk -F " " '{print $6}')
 
-##----------------------------------------------------------------##
-PrevIdle=$((previdle + previowait))
-Idle=$((idle + iowait))
+#                                                                              #
+if [[ $MODE = "full" ]]; then
+    irq=$(          echo "${NEWLINE}" | awk -F " " '{print $7}')
+    softirq=$(      echo "${NEWLINE}" | awk -F " " '{print $8}')
+    steal=$(        echo "${NEWLINE}" | awk -F " " '{print $9}')
+    guest=$(        echo "${NEWLINE}" | awk -F " " '{print $10}')
+    guest_nice=$(   echo "${NEWLINE}" | awk -F " " '{print $11}')
 
-PrevNonIdle=$((prevuser + prevnice + prevsystem + previrq + prevsoftirq + prevsteal))
-NonIdle=$((user + nice + system + irq + softirq + steal))
+    previrq=$(          echo "${PREVLINE}" | awk -F " " '{print $7}')
+    prevsoftirq=$(      echo "${PREVLINE}" | awk -F " " '{print $8}')
+    prevsteal=$(        echo "${PREVLINE}" | awk -F " " '{print $9}')
+    prevguest=$(        echo "${PREVLINE}" | awk -F " " '{print $10}')
+    prevguest_nice=$(   echo "${PREVLINE}" | awk -F " " '{print $11}')
 
-PrevTotal=$((PrevIdle + PrevNonIdle))
-Total=$((Idle + NonIdle))
+    PrevIdle=$((previdle + previowait))
+    Idle=$((idle + iowait))
 
-totald=$((Total - PrevTotal))
-idled=$((Idle - PrevIdle))
+    PrevNonIdle=$((prevuser + prevnice + prevsystem + previrq + prevsoftirq + prevsteal))
+    NonIdle=$((user + nice + system + irq + softirq + steal))
 
-CPU_Percentage=$(awk "BEGIN {print ($totald - $idled)/$totald*100}")
+    PrevTotal=$((PrevIdle + PrevNonIdle))
+    Total=$((Idle + NonIdle))
 
-if [[ "$cpu" == "cpu" ]]; then
-    echo "total "$CPU_Percentage
-else
-    echo $cpu" "$CPU_Percentage
+    totald=$((Total - PrevTotal))
+    idled=$((Idle - PrevIdle))
+
+    CPU_Percentage=$(awk "BEGIN {print ($totald - $idled)/$totald*100}")
+
+    if [[ "$cpu" == "cpu" ]]; then
+        echo "total "$CPU_Percentage
+    else
+        echo $cpu" "$CPU_Percentage
+    fi
 fi
+
+#                                                                              #
+if [[ ${MODE} = "fast" ]]; then
+    _idle=$(( (idle - previdle) + (iowait - previowait)))
+    _user=$(( (nice - prevnice) + (user - prevuser) ))
+    _system=$(( (system - prevsystem) ))
+    _total=$(( _idle + _user + _system ))
+    _busy=$(( _user + _system ))
+
+    _ret_busy=$(( _busy * 100 / _total ))
+    # _ret_sys=$(( system * 100 / total ))
+    # _ret_user=$(( user * 100 / total ))
+
+    echo ${_ret_busy}
+fi
+

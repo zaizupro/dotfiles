@@ -5,7 +5,7 @@ LIBNAME="vboxutillib"
 try_2_load()
 {
     local _LIBNAME="$1"
-    local _ROOT_DIR=$(cd $(dirname $0); echo $PWD)
+    local _ROOT_DIR=$(cd $(dirname ${BASH_SOURCE[0]}); echo $PWD)
     #current_=${PWD##*/}
     if [ -r ${_ROOT_DIR}/${_LIBNAME} ]; then
         . ${_ROOT_DIR}/${_LIBNAME}

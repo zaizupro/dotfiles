@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+[ -r "${HOME}/.bash_colors" ] && source "${HOME}/.bash_colors"
 
 PURPFGBG=$(tput setab 54;tput setaf 183)
 YELLOWFGBG=$(tput setab 94;tput setaf 220)
@@ -6,9 +8,10 @@ REDFGBG=$(tput setab 52;tput setaf 196)
 GREENFGBG=$(tput setab 58;tput setaf 154)
 NC=$(tput sgr0)
 
-export _ROOT_DIR=$(cd $(dirname $0); echo $PWD) ## TODO: sletaet in funktions
+export _ROOT_DIR=$(cd $(dirname ${BASH_SOURCE[0]}); echo $PWD) ## TODO: sletaet in funktions
 #echo "${_ROOT_DIR}"
 
+#                                                                                                  #
 vboxutil_ls()
 {
     if [ -z "${1}" ]; then
@@ -16,6 +19,8 @@ vboxutil_ls()
     else
         if [ "${1}" == "full" ]; then
             VBoxManage list vms
+        else
+            echo
         fi
     fi
 }
@@ -66,7 +71,7 @@ get_colored_state()
     return ${_RETURN_CODE}
 }
 
-
+#                                                                                                  #
 vboxutil_getstate()
 {
     if [ -z "${1}" ]; then
@@ -80,7 +85,7 @@ vboxutil_getstate()
     fi
 }
 
-
+#                                                                                                  #
 vm_color_by_state()
 {
     local RET=$(vboxutil_getstate ${1} > /dev/null  2>&1 ;echo $?)
@@ -96,7 +101,7 @@ vm_color_by_state()
     echo "$COLOR"
 }
 
-
+#                                                                                                  #
 vboxutil_stop()
 {
     local _VMNAME=${1}
@@ -113,7 +118,7 @@ vboxutil_stop()
     fi
 }
 
-
+#                                                                                                  #
 vboxutil_suspend()
 {
     if [ -z "${1}" ]; then
@@ -139,7 +144,7 @@ vboxutil_suspend()
     fi
 }
 
-
+#                                                                                                  #
 vboxutil_run()
 {
     if [ -z "${1}" ]; then
@@ -173,6 +178,4 @@ vboxutil_run()
     sleep 1
     echo "vm ${VMNAME} is started"
 }
-
-
-
+#                                                                                                  #

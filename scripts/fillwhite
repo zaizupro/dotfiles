@@ -1,3 +1,11 @@
 #!/usr/bin/env sh
 
-PS1='';echo -en "$(tput setab 255;tput setaf 255) $(dmesg)";sleep 3;PS1="$\[{NC}\]>"
+ROWS=$(tput lines)
+KOLS=$(tput cols)
+
+RED="88"
+KOLOR="15"
+PS1=''
+for i in $(seq ${ROWS});do  echo -en "$(tput setab ${KOLOR};tput setaf ${KOLOR})\n" ; done
+#sleep 3;PS1="$\[{NC}\]>"
+for i in $(seq ${ROWS});do  echo -en "$(tput setab ${KOLOR};tput setaf ${KOLOR})\n" ; done

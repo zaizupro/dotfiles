@@ -4,5 +4,10 @@ if [ -f ${HOME}/.bash_colors ]; then
     source ${HOME}/.bash_colors
 fi
 
-cat /dev/stdin | sed -r -e "s/(${1})/${PURPFGBG}\1${NC}/g"
+MARKER=$(echo "${1}" | sed -r -e "s#\.#\\\.#g" -e "s#\/#\\\/#g" )
+
+KOLOR="${PURPFGBG}"
+[ "$#" -eq 2 ] && KOLOR=${2}
+
+cat /dev/stdin | sed -r -e "s/(${MARKER})/${KOLOR}\1${NC}/g"
 
