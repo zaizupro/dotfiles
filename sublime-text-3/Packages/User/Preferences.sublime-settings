@@ -6,7 +6,7 @@
 	"caret_extra_top": 0,
 	"caret_extra_width": 10,
 	"caret_style": "phase",
-	"color_scheme": "Packages/industrial-coding-theme/industrial_coding_supableak.tmTheme",
+	"color_scheme": "Packages/industrial-coding-theme/industrial_coding_supableak.sublime-color-scheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
 	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+function run()
+{
+  if ! pgrep $1 ;
+  then
+    $@&
+  fi
+}
+
+run sxhkd
+#run kbdd
+
+if ! pgrep xautolock ;then
+    xautolock -time 5 -notify 30 -notifier loker_notify  -locker "urxvt -e 'slock'" &
+fi
+
+#nitrogen  --set-scaled ${HOME}/_BGWALPPRS/current &
+#hsetroot -root  -solid "#000" &
+#hsetroot -root -cover   ${HOME}/_BGWALPPRS/current &

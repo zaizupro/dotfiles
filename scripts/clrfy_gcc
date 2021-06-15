@@ -9,8 +9,24 @@ COLORS_PATH="${HOME}/.bash_colors"
 
 #==============COLORS============
 if [ -t 1 ] ; then
-    [[ -s "${COLORS_PATH}" ]] && [ -f "${COLORS_PATH}" ] && source "${COLORS_PATH}"
+    if [ -s "${COLORS_PATH}" ]; then
+        if [ -f "${COLORS_PATH}" ];then
+            source "${COLORS_PATH}"
+        else
+            echo -e "$(tput setaf 1)[$(basename ${BASH_SOURCE[0]})][ERR] KOLORS '${COLORS_PATH}' NOT LOADED!$(tput sgr 0)"
+        fi
+    else
+        echo -e "$(tput setaf 1)[$(basename ${BASH_SOURCE[0]})][ERR] KOLORS '${COLORS_PATH}' NOT LOADED!$(tput sgr 0)"
+        COLORS_PATH="${ROOT_FULL_PATH}/../colors"
+        if [ -s "${COLORS_PATH}" ];then
+            [ -f "${COLORS_PATH}" ] && source "${COLORS_PATH}"
+        else
+            echo -e "$(tput setaf 1)[$(basename ${BASH_SOURCE[0]})][ERR] KOLORS '${COLORS_PATH}' NOT LOADED!$(tput sgr 0)"
+        fi
+    fi
 fi
+
+##[ ${#NC} -eq 0 ] && echo -e "$(tput setaf 160)[$(basename ${BASH_SOURCE[0]})][ERR] KOLORS '${COLORS_PATH}' NOT LOADED!$(tput sgr 0)"
 
 KEY="s/(\[-W.*\]|\^~*)/${YELLOWFGBG}\\1${NC}/i"
 KEY_W="s/(-W(=|\w|\.|\/|-|\+)*\b)(\ )*/${YELLOWFGBG}\\1${NC}\3/g"
