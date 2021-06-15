@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+
+__usage()
+{
+    local OUT=
+    OUT=${OUT}"\n## add custom color to color_config_file"
+    OUT=${OUT}"\n# add FG BG"
+    OUT=${OUT}"\n"
+    OUT=${OUT}"\n## list color_config_file content"
+    OUT=${OUT}"\n# ls"
+    OUT=${OUT}"\n"
+    OUT=${OUT}"\n## remove one line from color_config_file"
+    OUT=${OUT}"\n# rm LINE_NUM"
+    OUT=${OUT}"\n"
+    OUT=${OUT}"\n## setup color_config_file"
+    OUT=${OUT}"\n# -c|--config FILEPATH"
+    OUT=${OUT}"\n"
+    OUT=${OUT}"\n## show help\\usage"
+    OUT=${OUT}"\n# -h|-u"
+    echo -e "${OUT}"
+}
+
+__getrndcolor()
+{
+    local MIN=0
+    local MAX=255
+    local KLR_FG=$(( RANDOM % $MAX + $MIN))
+    local KLR_BG=$(( RANDOM % $MAX + $MIN))
+    echo "${KLR_FG} ${KLR_BG}"
+}
+
+NC=$(tput sgr0)
+_main_()
+{
+    local CMND="${1}"
+    local _ROOT_DIR=$(cd $(dirname $0); echo $PWD)
+    local KLR_FILE="${_ROOT_DIR}/selectdat_colors"
+
+    if [ "${CMND}" == "-c" ] || [ "${CMND}" = "--config" ]; then
+        KLR_FILE="${2}"
+        shift
+        shift
+        CMND="${1}"
+    fi
+
+    if [ "${CMND}" == "-u" ] || [ "${CMND}" = "-h" ]; then
+        echo "used config file: '${KLR_FILE}'"
+        __usage
+        exit 0
+    fi
+
+    if [ "${CMND}" == "ls" ] || [ "${CMND}" = "list" ]; then
+
+        for NUM in $(seq 1 $(< ${KLR_FILE} wc -l)); do
+            local LINE=$(sed "${NUM}q;d" ${KLR_FILE})
+            # >&2 echo N${NUM} ${LINE}
+            local KLR_NUM_FG=$(echo ${LINE} | cut -f 1 -d ' ')
+            local KLR_NUM_BG=$(echo ${LINE} | cut -f 2 -d ' ')
+            local COLORFG="\e[38;5;${KLR_NUM_FG}m"
+            local COLORBG="\e[48;5;${KLR_NUM_BG}m"
+            echo -e "${NUM} ${COLORFG}${COLORBG}Lorem Ipsum${NC} ${KLR_NUM_FG} ${KLR_NUM_BG}${NC}"
+        done
+        exit 0
+    fi
+
+    if [ "${CMND}" == "add" ] || [ "${CMND}" = "add" ]; then
+        echo "${2} ${3}" >> ${KLR_FILE}
+        echo -e "[ ADDED ] ${2} ${3}"
+        exit 0
+    fi
+
+    if [ "${CMND}" == "rm" ] || [ "${CMND}" = "remove" ]; then
+        local LINE_NUM="${2}"
+        local LINE=$(sed "${LINE_NUM}q;d" ${KLR_FILE})
+        sed -i "${LINE_NUM}d" ${KLR_FILE}
+        echo -e "[ REMOVED ] line ${LINE_NUM} '${LINE}'"
+        exit 0
+    fi
+
+    local KLR="__getrndcolor"
+    local _work=true
+    while (${_work}); do
+        local KLR_LINE=$(${KLR})
+        # >&2 echo ${#KLR_LINE}
+        local KLR_NUM_FG=$(echo ${KLR_LINE} | cut -f 1 -d ' ')
+        local KLR_NUM_BG=$(echo ${KLR_LINE} | cut -f 2 -d ' ')
+        local COLORFG="\e[38;5;${KLR_NUM_FG}m"
+        local COLORBG="\e[48;5;${KLR_NUM_BG}m"
+        echo -en "${COLORFG}${COLORBG}Lorem Ipsum${NC} "
+
+        read -n1 -p "$KLR_NUM_FG $KLR_NUM_BG " confirmation
+        if [ "${confirmation}" = "a" ]; then
+            echo "${KLR_NUM_FG} ${KLR_NUM_BG}" >> ${KLR_FILE}
+            echo -e "\n[ ADDED ] ${KLR_NUM_FG} ${KLR_NUM_BG}"
+        else if [ "${confirmation}" = "h" ]; then
+             echo -e "\n[a - add, q - exit, h - help, else next]"
+        else if [ "${confirmation}" = "q" ]; then
+            echo
+            echo "[ CANCELED ]"
+            _work=false
+        fi fi fi
+
+    done
+    echo "[ EXIT ]"
+
+}
+
+
+
+
+_main_ $@

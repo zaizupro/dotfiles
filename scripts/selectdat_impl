@@ -12,19 +12,35 @@ shift
 [ -r "${_FILENAME}" ] && . "${_FILENAME}"
 
 
-_-_getrndcolor()
+#                                                                                                  #
+get_color_from_list()
 {
-    MIN=0
-    MAX=255
-
-    COLORFG="\e[38;5;$(( RANDOM % $MAX + $MIN))m"  ## TODO: speedup dat random
-    COLORBG="\e[48;5;$(( RANDOM % $MAX + $MIN))m"  ## TODO: speedup dat random
-
+    local _ROOT_DIR=$(cd $(dirname $0); echo $PWD)
+    local KLR_FILE=${_ROOT_DIR}/selectdat_colors
+    local MIN=1
+    local MAX=$(< ${KLR_FILE} wc -l)
+    local NUM=$(( RANDOM % $MAX + $MIN))
+    local LINE=$(sed "${NUM}q;d" ${KLR_FILE}) ## TODO: read loaded file
+    # >&2 echo N${NUM} ${LINE}
+    local COLORFG="\e[38;5;$(echo ${LINE} | cut -f 1 -d ' ')m"
+    local COLORBG="\e[48;5;$(echo ${LINE} | cut -f 2 -d ' ')m"
     echo "${COLORFG}${COLORBG}"
 }
 
+#                                                                                                  #
+_-_getrndcolor()
+{
+    local MIN=0
+    local MAX=255
+    local COLORFG="\e[38;5;$(( RANDOM % $MAX + $MIN))m"  ## TODO: speedup dat random
+    local COLORBG="\e[48;5;$(( RANDOM % $MAX + $MIN))m"  ## TODO: speedup dat random
+    echo "${COLORFG}${COLORBG}"
+}
+
+#                                                                                                  #
 if [ -z ${_FUNKNAME} ]; then
-    _FUNKNAME="_-_getrndcolor"
+    _FUNKNAME="get_color_from_list"
+    # _FUNKNAME="_-_getrndcolor"
 fi
 
 if [ ! "$(type -t ${_FUNKNAME})" = "function" ]; then
