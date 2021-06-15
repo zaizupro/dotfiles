@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-selectdat_ext "" "" $@; RET=$?
+selectdat_impl "" "" $@; RET=$?
 exit ${RET}
